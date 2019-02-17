@@ -1,3 +1,3 @@
 # ritza
 
-[link](test link)
+[test link](content/link)
