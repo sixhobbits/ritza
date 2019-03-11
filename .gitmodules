@@ -1,0 +1,3 @@
+[submodule "ritza.co/themes/tale"]
+	path = ritza.co/themes/tale
+	url = https://github.com/EmielH/tale-hugo.git

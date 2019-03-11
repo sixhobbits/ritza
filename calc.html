@@ -1,0 +1,120 @@
+Code Submission
+Name: Giordi Fungula
+
+Email: jodi.fungula@gmail.com
+
+Created: Feb. 22, 2019, 9:03 p.m.
+
+Task: Task 2: JavaScript of mentor_prep
+
+<!--Write your code here-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculator</h1>
+
+        <form class="calculator" id="calculator" name="calculator">
+            <input type="text" class="item-block item-block1" id="output">
+            <input type="button" class="item-block item-block2 operator" id="AC" value="AC" onclick="refresh()">
+            <input type="button" class="item-block item-block3 number" value="1" id="one" onclick="display('1')">
+            <input  type="button" class="item-block item-block4 operator" value="-" onclick="display('-')">
+            <input type="button" class="item-block item-block5 number" value="2" id="two" onclick="display('2')">
+            <input type="button" class="item-block item-block6 number" value="3" id="three" onclick="display('3')">
+            <input type="button" class="item-block item-block7 operator" value="+" onclick="display('+')">
+            <input type="button" class="item-block item-block8 number" id="four" value="4" onclick="display('4')">
+            <input type="button" class="item-block item-block9 number" id="five" value="5" onclick="display('5')">
+            <input type="button" class="item-block item-block10 operator" value="X" onclick="display('X')">
+            <input type="button" class="item-block item-block11 number" id="six" value="6" onclick="display('6')">
+            <input type="button" class="item-block item-block12 number" id="seven" value="7" onclick="display('7')">
+            <input type="button" class="item-block item-block13 operator"  value="/" onclick="display('/')">
+            <input type="button" class="item-block item-block14 number" id="eight"  value="8" onclick="display('8')">
+            <input type="button" class="item-block item-block15 number" id="nine" value="9" onclick="display('9')">
+            <input type="button" class="item-block item-block16 number" id="nine" value="0" onclick="display('0')">
+            <input type="button" class="item-block item-block17 operator" value="=" onclick="equal()">
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    background: linear-gradient(to right, #eee, #3dfaaa);
+    text-align: center;
+}
+
+.calculator {
+    display: grid;
+    background: #333;
+    grid-template-columns: repeat(3,1fr);
+    max-width: 400px;
+    margin: 10px;
+    font-size: 50px;
+    margin: 0 auto;
+}
+.item-block {
+    border: 1px solid #fff;
+    margin: 10px;
+    height: 70px;
+}
+.item-block1 {
+    grid-column: 1 / -1;
+}
+/* blocks */
+.operator {
+    background: rgb(51, 47, 47);
+}
+
+.numbers{
+    background: #eee;
+}
+.item-block16 {
+    grid-column: 3 / -1;
+}
+.item-block17 {
+    grid-column: 1 / -1;
+
+}
+
+
+function element(e){
+    // returns back element or ID
+    return document.getElementById(e);
+}
+function display(value){
+    // Collections whatever element's value 
+    element('output').value += value;
+    // This will statically input the operands also
+}
+
+function refresh(value){
+    element('output').value = '';
+    // When AC is clicked remove value
+}
+
+function equal(){
+    let storedValue = element('output').value;
+    if(storedValue === '' || storedValue === undefined){
+        // Validate if user did not add numbers
+        alert("Please Enter a Number first");
+    } else {
+        element('output').value = eval(element('output').value);
+    }
+    // Calculates what ever was clicked 
+//    elementValue = eval(elementValue.value);
+    // clearCalculator();
+}
+
+function clearCalculator(){
+    // element('output').value = '';
+}

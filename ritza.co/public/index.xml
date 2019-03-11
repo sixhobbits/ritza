@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>https://ritza.co/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Mar 2019 11:08:18 +0100</lastBuildDate>
+    
+	<atom:link href="https://ritza.co/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://ritza.co/posts/hello-world/</link>
+      <pubDate>Wed, 06 Mar 2019 11:08:18 +0100</pubDate>
+      
+      <guid>https://ritza.co/posts/hello-world/</guid>
+      <description>This is a new post with a new theme.
+ I hope if can handle nice things like code formatting
+ def hello_world(): print(&#34;hello&#34;)   *What does this look like?
+  and this?
+   how similar is asciidoc to markdown?
+ </description>
+    </item>
+    
+  </channel>
+</rss>

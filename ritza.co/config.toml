@@ -1,0 +1,5 @@
+baseURL = "https://ritza.co/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+theme = "tale"
+pygmentsCodeFences = true

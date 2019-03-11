@@ -4,7 +4,7 @@ We create long-form technical content that uses high quality prose and productio
 
 ## Elevator pitch (for tall buildings)
 
-We see the following problems in the world, and we'd like to take a crack at solving them:
+We see the following problems in the world, and believe that they can be addressed simultaneously:
 
 * Pay Per Click (PPC) or digital media advertising is the prevalent way that new companies with technology products find customers. This form of advertising is expensive, provides no long term value and relies on invasive tracking of users.
 * Companies often switch to so-called *content-marketing* as an alternative or supplement to paid media. This usually involves using non-expert writers to push out as much short, shallow content as possible, stuffed with keywords that might rank well on search engines.
@@ -48,7 +48,7 @@ We also focus on building long-term relationships with junior writers and progra
 
 ### What is the business model and on what timelines?
 
-We believe in bootstrapping and long-term goals. We don't like the idea of venture capital funding, high growth for the sake of it, or giving up decision making control to investors. We prefer the strategies advocated by people such as DHH in [It Doesn't Have to be Crazy at Work](https://basecamp.com/books/calm), solo founders such as [Pieter Levels](https://levels.io/) known for Nomad List and and [AJ](https://twitter.com/ajlkn?lang=en) known for Carrd. 
+I believe in bootstrapping and long-term goals. I don't like the idea of venture capital funding, high growth for the sake of it, or giving up decision making control to investors. I prefer the strategies advocated by people such as DHH in [It Doesn't Have to be Crazy at Work](https://basecamp.com/books/calm), solo founders such as [Pieter Levels](https://levels.io/) known for Nomad List and and [AJ](https://twitter.com/ajlkn?lang=en) known for Carrd. 
 
 Ritza will launch very quietly in Q3 or Q4 2019, potentially with no employees. I will work on proving demand for the product for a maximum of 12 months, hiring or contracting copywriters, editors, programmers, and designers if and as demand increases.
 
@@ -56,7 +56,7 @@ SEO is a long game and we are in it for the long game.
 
 ### If you like high quality, edited content -- why don't you just write a book?
 
-[I did](https://flaskbyexample.com/). I found the process less than amazing. Although I had proofreaders, an editor, designers, layout people, and everything a writer could ask for, the focus was still on time-to-market and profit rather than on quality. Also, the book isn't available for free, which makes me sad. I believe high quality content can provide long-lasting value to companies with products to market, and only limited once-off value to readers, so it doesn't make sense to charge readers for content (and they're more and more adverse to this idea as the quantity of free content increases anyway). 
+[I did](https://flaskbyexample.com/).  found the process less than amazing. Although I had proofreaders, an editor, designers, layout people, and everything a writer could ask for, the focus was still on time-to-market and profit rather than on quality. Also, the book isn't available for free, which makes me sad. I believe high quality content can provide long-lasting value to companies with products to market, and only limited once-off value to readers, so it doesn't make sense to charge readers for content (and they're more and more adverse to this idea as the quantity of free content increases anyway). 
 
 ### Where do I ask more questions?
 
