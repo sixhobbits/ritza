@@ -11,7 +11,7 @@ We create technical content that is sponsored by companies which have technical 
 
 We create evergreen, high quality, long form, textual content. It is beautiful, loads fast, and is highly useful.
 
-See [our pitch](content/pitch4) to start with.
+See [our pitch](content/pitch5) to start with.
 
 If you really want, you can look at [our scratch notes](content/scratch), but these are not yet ready for general public consumption and are realsed purely for transparency. 
 
