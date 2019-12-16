@@ -36,6 +36,11 @@ they don’t want or need, marketing teams can use Ritza to give their
 customers what they really do want. Knoweldge.
 
 === What makes Ritza’s content different
+Most technical content on the web falls into one of two categories. Either
+* it is shallow, rushed, short, and full of CTAs to sign up for some product or use some service, but because it has a team of marketing professionals behind it, the page looks great and ranks well on Google, **or**A
+* it is written by an expert who is passionate about the topic, and published on a small blog, buried deep on page 2 (or even 3) of Google. It probably contains typing errors or mistakes because it is the work of a single person, and it is possibly out of date, because no one has had time to tend to it.
+
+Ritza creates 'Goldilocks' content, between these two extremes. Our writers are experts and passionate about creating and sharing knowledge, and they are well supported by designers, editors, and testers.
 
 === Created by a team of professionals
 
@@ -52,12 +57,12 @@ people improves it. Each one of Ritza’s articles aims to be in the top
 image:images/distraction-free.png[distraction free] Medium.com is
 well-known for being extremely user hostile, but even other sites which
 claim to have their readers’ best interests at heart are not shy of
-ruining their content. Hackernoon has rows up rows of menus, reminiscent
-of browser toolbars from the 90s. Dev.to has many calls to action,
-trying to trick the reader into failing at their goal – to read an
+ruining their content. Hackernoon (top right) has rows up rows of menus, reminiscent
+of browser toolbars from the 90s (bottom right). Dev.to (top left) has many calls to action,
+trying to trick the reader into failing at their initial goal – to read an
 article.
 
-Compare this to the beautiful site by Adrian Zumbrunnen. All you can see
+Compare this to the beautiful site by Adrian Zumbrunnen (bottom left). All you can see
 is text, because that is why you, as a reader, are there in the first
 place.
 
@@ -75,4 +80,4 @@ ____
 
 Ritza’s articles never have keyword stuffing, boring reflections, or
 catchy slogans. All of our content has a single purpose: to teach. And
-each article teaches a single concept.
+each article teaches a single concept -- we don't have articles like 'the 5 hottest trends in x of 2020' that try desparately to appeal to a wide range of people and therefore manage to be uninteresting to almost everyone. Our content is practical, informative, and beautiful.

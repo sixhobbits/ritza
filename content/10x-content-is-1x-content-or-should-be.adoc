@@ -1,0 +1,27 @@
+== "`10x`" content is actually just content - or at least it should be
+
+If you’ve ever been involved in '`content marketing`', you’ve probably
+heard of the phrase '`10x content`'. Just like in software engineering
+many people believe that some developers are '`10x developers`' – people
+who can do the same amount of work as 10 '`regular`' developers – in
+marketing, it is well known that some content "`performs`" (in terms of
+page views, or conversions) ten times as well as other content.
+
+SparkToro lists the following criteria for 10x content
+
+=== Criteria for 10X Content:
+
+[arabic]
+. Provides a uniquely positive user experience through the user
+interface, visuals, layout, fonts, patterns, etc.
+. Delivers content that is some substantive combination of high-quality,
+trustworthy, useful, interesting, and remarkable.
+. Is considerably different in scope and detail from other works on
+similar topics.
+. Loads quickly and is usable on any device or browser.
+. Creates an emotional response of awe, surprise, joy, anticipation,
+and/or admiration.
+. Has achieved an impressive quantity of amplification (through shares
+on social networks and/or links).
+. a problem or answers a question by providing comprehensive, accurate,
+exceptional information or resources.
