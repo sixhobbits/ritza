@@ -175,7 +175,7 @@ This is the first content released by Ritza, and I don’t expect it to
 cover everything. If you’re keen to discuss or willing to provide
 feedback, it’s greatly appreciated. Ping me on twitter.com/sixhobbits,
 gareth@dwyer.co.za (Ritza email addresses coming soon), or if you’re in
-South Africa, find me on https://zatech.github.io/[ZaTech Slack].
+South Africa, find me on https://zatech.co.za/[ZaTech Slack].
 
 [source,python]
 ----

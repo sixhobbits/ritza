@@ -60,5 +60,5 @@ SEO is a long game and we are in it for the long game.
 
 ### Where do I ask more questions?
 
-This is the first content released by Ritza, and I don't expect it to cover everything. If you're keen to discuss or willing to provide feedback, it's greatly appreciated. Ping me on [twitter.com/sixhobbits](twitter.com/sixhobbits), [gareth@dwyer.co.za](gareth@dwyer.co.za) (Ritza email addresses coming soon), or if you're in South Africa, find me on [ZaTech Slack](https://zatech.github.io/). 
+This is the first content released by Ritza, and I don't expect it to cover everything. If you're keen to discuss or willing to provide feedback, it's greatly appreciated. Ping me on [twitter.com/sixhobbits](twitter.com/sixhobbits), [gareth@dwyer.co.za](gareth@dwyer.co.za) (Ritza email addresses coming soon), or if you're in South Africa, find me on [ZaTech Slack](https://zatech.co.za/). 
 
