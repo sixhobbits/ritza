@@ -5,7 +5,7 @@ If you've ever worked in a company, you've no doubt heard phrases like "create v
 
 If you're a software engineer, you might have figured out that changing your Resume from using phrases like "I worked on a Java codebase of around 100k LoC, using Spring and React" to ones more like "I built a widget-shipping feature that shipped 300k widgets and ultimately created $1 million in business value" is a good way of 'creating value' in concrete sense of a higher paying job.
 
-But while we all probably have this vague idea that we are "adding value" to something some of the time, it's an imprecise term and we can all benefit from understanding it better. I'll define a lose framework below for talking about some valuable aspects of value, but mainly with the aim of making the following point:
+But while we all probably have this vague idea that we are "adding value" to something some of the time, it's an imprecise term and we can all benefit from understanding it better. I'll define a loose framework below for talking about some valuable aspects of value, but mainly with the aim of making the following point:
 
 > It's common for people to create short term measurable value while destroying long term immeasurable value
 
