@@ -7,7 +7,7 @@ If you're a software engineer, you might have figured out that changing your Res
 
 But while we all probably have this vague idea that we are "adding value" to something some of the time, it's an imprecise term and we can all benefit from understanding it better. I'll define a lose framework below for talking about some valuable aspects of value, but mainly with the aim of making the following point:
 
-> It's common for people to create short term measureable value while destroying long term immeasureable value
+> It's common for people to create short term measurable value while destroying long term immeasurable value
 
 So if that already seems fundamentally obvious to you, feel free to skip the rest and use this article as a reference.
 
@@ -17,7 +17,7 @@ One of the clearest ways we can see that "value" doesn't have a clear meaning is
 
 Software engineers are craftsman. They build things, solve problems, and ultimately create. In many companies, they might see "management" as a necessary evil. They might believe that they add value to the company by shipping code _in spite_ of management rather than with the support of management.
 
-Managers oversee and deligate. In software engineering teams, they may or may not be technical. Either way, they may see engineers as fungible: simply doing the ground work which can be done by any of millions of replaceable drones, and believe that it is the direction of these workers that ultimately creates value.
+Managers oversee and delegate. In software engineering teams, they may or may not be technical. Either way, they may see engineers as fungible: simply doing the ground work which can be done by any of millions of replaceable drones, and believe that it is the direction of these workers that ultimately creates value.
 
 It might be tempting to believe that one of them is correct, but given there are pretty smart people in both camps, it would make more sense that they're _both_ correct, by different definitions or configurations of "value".
 
@@ -31,39 +31,39 @@ Sometimes I can create value in one area while destroying it in another: for exa
 
 # Something that can be long term or short term
 
-Getting on the phone and making one sale creates some value, but this is _short term_. I have value for today, but I need to make more calls tomorrow if I want more value then. By contrast, writing an aritcle that solves a problem many potential customers have and putting it on the company blog creates long term value: a customer might still find it in several years time, discover the company, and buy a product. This is _long term_ value. 
+Getting on the phone and making one sale creates some value, but this is _short term_. I have value for today, but I need to make more calls tomorrow if I want more value then. By contrast, writing an article that solves a problem many potential customers have and putting it on the company blog creates long term value: a customer might still find it in several years time, discover the company, and buy a product. This is _long term_ value. 
 
-From this, we also see how tradeoffs happen. Often it's possible to _destroy short term_ value and _create long term_ value. For example, by hiring a new employee I give up some short term value (cash on hand, training resources) and create long term value (whatever the employee brings to the company).
+From this, we also see how trade-offs happen. Often it's possible to _destroy short term_ value and _create long term_ value. For example, by hiring a new employee I give up some short term value (cash on hand, training resources) and create long term value (whatever the employee brings to the company).
 
-And here we see the first potential danger already. While it's reasonable to sacrifice short term value for long term results, it's often very tempting to do the oppposite, especially if we are judged on weekly, monthly, or quarterly metrics. If I lie to a customer about how good my product is, I'm more likely to make a sale (short term value), but the reputation of the company and product will decrease (long term value).
+And here we see the first potential danger already. While it's reasonable to sacrifice short term value for long term results, it's often very tempting to do the opposite, especially if we are judged on weekly, monthly, or quarterly metrics. If I lie to a customer about how good my product is, I'm more likely to make a sale (short term value), but the reputation of the company and product will decrease (long term value).
 
-# Something that can be measureable or immeasureable
+# Something that can be measurable or immeasurable
 
-Repuation is hard to measure, though many people try. Cash in the bank is easy to measure. This makes tradeoffs tricky: how do I choose how much measureable value to sacrifice in return for value that is impossible to measure? What about the other way around? Employee happiness is another example of something that is hard to really measure (though many companies try through engagement surveys). If I ask everyone to work a slightly longer work day, or for a slightly less money, I have created measureable value while destroying immesauerable value.
+Reputation is hard to measure, though many people try. Cash in the bank is easy to measure. This makes trade-offs tricky: how do I choose how much measurable value to sacrifice in return for value that is impossible to measure? What about the other way around? Employee happiness is another example of something that is hard to really measure (though many companies try through engagement surveys). If I ask everyone to work a slightly longer work day, or for a slightly less money, I have created measurable value while destroying immeasurable value.
 
-As another example, imagine a chef at a restaurant that is also concerned with the overall profitability of the restaurant. Serving out 20 plates of stew, it might be tempting to "cheat" and make up the 20th one by slightly reducing the portions of the other 19. Every day, I could slightly cut portion sizes, creating measureable short term value. The small hit to the restaurants reputation would probably be unnoticeable until I reduce the sizes so much that customers start leaving bad reviews about still being hungry after their visit. 
+As another example, imagine a chef at a restaurant that is also concerned with the overall profitability of the restaurant. Serving out 20 plates of stew, it might be tempting to "cheat" and make up the 20th one by slightly reducing the portions of the other 19. Every day, I could slightly cut portion sizes, creating measurable short term value. The small hit to the restaurants reputation would probably be unnoticeable until I reduce the sizes so much that customers start leaving bad reviews about still being hungry after their visit. 
 
-# Combinations of value tradeoffs
+# Combinations of value trade-offs
 
-There are many other attributes of value that we could talk about, but even with only these three, there are enough combinations to cause confusion. If we look at a specific situation and talk about "value" being created or destroyed, we often actually mean that some combination of measureable, immesauerable, long-term, and short-term value is being created or destroyed. If we abbreviate these to "MS" (measureable short-term), "ML" (measureable long-term), "IS" (immesauerable short-term) and "IL" (immesauerable long-term) and use Green for "create" and Red for "destroy", we have 16 different kinds of value at play, as shown in the following image.
+There are many other attributes of value that we could talk about, but even with only these three, there are enough combinations to cause confusion. If we look at a specific situation and talk about "value" being created or destroyed, we often actually mean that some combination of measurable, immeasurable, long-term, and short-term value is being created or destroyed. If we abbreviate these to "MS" (measurable short-term), "ML" (measurable long-term), "IS" (immeasurable short-term) and "IL" (immeasurable long-term) and use Green for "create" and Red for "destroy", we have 16 different kinds of value at play, as shown in the following image.
 
 ![value combinations](images/value.jpg)
 
-For example, you could describe an action or strategy as fitting the second block of the first row (red: LI, LM, SI, green: SM) if it was expected to create short term measureable value (such as a fixed number of sales) while destroying all of
+For example, you could describe an action or strategy as fitting the second block of the first row (red: LI, LM, SI, green: SM) if it was expected to create short term measurable value (such as a fixed number of sales) while destroying all of
 
-* long term immeasureable value (e.g. tarnishing the company reputation)
-* long term measureable value (e.g. reducing recurring revenue)
-* short term immeasureable value (e.g. distracting key employees from their main goals for a fixed period)
+* long term immeasurable value (e.g. tarnishing the company reputation)
+* long term measurable value (e.g. reducing recurring revenue)
+* short term immeasurable value (e.g. distracting key employees from their main goals for a fixed period)
 
-In many situations, you'll probably find that smart people argue about whether one option will create more value than another. Sometimes the disagreement will in fact be directly about the value of something (especially if it is immeasureable), but more often, they'll be using imprecise terms to describe what value is being created and what value is being destroyed.
+In many situations, you'll probably find that smart people argue about whether one option will create more value than another. Sometimes the disagreement will in fact be directly about the value of something (especially if it is immeasurable), but more often, they'll be using imprecise terms to describe what value is being created and what value is being destroyed.
 
 # The most dangerous combinations and those with the most potential
 
 We started out with:
 
-> It's common for people to create small amounts of short term measureable value while destroying large amounts of long term immeasureable value
+> It's common for people to create small amounts of short term measurable value while destroying large amounts of long term immeasurable value
 
 and this is no doubt the most dangerous combination to find yourself in. It's pretty easy to justify your choice, especially within a company that prides itself on "data driven decisions"  with "this will create _x_ dollars of value within _y_ months", while ignoring the other configurations of value that are being harmed.
 
-Conversely, aiming to create long term immeasureable value while sacrificing short term measureable value has the most potential. For one, you'll have less competition as others focus on that what is measureable. And more importantly, you'll still be around in 10 or 50 years while your competitors will have killed the proverbial goose that lays golden eegs.
+Conversely, aiming to create long term immeasurable value while sacrificing short term measurable value has the most potential. For one, you'll have less competition as others focus on that what is measurable. And more importantly, you'll still be around in 10 or 50 years while your competitors will have killed the proverbial goose that lays golden eggs.
 
