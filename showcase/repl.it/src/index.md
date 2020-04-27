@@ -1,17 +1,11 @@
 # Our work with Repl.it
 
-Ritza produced several tutorials for Repl.it, an online coding platform. These are beginner to intermediate coding projects that walk the reader through building a practical mini-solution to a real-world problem.
-$ca
-$ca
-$ca
-$ca
-$ca
-$ca
+Ritza has produced several tutorials for Repl.it, an online coding platform. These are beginner to intermediate coding projects that walk the reader through building a practical mini-solution to a real-world problem.
 
 They are each independent from each other, but they can also be used together as a collection as a way for programmers to gain practical knowledge in several related areas.
 
 ## [Beginner web scraping with Python and Repl.it](beginner-web-scraping-with-python-and-repl-it)
-This is a beginner's introduction to webscraping where the reader will be shown how the web works and how HTML is structured and will build a Python scraper to download specific content from a specific site.
+This is a beginner's introduction to web scraping where the reader will be shown how the web works and how HTML is structured and will build a Python scraper to download specific content from a specific site.
 
 ## [Building news word clouds using Python and Repl.it](building-news-word-clouds-using-python-and-repl-it)
 This can be followed independently of the previous tutorial but assumes some of the knowledge shared there. The reader will build a web scraper using the Python Newspaper library to remove extra "boilerplate" content.
@@ -32,5 +26,5 @@ In this tutorial the reader builds a CRM (Customer Relationship Manager) with No
 Here the reader learns about some basic Machine Learning (text classification) using Repl.it. This is a high level tutorial showing how to train a classifier and generate predictions and does not get into the maths involved.
 
 ## [Quicksort tutorial: Python implementation with line by line explanation](quicksort-tutorial-python-implementation-with-line-by-line-explanation)
-This is the most abstract and theoretical of the collection and shows the reader how to implement quicksort from sratch. This is more useful for interview practice or understanding university homework.
+This is the most abstract and theoretical of the collection and shows the reader how to implement quicksort from scratch. This is more useful for interview practice or understanding university homework.
 

@@ -1,9 +1,9 @@
 == Our work with Repl.it
 
-Ritza produced several tutorials for Repl.it, an online coding platform.
-These are beginner to intermediate coding projects that walk the reader
-through building a practical mini-solution to a real-world problem. $ca
-$ca $ca $ca $ca $ca
+Ritza has produced several tutorials for Repl.it, an online coding
+platform. These are beginner to intermediate coding projects that walk
+the reader through building a practical mini-solution to a real-world
+problem.
 
 They are each independent from each other, but they can also be used
 together as a collection as a way for programmers to gain practical
@@ -11,7 +11,7 @@ knowledge in several related areas.
 
 === link:beginner-web-scraping-with-python-and-repl-it[Beginner web scraping with Python and Repl.it]
 
-This is a beginner’s introduction to webscraping where the reader will
+This is a beginner’s introduction to web scraping where the reader will
 be shown how the web works and how HTML is structured and will build a
 Python scraper to download specific content from a specific site.
 
@@ -55,5 +55,5 @@ maths involved.
 === link:quicksort-tutorial-python-implementation-with-line-by-line-explanation[Quicksort tutorial: Python implementation with line by line explanation]
 
 This is the most abstract and theoretical of the collection and shows
-the reader how to implement quicksort from sratch. This is more useful
+the reader how to implement quicksort from scratch. This is more useful
 for interview practice or understanding university homework.
