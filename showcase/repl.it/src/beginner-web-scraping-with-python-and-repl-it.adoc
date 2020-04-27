@@ -1,7 +1,3 @@
-:source-highlighter: highlightjs
-:highlightjs-theme: monokai
-:stylesheet: rubygems.css
-
 == Beginner web scraping with Python and Repl.it
 
 In this guide, we’ll walk through how to automatically grab data from

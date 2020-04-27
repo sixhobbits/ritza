@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel='canonical' href='https://www.codementor.io/@garethdwyer/beginner-web-scraping-with-python-and-repl-it-nzr27jvnq'>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -875,7 +876,7 @@ HTML source code.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import requests
+<pre class="highlight"><code class="language-python" data-lang="python">import requests
 
 url = "https://bbc.com/news"
 response = requests.get(url)
@@ -980,7 +981,7 @@ can use it by modifying the code in our Repl to look as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import requests
+<pre class="highlight"><code class="language-python" data-lang="python">import requests
 from bs4 import BeautifulSoup
 
 url = "https://bbc.com/news"
@@ -1063,7 +1064,7 @@ following four lines:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">for link in links:
+<pre class="highlight"><code class="language-python" data-lang="python">for link in links:
     href = link.get("href")
     if href.startswith("/news") and href[-1].isdigit():
         print(href)</code></pre>
@@ -1148,7 +1149,7 @@ are being talked about today.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import requests
+<pre class="highlight"><code class="language-python" data-lang="python">import requests
 import string
 
 from collections import Counter
@@ -1341,13 +1342,5 @@ tutorial, feel free to comment below or to ping me on Twitter at
 </div>
 </div>
 </div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2020-04-25 16:08:39 +0200
-</div>
-</div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
 </body>
 </html>

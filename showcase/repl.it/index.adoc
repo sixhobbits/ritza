@@ -1,8 +1,0 @@
-:stylesheet: rubygems.css
-
-== Our work with Repl.it
-
-Ritza produced several tutorials for Repl.it, an online coding platform.
-
-link:./beginner-web-scraping.html[Beginner web scraping with Python and
-Repl.it]
