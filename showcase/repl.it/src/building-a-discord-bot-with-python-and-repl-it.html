@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel='canonical' href=''>
+<link rel='canonical' href='https://www.codementor.io/@garethdwyer/building-a-discord-bot-with-python-and-repl-it-miblcwejz'>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Our work with Repl.it</title>
+<title>Building a Discord Bot with Python and Repl.it</title>
 <style>
 @import url(//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.css);
 /* normalize.css v2.1.1 | MIT License | git.io/normalize */
@@ -639,82 +639,524 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_our_work_with_repl_it">Our work with Repl.it</h2>
+<h2 id="_building_a_discord_bot_with_python_and_repl_it">Building a Discord Bot with Python and Repl.it</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Ritza has produced several tutorials for Repl.it, an online coding
-platform. These are beginner to intermediate coding projects that walk
-the reader through building a practical mini-solution to a real-world
-problem.</p>
+<p>In this tutorial, we’ll use <a href="https://repl.it">repl.it</a> and Python to build
+a Discord Chatbot. The bot will be able to join a Discord server and
+respond to messages sent by people.</p>
 </div>
 <div class="paragraph">
-<p>They are each independent from each other, but they can also be used
-together as a collection as a way for programmers to gain practical
-knowledge in several related areas.</p>
+<p>If you prefer JavaScript, this tutorial is
+<a href="https://www.codementor.io/garethdwyer/building-a-discord-bot-with-node-js-and-repl-it-mm46r1u8y">also
+available for Node.js</a>.</p>
+</div>
+<div class="paragraph">
+<p>You’ll find it easier to follow along if you have some Python knowledge
+and you should have used Discord or a similar app such as Skype or
+Telegram before. We won’t be covering the very basics of Python, but we
+will explain each line of code in detail, so if you have any experience
+with programming, you should be able to follow along.</p>
 </div>
 <div class="sect2">
-<h3 id="_beginner_web_scraping_with_python_and_repl_it"><a href="beginner-web-scraping-with-python-and-repl-it">Beginner web scraping with Python and Repl.it</a></h3>
+<h3 id="_setting_up">Setting up</h3>
 <div class="paragraph">
-<p>This is a beginner’s introduction to web scraping where the reader will
-be shown how the web works and how HTML is structured and will build a
-Python scraper to download specific content from a specific site.</p>
+<p>We’ll be doing all of our coding through the Repl.it web IDE and hosting
+our bot with Repl.it as well, so you won’t need to install any
+additional software on your machine.</p>
+</div>
+<div class="paragraph">
+<p>For set up, we’ll be walking through the following steps. Skip any that
+don’t apply to you (e.g. if you already have a Discord account, you can
+skip that section).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Creating an account on <a href="https://repl.it">Repl.it</a>.</p>
+</li>
+<li>
+<p>Creating an account on <a href="https://discordapp.com/">Discord</a>.</p>
+</li>
+<li>
+<p>Creating an application and a bot user in your Discord account</p>
+</li>
+<li>
+<p>Creating a server on Discord</p>
+</li>
+<li>
+<p>Adding our bot to our Discord server</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let’s get through these admin steps first and then we can get to the fun
+part of coding our bot.</p>
+</div>
+<div class="sect3">
+<h4 id="_creating_an_account_on_repl_it">Creating an account on Repl.it</h4>
+<div class="paragraph">
+<p>Repl.it is an online IDE <em>and</em> compute provider. Traditionally, you
+would write code locally on your machine, and then have to &#8220;deploy&#8221;
+the code to a server, so that other people on the internet could
+interact with it. Repl.it removes one of these steps by combining the
+two – you can write your code directly through the Repl.it interface and
+it will automatically be deployed to the public internet.</p>
+</div>
+<div class="paragraph">
+<p>Visit <a href="https://repl.it">Repl.it</a> in your web browser and hit the &#8220;Sign
+up&#8221; button.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/mc9Jzm7.png" alt="Repl.it sign up button"></span> <strong>Image 1:
+Signing up for Repl</strong></p>
+</div>
+<div class="paragraph">
+<p>After signing up, press &#8220;Start coding now&#8221; and choose &#8220;Python&#8221; from
+the list of available languages.</p>
+</div>
+<div class="paragraph">
+<p>Play around with the interface a bit to see how easy it is to write and
+run code. We’ll be coming back to this interface soon after we’ve done
+some of the Discord set up.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_a_bot_in_discord_and_getting_a_token">Creating a bot in Discord and getting a token</h4>
+<div class="paragraph">
+<p>If you’re reading this tutorial, you probably have at least heard of
+Discord and likely have an existing account. If not, Discord is a VoIP
+and Chat application that is designed to replace Skype for gamers. You
+can sign up for a free account over at
+<a href="https://discordapp.com/register">the Discord register page</a>, and download
+one of their desktop or mobile applications from
+<a href="https://discordapp.com/">the Discord homepage</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once you have an account, you’ll want to create a Discord application.
+Visit <a href="https://discordapp.com/developers/applications/">the Discord
+developer’s page</a> and press the &#8220;Create new application&#8221; button, as in
+the image below. (I’ve already created two applications. If you haven’t,
+you’ll only see the button that I’ve marked in red and not the two above
+it.)</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/HHzbjJL.png" alt="Discord create application page"></span>
+<strong>Image 2: Creating a new Discord application</strong></p>
+</div>
+<div class="paragraph">
+<p>The first thing to do on the next page is to note your Client ID, which
+you’ll need to add the bot to the server. You can come back later and
+get if from this page, or copy it somewhere where you can easily find it
+later.</p>
+</div>
+<div class="paragraph">
+<p>Fill out a name and description for your bot (feel free to be more
+creative than me) and press &#8220;save changes&#8221;.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/yznoduG.png" alt="Naming our Discord bot"></span> <strong>Image 3:
+Naming our Discord Application</strong></p>
+</div>
+<div class="paragraph">
+<p>Now you’ve created a Discord application. The next step is to add a bot
+to this application, so head over to the &#8220;Bot&#8221; tab using the menu on
+the left and press the &#8220;Add Bot&#8221; button, as indicated below. Click
+&#8220;yes, do it&#8221; when Discord asks if you’re sure about bringing a new bot
+to life.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/aFN3Lr0.png" alt="Adding a bot to our Discord application"></span> <strong>Image 4: Adding a bot to our Discord Application</strong></p>
+</div>
+<div class="paragraph">
+<p>The last thing we’ll need from our bot is a Token. Anyone who has the
+bot’s Token can prove that they own the bot, so you’ll need to be
+careful not to share this with anyone. You can get the token by pressing
+&#8220;Click to reveal token&#8221;, or copy it to your clipboard without seeing
+it by pressing &#8220;Copy&#8221;.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/zZ1ctsg.png" alt="Getting a Token for your bot"></span>
+<strong>Image 5: Generating a token for our Discord bot</strong></p>
+</div>
+<div class="paragraph">
+<p>Take note of your Token or copy it to your clipboard, as we’ll need to
+add it to our code soon.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_a_discord_server">Creating a Discord server</h4>
+<div class="paragraph">
+<p>If you don’t have a Discord server to add your bot to, you can create
+one by opening the desktop Discord application that you downloaded
+earlier. Press the &#8220;+&#8221; icon as shown below to create a server.
+<span class="image"><img src="https://i.imgur.com/jf5yLjh.png" alt="Creating a discord server"></span> <strong>Image
+6: Creating a Discord server</strong></p>
+</div>
+<div class="paragraph">
+<p>Press &#8220;Create a server&#8221; in the screen that follows, and then give your
+server a name. Once the server is up and running, you can chat to
+yourself, or invite some friends to chat with you. Soon we’ll invite our
+bot to chat with us as well.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_adding_your_discord_bot_to_your_discord_server">Adding your Discord bot to your Discord server</h4>
+<div class="paragraph">
+<p>Our Discord bot is still just a shell at this stage as we haven’t
+written any code to allow him to do anything, but let’s go ahead and add
+him to our Discord server anyway. To add a bot to your server, you’ll
+need the Client ID from the &#8220;General Information&#8221; page that we looked
+at before (this is the one outlined in green in Image 3, <strong>not</strong> the Bot
+Secret from Image 5).</p>
+</div>
+<div class="paragraph">
+<p>Create a URL that looks as follows, but using your Client ID instead of
+mine at the end:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://discordapp.com/api/oauth2/authorize?scope=bot&amp;client_id=477366174959665152" class="bare">https://discordapp.com/api/oauth2/authorize?scope=bot&amp;client_id=477366174959665152</a>.</p>
+</div>
+<div class="paragraph">
+<p>Visit the URL that you created in your web browser and you’ll see a page
+similar to the following where you can choose which server to add your
+bot to.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/t0nlSKC.png" alt="Authorizing your bot to join your server"></span> <strong>Image 7: Authorizing our bot to join our server</strong></p>
+</div>
+<div class="paragraph">
+<p>After pressing &#8220;authorize&#8221;, you should get an in-app Discord
+notification telling you that your bot has joined your server.</p>
+</div>
+<div class="paragraph">
+<p>Now we can get to the fun part of building a brain for our bot!</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_news_word_clouds_using_python_and_repl_it"><a href="building-news-word-clouds-using-python-and-repl-it">Building news word clouds using Python and Repl.it</a></h3>
+<h3 id="_creating_a_repl_and_installing_our_discord_dependencies">Creating a Repl and installing our Discord dependencies</h3>
 <div class="paragraph">
-<p>This can be followed independently of the previous tutorial but assumes
-some of the knowledge shared there. The reader will build a web scraper
-using the Python Newspaper library to remove extra &#8220;boilerplate&#8221;
-content.</p>
+<p>The first thing we need to do is create a Python Repl to write the code
+for our Discord bot. Over at <a href="https://repl.it">repl.it</a>, create a new
+Repl, as you did right at the start of this tutorial, choosing
+&#8220;Python&#8221; as your language again.</p>
+</div>
+<div class="paragraph">
+<p>We don’t need to reinvent the wheel as there is already a great Python
+wrapper for the Discord bot API over on
+<a href="https://github.com/Rapptz/discord.py">GitHub</a>, which makes it a lot
+faster to get set up with a basic Python discord bot.</p>
+</div>
+<div class="paragraph">
+<p>To install the libraries and its dependencies in our Repl, we’ll need to
+create a file called <code>requirements.txt</code> at the root of our project.
+You can create the file by pressing the &#8220;Add file&#8221; button [Marked
+<code>(1)</code> in the image below] in the Repl interface. Make sure you name
+the file <em>exactly</em> <code>requirements.txt</code> <code>(2)</code>, which tells Repl to
+look in this file for any third-party libraries to install, and add the
+following line to this new file <code>(3)</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">discord.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This tells Repl that we want to install the <code>discord.py</code> library,
+which is the same library that we linked to on GitHub above.</p>
+</div>
+<div class="paragraph">
+<p>Press the &#8220;Run&#8221; button <code>(4)</code> and you should see Repl installing your
+three libraries in the output pane on the right <code>(5)</code>. Note the last
+line where you can see that the installation went OK.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/YmVSxrP.png" alt="Repl interface with 5 action points"></span> <strong>Image 8: Adding requirements to our Python application</strong></p>
+</div>
+<div class="paragraph">
+<p>Our bot is nearly ready to go – but we still need to plug in our secret
+token. This will authorize our code to control our bot.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_a_discord_bot_with_python_and_repl_it"><a href="building-a-discord-bot-with-python-and-repl-it">Building a Discord Bot with Python and Repl.it</a></h3>
+<h3 id="_setting_up_authorization_for_our_bot">Setting up authorization for our bot</h3>
 <div class="paragraph">
-<p>Here the reader learns how to build a basic echo bot using the Discord
-API. It leaves the reader with a basic bot set up that can be customized
-further.</p>
+<p>By default, Repl code is public. This is great as it encourages
+collaboration and learning, but we need to be careful not to share our
+secret bot token (which gives anyone who has access to it full control
+of our bot).</p>
+</div>
+<div class="paragraph">
+<p>To get around the problem of needing to give our <em>code</em> access to the
+token while allowing others to access our code but <em>not</em> our token,
+we’ll be using
+<a href="https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps">environment
+variables</a>. On a normal machine, we’d set these directly on our
+operating system, but using Repl we don’t have access to this. Repl
+allows us to set secrets in environment variables through a special
+<code>.env</code> file. Create a file called exactly <code>.env</code> in the same way
+that you created the <code>requirements.txt</code> file and add a variable to
+define your Bot’s secret token (note that this is the second token that
+we got while setting up the Bot – different from the Client ID that we
+used to add our bot to our server). It should looks something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You’ll need to: * <strong>Replace</strong> the token below (after the <code>=</code> sign) with
+the token that Discord gave you when creating your own bot. * Be careful
+about <strong>spacing</strong>. Unlike in Python, if you put a space on either side of
+the <code>=</code> in your <code>.env</code> file, these spaces will be part of the
+variable name or the value, so make sure you don’t have any spaces
+around the <code>=</code> or at the end of the line. * Run the code again.
+Sometimes you’ll need to refresh the whole page to make sure that your
+environment variables are successfully loaded.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/Fk4QYg3.png" alt="Creating the .env file"></span> <strong>Image 9:
+Creating our .env file</strong></p>
+</div>
+<div class="paragraph">
+<p>Let’s make a slightly Discord bot that repeats everything we say but in
+reverse. We can do this in only a few lines of code. In your <code>main.py</code>
+file, add the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">import discord
+import os
+
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    print("I'm in")
+    print(client.user)
+
+@client.event
+async def on_message(message):
+    if message.author != client.user:
+        await client.send_message(message.channel, message.content[::-1])
+
+token = os.environ.get("DISCORD_BOT_SECRET")
+client.run(token)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s tear this apart line by line to see what it does.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Lines 1-2</strong> import the discord library that we installed earlier and
+the built-in operating system library, which we’ll need to access our
+Bot’s secret token.</p>
+</li>
+<li>
+<p>In <strong>line 4</strong>, we create a Discord <code>Client</code>. This is a Python object
+that we’ll use to send various commands to Discord’s servers.</p>
+</li>
+<li>
+<p>In <strong>line 6</strong>, we say we are defining an <code>event</code> for our client. This
+line is a Python decorator, which will take the function directly below
+it and modify it in some way. The Discord bot is going to run
+<em>asynchronously</em>, which might be a bit confusing if you’re used to
+running standard Python. We won’t go into asynchronous Python in depth
+here, but if you’re interested in what this is and why it’s used,
+there’s a good guide over at
+<a href="https://medium.freecodecamp.org/a-guide-to-asynchronous-programming-in-python-with-asyncio-232e2afa44f6">FreeCodeCamp</a>.
+In short, instead of running the code in our file from top to bottom,
+we’ll be running pieces of code in response to specific events.</p>
+</li>
+<li>
+<p>In <strong>lines 7-9</strong> we define what kind of event we want to respond to, and
+what the response should be. In this case, we’re saying that in response
+to the <code>on_ready</code> event (when our bot joins a server successfully), we
+should output some information server side (i.e. this will be displayed
+in our Repl’s output, but not sent as a message through to Discord).
+We’ll print a simple <code>I'm in</code> message to see that the bot is there and
+print our bot’s user id (if you’re running multiple bots, this will make
+it easier to work out who’s doing what).</p>
+</li>
+<li>
+<p><strong>Lines 11-14</strong> are similar, but instead of responding to an
+<code>on_ready</code> event, we tell our bot how to handle new messages. <strong>Line
+13</strong> says we only want to respond to messages that aren’t from us
+(otherwise our bot will keep responding to himself – you can remove this
+line to see why that’s a problem), and <strong>line 15</strong> says we’ll send a new
+message to the same channel where we received a message
+(<code>message.channel</code>) and the content we’ll send will be the same
+message that we received, but backwards (<code>message.content[::-1]</code> -
+<code>::-1</code> is a slightly odd but useful Python idiom to reverse a string
+or list).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The last two lines get our secret token from the environment variables
+that we set up earlier and then tell our bot to start up.</p>
+</div>
+<div class="paragraph">
+<p>Press the big green &#8220;Run&#8221; button again and you should see your bot
+reporting a successful channel join in the Repl output.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/nMbk92q.png" alt="Repl output showing channel join"></span>
+<strong>Image 10: Seeing our bot join our server</strong></p>
+</div>
+<div class="paragraph">
+<p>Over in your Discord app, send a message and see your Bot respond!</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/Wu1ZU6F.png" alt="Messages from our bot"></span>. <strong>Image 11:
+Our bot can talk!</strong></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_a_discord_bot_with_node_js_and_repl_it"><a href="building-a-discord-bot-with-node-and-repl-it">Building a Discord bot with Node.js and Repl.it</a></h3>
+<h3 id="_keeping_our_bot_alive">Keeping our bot alive</h3>
 <div class="paragraph">
-<p>This is simply a translation of the Python version, but it’s still
-recommended for developers to go through both so that they can see the
-differences (and similarities) between the languages in a real project.</p>
+<p>Your bot can now respond to messages, but only for as long as your Repl
+is running. If you close your browser tab or shut down your computer,
+your bot will stop and no longer respond to messages on Discord.</p>
+</div>
+<div class="paragraph">
+<p>Repl will keep your code running after you close the browser tab only if
+you are running a web server. Because we are using the Python discord.py
+library, our bot doesn’t require an explicit web server, but we can
+create a server and run it in a separate thread just to keep our Repl
+alive. We’ll do this using the <a href="http://flask.pocoo.org/">Flask</a> framework,
+so the first thing we’ll need to do is add that in our
+<code>requirements.txt</code> file. Edit <code>requirements.txt</code> to look as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">discord.py
+flask</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now create a new file in your project called <code>keep_alive.py</code> and add
+the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "I'm alive"
+
+def run():
+  app.run(host='0.0.0.0',port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We won’t go over this in detail as it’s not central to our bot, but here
+we start a web server that will return &#8220;I’m alive&#8221; if anyone visits
+it, and we’ll provide a method to start this in a new thread (leaving
+the main thread for our Repl bot).</p>
+</div>
+<div class="paragraph">
+<p>In our <code>main.py</code> file, we need to add an import for this server at the
+top. Add the following line near the top of <code>main.py</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">from keep_alive import keep_alive</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And at the bottom of <code>main.py</code> start up the web server just before you
+start up the bot. The last three lines of <code>main.py</code> should be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">keep_alive()
+token = os.environ.get("DISCORD_BOT_SECRET")
+client.run(token)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After doing this and hitting the green &#8220;Run&#8221; button again, you should
+see some changes to your Repl. For one, you’ll see a new pane in the top
+right which shows the web output from your server. We can see that
+visiting our Repl now returns a basic web page showing the &#8220;I’m alive&#8221;
+string that we told our web server to return by default. In the
+bottom-right pane, you can also see some additional output from Flask
+starting up and running continuously, listening for requests.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/0rFhNRH.png" alt="Running a Flask server in the background"></span> <strong>Image 12</strong> Output from our Flask server</p>
+</div>
+<div class="paragraph">
+<p>Now your bot will stay alive even after closing your browser or shutting
+down your development machine. Repl will still clean up your server and
+kill your bot after about one hour of inactivity, so if you don’t use
+your bot for a while, you’ll have to log into Repl and start the bot up
+again. Alternatively, you can set up a third-party (free!) service like
+<a href="https://uptimerobot.com/">Uptime Robot</a>. Uptime Robot pings your site
+every 5 minutes to make sure it’s still working – usually to notify you
+of unexpected downtime, but in this case the constant pings have the
+side effect of keeping our Repl alive as it will never go more than an
+hour without receiving any activity.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_creating_and_hosting_a_basic_web_application_with_django_and_repl_it"><a href="creating-and-hosting-a-basic-django-application-with-django-and-repl-it">Creating and hosting a basic web application with Django and Repl.it</a></h3>
+<h3 id="_forking_and_extending_our_basic_bot">Forking and extending our basic bot</h3>
 <div class="paragraph">
-<p>Here the reader learns how to set up a Django project from scratch and
-host it with Repl.it.</p>
+<p>This is not a very useful bot as is, but the possibilities are only
+limited by your creativity now! You can have your bot receive input from
+a user, process the input, and respond in any way you choose. In fact,
+with the basic input and output that we’ve demonstrated, we have most of
+the components of any modern computer, all of which are based on the
+<a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">Von Neumann
+architecture</a> (we could easily add the missing memory by having our bot
+write to a file, or with a bit more effort link in a
+<a href="https://www.sqlite.org/index.html">SQLite database</a> for persistent
+storage).</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_building_a_crm_app_with_nodejs_repl_it_and_mongodb"><a href="building-a-crm-app-with-nodejs-repl-it-and-mongo-db">Building a CRM app with NodeJS, Repl.it, and MongoDB</a></h3>
 <div class="paragraph">
-<p>In this tutorial the reader builds a CRM (Customer Relationship Manager)
-with NodeJS, showing basic crud applications. This is not a translation
-of the Django tutorial but many of the same concepts are covered.</p>
+<p>If you followed along this tutorial, you’ll have your own basic Repl bot
+to play around with and extend. If you were simply reading, you can
+easily fork my bot at
+[<a href="https://repl.it/@GarethDwyer1/discord-bot" class="bare">https://repl.it/@GarethDwyer1/discord-bot</a>](<a href="https://repl.it/@GarethDwyer1/discord-bot" class="bare">https://repl.it/@GarethDwyer1/discord-bot</a>)
+and extend it how you want (you’ll need to add your own token and
+recreate the <code>.env</code> file still). Happy hacking!</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_introduction_to_machine_learning_with_python_and_repl_it"><a href="introduction-to-machine-learning-with-python-and-repl-it">Introduction to Machine Learning with Python and repl.it</a></h3>
 <div class="paragraph">
-<p>Here the reader learns about some basic Machine Learning (text
-classification) using Repl.it. This is a high level tutorial showing how
-to train a classifier and generate predictions and does not get into the
-maths involved.</p>
+<p>If you’re stuck for ideas, why not link up your Discord bot to the
+<a href="https://dev.twitch.tv/">Twitch API</a> to get notified when your favourite
+streamers are online, or build a
+<a href="https://en.wikipedia.org/wiki/Interactive_fiction">text adventure</a>. Also
+join Repl’s Discord server by using this invite link
+<a href="https://discord.gg/QWFfGhy" class="bare">https://discord.gg/QWFfGhy</a> - you can test your bot, share it with other
+bot builders to get feedback, and see what Discord bots people are
+building on Repl.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_quicksort_tutorial_python_implementation_with_line_by_line_explanation"><a href="quicksort-tutorial-python-implementation-with-line-by-line-explanation">Quicksort tutorial: Python implementation with line by line explanation</a></h3>
 <div class="paragraph">
-<p>This is the most abstract and theoretical of the collection and shows
-the reader how to implement quicksort from scratch. This is more useful
-for interview practice or understanding university homework.</p>
+<p>If you enjoyed this tutorial, you might also enjoy my tutorial on
+<a href="https://www.codementor.io/garethdwyer/building-a-telegram-bot-using-python-part-1-goi5fncay">building
+a chatbot for Telegram</a> or my book
+<a href="https://www.packtpub.com/web-development/flask-example">Flask by Example</a>
+where I show how to build Python applications using the Flask framework.
+If you have any questions or comments about this tutorial, feel free to
+<a href="https://twitter.com/sixhobbits">reach out on Twitter</a>.</p>
 </div>
 </div>
 </div>

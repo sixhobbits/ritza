@@ -62,6 +62,7 @@ const uri = `mongodb+srv://${mongo_username}:${mongo_password}@cluster0-zrtwi.gc
 const client = new MongoClient(uri, { useNewUrlParser: true });
 ```
 Here's what's going on:
+
 * **Line 1** adds the dependency for the MongoDB Client. Repl.it makes things easy by installing all the dependencies for us, so we don't have to use something like npm to do it manually.
 * **Line 2 & 3** we retrieve our MongoDB username and password from the environment variables that we set up earlier.
 * **Line 5** has a few very important details that we need to get right.
@@ -87,6 +88,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 ```
 Let's break this down.
+
 * **Line 1** adds the dependency for Express. Repl.it will take care of installing it for us.
 * **Line 2** creates a new Express app that will be needed to handle incoming requests.
 * **Line 3** adds a dependency for 'body-parser'. This is needed for the Express server to be able to handle the data that the form will send, and give it to us in a useful way in code.
@@ -115,6 +117,7 @@ http.listen(app.get('port'), function() {
     console.log('listening on port', app.get('port'));
 });
 ```
+
 * **Line 1** tells Express to set the port number to either a number defined as an environment variable, or 5000 if no definition was made.
 * **Line 2-4** tells the server to start listening for requests.
 
@@ -161,7 +164,9 @@ Make a new file called `create.html` and paste the following into it:
 </body>
 </html>
 ```
-We won't go in depth into the above HTML. It is a very basic form with 4 fields (name, address, telephone, note) and a Submit button, which creates an interface that will look like the one below. ![Customer Details](https://imgur.com/Y1IIDq6.png)
+We won't go in depth into the above HTML. It is a very basic form with 4 fields (name, address, telephone, note) and a Submit button, which creates an interface that will look like the one below.
+
+![Customer Details](https://imgur.com/Y1IIDq6.png)
 
 When the user presses the submit button a POST request is made to `/create` with the data in the form - we still have to handle this request in our code as we're currently only handling a GET request to `/`.
 
@@ -172,7 +177,7 @@ If you fill in the form and click submit, you'll get a response back that says `
 app.post('/create', function (req, res, next) {
   client.connect(err => {
     const customers = client.db("crmdb").collection("customers");
-    
+
     let customer = { name: req.body.name, address: req.body.address, telephone: req.body.telephone, note: req.body.note };
     customers.insertOne(customer, function(err, res) {
       if (err) throw err;
@@ -317,6 +322,7 @@ app.post('/delete', function(req, res) {
 })
 ```
 This introduces 2 new 'POST' handlers - one for `/update`, and one for `/delete`.
+
 * **Line 2** connects to our MongoDB database.
 * **Line 3** throws an error if there was a problem connecting to the database.
 * **Line 4** defines a query that we will use to find the document to update. In this case, we are using the details of the customer *before* it was updated. We saved this name earlier in a hidden field in the HTML. Trying to find the customer by its updated name obviously won't work because it hasn't been updated yet. Also, note that we are setting some of the fields to null if they are empty. This is so that the database returns the correct document when we update or delete - if we search for a document that has no address with an address of '' (empty string), then our query won't return anything.
@@ -325,7 +331,6 @@ This introduces 2 new 'POST' handlers - one for `/update`, and one for `/delete`
 * **Line 7** throws an error if there was a problem with the update.
 * **Line 8** logs that a document was updated.
 * **Line 9** re-renders the update page with a message saying that the customer was updated, and displays the new values.
-
 * **Line 15** connects to our MongoDB database.
 * **Line 16** throws an error if there was a problem connecting to the database.
 * **Line 17** defines a query that we will use to find the document to delete. In this case we are using all the details of the customer *before* any changes were made on the form to make sure we delete that specific customer.

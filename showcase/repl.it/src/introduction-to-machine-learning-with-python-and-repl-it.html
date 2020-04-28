@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel='canonical' href=''>
+<link rel='canonical' href='https://www.codementor.io/@garethdwyer/introduction-to-machine-learning-with-python-and-repl-it-rln7ywkhc'>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Our work with Repl.it</title>
+<title>Introduction to Machine Learning with Python and repl.it</title>
 <style>
 @import url(//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.css);
 /* normalize.css v2.1.1 | MIT License | git.io/normalize */
@@ -639,82 +639,657 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_our_work_with_repl_it">Our work with Repl.it</h2>
+<h2 id="_introduction_to_machine_learning_with_python_and_repl_it">Introduction to Machine Learning with Python and repl.it</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Ritza has produced several tutorials for Repl.it, an online coding
-platform. These are beginner to intermediate coding projects that walk
-the reader through building a practical mini-solution to a real-world
-problem.</p>
+<p>In this tutorial, we’re going to walk through how to set up a basic
+Python <a href="https://repl.it">repl</a> that can learn the difference between two
+categories of sentences, positive and negative. For example, if you had
+the sentence &#8220;I love it!&#8221;, we want to train a machine to know that
+this sentence is associated with happy and positive emotions. If we have
+a sentence like &#8220;it was really terrible&#8221;, we want the machine to label
+it as a negative or sad sentence.</p>
 </div>
 <div class="paragraph">
-<p>They are each independent from each other, but they can also be used
-together as a collection as a way for programmers to gain practical
-knowledge in several related areas.</p>
+<p>The maths, specifically calculus and linear algebra, behind machine
+learning gets a bit hairy. We’ll be abstracting this away with the
+Python library <a href="https://scikit-learn.org/">scikit-learn</a>, which makes it
+possible to do advanced machine learning in a few lines of Python.</p>
+</div>
+<div class="paragraph">
+<p>At the end of this tutorial you’ll understand the fundamental ideas of
+automatic classification and have a program that can learn by itself to
+distinguish between different categories of text. You’ll be able to use
+the same code to learn new categories (e.g. spam/not-spam, or
+clickbait/non-clickbait).</p>
 </div>
 <div class="sect2">
-<h3 id="_beginner_web_scraping_with_python_and_repl_it"><a href="beginner-web-scraping-with-python-and-repl-it">Beginner web scraping with Python and Repl.it</a></h3>
+<h3 id="_prerequisites">Prerequisites</h3>
 <div class="paragraph">
-<p>This is a beginner’s introduction to web scraping where the reader will
-be shown how the web works and how HTML is structured and will build a
-Python scraper to download specific content from a specific site.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_building_news_word_clouds_using_python_and_repl_it"><a href="building-news-word-clouds-using-python-and-repl-it">Building news word clouds using Python and Repl.it</a></h3>
-<div class="paragraph">
-<p>This can be followed independently of the previous tutorial but assumes
-some of the knowledge shared there. The reader will build a web scraper
-using the Python Newspaper library to remove extra &#8220;boilerplate&#8221;
-content.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_building_a_discord_bot_with_python_and_repl_it"><a href="building-a-discord-bot-with-python-and-repl-it">Building a Discord Bot with Python and Repl.it</a></h3>
-<div class="paragraph">
-<p>Here the reader learns how to build a basic echo bot using the Discord
-API. It leaves the reader with a basic bot set up that can be customized
-further.</p>
+<p>To follow along this tutorial, you should have at least basic knowledge
+of Python or a similar programming language. Ideally, you should also
+sign up for a <a href="https://repl.it">repl.it</a> account so that you can modify
+and extend the bot we build, but it’s not completely necessary.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_a_discord_bot_with_node_js_and_repl_it"><a href="building-a-discord-bot-with-node-and-repl-it">Building a Discord bot with Node.js and Repl.it</a></h3>
+<h3 id="_setting_up">Setting up</h3>
 <div class="paragraph">
-<p>This is simply a translation of the Python version, but it’s still
-recommended for developers to go through both so that they can see the
-differences (and similarities) between the languages in a real project.</p>
+<p>If you’re following along using repl.it, then visit the homepage and
+login or create a new account. Follow the prompts to create your first
+Repl, and choose &#8220;Python&#8221;. You’ll be taken to a new Repl project where
+you can run Python code and immediately see the output, which is great
+for rapid development.</p>
+</div>
+<div class="paragraph">
+<p>The first thing we need to do is install scikit-learn, which is a really
+nice Python library to get started with machine learning. Create a new
+file using the &#8220;add file&#8221; button at the top left, call the file
+<code>requirements.txt</code> (the exact name is important – it’s a special file
+that repl will look for dependencies in and install them automatically),
+and add the line <code>scikit-learn</code> to the top of the new file that gets
+created.</p>
+</div>
+<div class="paragraph">
+<p>You should see the library installing through the output produced in the
+right-hand panel, as in the image below.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://cdn.filestackcontent.com/ABu0DokgQmKBxPp5Mlvk" alt="repl-start-screen.png"></span></p>
+</div>
+<div class="paragraph">
+<p>Now you have the powerful and simple scikit-learn available! Let’s learn
+how to use it. Open the <code>main.py</code> file that Repl created for you
+automatically and add the following two imports to the top.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">from sklearn import tree
+from sklearn.feature_extraction.text import CountVectorizer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In line 1, we import the <code>tree</code> module, which will give us a Decision
+Tree classifier that can learn from data. In line 2, we import a
+vectoriser – something that can turn text into numbers. We’ll describe
+each of these in more detail soon!</p>
+</div>
+<div class="paragraph">
+<p>Throughout the next steps, you can hit the big green &#8220;run&#8221; button to
+run your code, check for bugs, and view output along the way (you should
+do this every time you add new code).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_creating_and_hosting_a_basic_web_application_with_django_and_repl_it"><a href="creating-and-hosting-a-basic-django-application-with-django-and-repl-it">Creating and hosting a basic web application with Django and Repl.it</a></h3>
+<h3 id="_creating_some_mock_data">Creating some mock data</h3>
 <div class="paragraph">
-<p>Here the reader learns how to set up a Django project from scratch and
-host it with Repl.it.</p>
+<p>Before we get started with the exciting part, we’ll create a very simple
+dataset – too simple in fact. You might not see the full power of
+machine learning at first as our task will look so easy, but once we’ve
+walked through the concepts, it’ll be a simple matter of swapping the
+data out for something bigger and more complicated.</p>
+</div>
+<div class="paragraph">
+<p>On the next lines of main.py add the following lines of code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">positive_texts = [
+    "we love you",
+    "they love us",
+    "you are good",
+    "he is good",
+    "they love mary"
+]
+
+negative_texts =  [
+    "we hate you",
+    "they hate us",
+    "you are bad",
+    "he is bad",
+    "we hate mary"
+]
+
+test_texts = [
+    "they love mary",
+    "they are good",
+    "why do you hate mary",
+    "they are almost always good",
+    "we are very bad"
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We’ve created three simple datasets of five sentences each. The first
+one contains positive sentences; the second one contains negative
+sentences; and the last contains a mix of positive and negative
+sentences.</p>
+</div>
+<div class="paragraph">
+<p>It’s immediately obvious to a human which sentences are positive and
+which are negative, but can we teach a computer to tell them apart?</p>
+</div>
+<div class="paragraph">
+<p>We’ll use the two lists <code>positive_texts</code> and <code>negative_texts</code> to
+<em>train</em> our model. That is, we’ll show these examples to the computer
+along with the correct answers for the question &#8220;is this text positive
+or negative?&#8221;. The computer will try to find rules to tell the
+difference, and then we’ll test how well it did by giving it
+<code>test_texts</code> without the answers and ask it to guess whether each
+example is positive or negative.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_a_crm_app_with_nodejs_repl_it_and_mongodb"><a href="building-a-crm-app-with-nodejs-repl-it-and-mongo-db">Building a CRM app with NodeJS, Repl.it, and MongoDB</a></h3>
+<h3 id="_understanding_vectorization">Understanding vectorization</h3>
 <div class="paragraph">
-<p>In this tutorial the reader builds a CRM (Customer Relationship Manager)
-with NodeJS, showing basic crud applications. This is not a translation
-of the Django tutorial but many of the same concepts are covered.</p>
+<p>The first step in nearly all machine learning problems is to translate
+your data from a format that makes sense to a human to one that makes
+sense to a computer. In the case of language and text data, a simple but
+effective way to do this is to associate each unique word in the dataset
+with a number, from 0 onwards. Each text can then be represented by an
+array of numbers, representing how often each possible word appears in
+the text.</p>
+</div>
+<div class="paragraph">
+<p>Let’s go through an example to see how this works. If we had the two
+sentences</p>
+</div>
+<div class="paragraph">
+<p><code>["nice pizza is nice"], ["what is pizza"]</code></p>
+</div>
+<div class="paragraph">
+<p>then we would have a dataset with four unique words in it. The first
+then we’d want to do is create a vocabulary mapping to map each unique
+word to a unique number. We could do this as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">{
+    "nice": 0,
+    "pizza": 1,
+    "is": 2,
+    "what": 3
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To create this, we simply go through both sentences from left to right,
+mapping each new word to the next available number and skipping words
+that we’ve seen before. Now we can again convert our sentences into bag
+of words vectors as follows</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">[
+    [2, 1, 1, 0], # two "nice", one "pizza", one "is", zero "what"
+    [0, 1, 1, 1]  # zero "nice", one "pizza", one "is", one "what"
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each sentence vector is always the same length as the <em>total</em> vocabulary
+size. We have four words in total (across all of our sentences), so each
+sentence is represented by an array of length four. Each position in the
+array represents a word, and each value represents how often that word
+appears in that sentence.</p>
+</div>
+<div class="paragraph">
+<p>The first sentence contains the word &#8220;nice&#8221; twice, while the second
+sentence does not contain the word &#8220;nice&#8221; at all. According to our
+mapping, the zeroth element of each array should indicate how often the
+word nice appears, so the first sentence contains a <code>2</code> in the
+beginning and the second sentence contains a <code>0</code> there.</p>
+</div>
+<div class="paragraph">
+<p>This representation is called &#8220;bag of words&#8221; because we lose all of
+the information represented by the <em>order</em> of words. We don’t know, for
+example, that the first sentence starts and ends with &#8220;nice&#8221;, only
+that it contains the word &#8220;nice&#8221; twice.</p>
+</div>
+<div class="paragraph">
+<p>With real data, these arrays get <em>very</em> long. There are millions of
+words in most languages, so for a big dataset containing most words,
+each sentence needs to be represented by a very long array, where nearly
+all values are set to zero (all the words not in that sentence). This
+could take up a lot of space, but luckily scikit-learn uses a clever
+sparse-matrix implementation that doesn’t quite look like the above, but
+the overall concept remains the same.</p>
+</div>
+<div class="paragraph">
+<p>Let’s see how to achieve the above using scikit-learn’s optimised
+vectoriser.</p>
+</div>
+<div class="paragraph">
+<p>First we want to combine all of our &#8220;training&#8221; data (the data that
+we’ll show the computer along with the correct labels of &#8220;positive&#8221; or
+&#8220;negative&#8221; so that it can learn), so we’ll combine our positive and
+negative texts into one array. Add the following code below the datasets
+you created.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">training_texts = negative_texts + positive_texts
+training_labels = ["negative"] * len(negative_texts) + ["positive"] * len(positive_texts)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Our dataset now looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>['we hate you', 'they hate us', 'you are bad', 'he is bad', 'we hate mary', 'we love you', 'they love us', 'you are good', 'he is good', 'they love mary']
+['negative', 'negative', 'negative', 'negative', 'negative', 'positive', 'positive', 'positive', 'positive', 'positive']</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The two arrays (texts and labels) are associated by index. The first
+text in the first array is negative, and corresponds to the first label
+in the second array, and so on.</p>
+</div>
+<div class="paragraph">
+<p>Now we need a vectoriser to transform the texts into numbers. We can
+create one in scikit-learn with</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">vectorizer = CountVectorizer()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before we can use our vectorizer, it needs to run once through all the
+data we have so it can build the mapping from words to indices. This is
+referred to as &#8220;fitting&#8221; the vectoriser, and we can do it like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">vectorizer.fit(training_texts)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If we want, we can see the mapping it created (which might not be in
+order, as in the examples we walked through earlier, but each word will
+have its own index). We can inspect the vectoriser’s vocabulary by
+adding the line</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">print(vectorizer.vocabulary_)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Note the underscore at the end. Scikit-learn uses this as a convention
+for &#8220;helper&#8221; attributes. The mapping is explicit only for debugging
+purposes and you shouldn’t need to use it in most cases). My vocabulary
+mapping looked as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{'we': 10, 'hate': 3, 'you': 11, 'they': 8, 'us': 9, 'are': 0, 'bad': 1, 'he': 4, 'is': 5, 'mary': 7, 'love':6, 'good': 2}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Behind the scenes, the vectoriser inspected all of our texts, did same
+basic preprocessing like making everything lowercase, split the text
+into words using a built-in <em>tokenization</em> method, and produced a
+vocabulary mapping specific to our dataset.</p>
+</div>
+<div class="paragraph">
+<p>Now that we have a vectorizer that knows what words are in our dataset,
+we can use it to transform our texts into vectors. Add the following
+lines of code to your Repl:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">training_vectors = vectorizer.transform(training_texts)
+testing_vectors = vectorizer.transform(test_texts)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first line creates a list of vectors which represent all of the
+training texts, still in the same order, but now each text is a vector
+of numbers instead of a string.</p>
+</div>
+<div class="paragraph">
+<p>The second line does the same with the test vectors. The machine
+learning part isn’t looking at our test texts (that would be cheating) –
+it’s just mapping the words to numbers so that it can work with them
+more easily. Note that when we called <code>fit()</code> on the vectoriser, we
+only showed it the training texts. Because there are words in the test
+texts that don’t appear in the training texts, these words will simply
+be ignored and will not be represented in <code>testing_vectors</code>.</p>
+</div>
+<div class="paragraph">
+<p>Now that we have a vectorised representation our problem, let’s take a
+look at how we can solve it.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_introduction_to_machine_learning_with_python_and_repl_it"><a href="introduction-to-machine-learning-with-python-and-repl-it">Introduction to Machine Learning with Python and repl.it</a></h3>
+<h3 id="_understanding_classification">Understanding classification</h3>
 <div class="paragraph">
-<p>Here the reader learns about some basic Machine Learning (text
-classification) using Repl.it. This is a high level tutorial showing how
-to train a classifier and generate predictions and does not get into the
-maths involved.</p>
+<p>A classifier is a statistical model that tries to predict a label for a
+given input. In our case, the input is the text and the output is either
+&#8220;positive&#8221; or &#8220;negative&#8221;, depending on whether the classifier thinks
+that the input is positive or negative.</p>
+</div>
+<div class="paragraph">
+<p>A machine learning classifier can be &#8220;trained&#8221;. We give it labelled
+data and it tries to learn rules based on that data. Every time it gets
+more data, it updates its rules slightly to account for the new
+information. There are many kinds of classifiers, but one of the
+simplest is called Decision Tree.</p>
+</div>
+<div class="paragraph">
+<p>Decision trees learn a set of yes/no rules by building decisions into a
+tree structure. Each new input moves down the tree, while various
+questions are asked one by one. When the input filters all the way to a
+leaf node in the tree, it acquires a label.</p>
+</div>
+<div class="paragraph">
+<p>If that’s confusing, don’t worry! We’ll walk through a detailed example
+with a picture soon to clarify. First, let’s show how to get some
+results using Python.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">classifier = tree.DecisionTreeClassifier()
+classifier.fit(training_vectors, training_labels)
+predictions = classifier.predict(testing_vectors)
+print(predictions)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly to the vectoriser, we first create a classifier by using the
+module we imported at the start. Then we call <code>fit()</code> on the
+classifier and pass in our training vectors and their associated labels.
+The decision tree is going to look at both and attempt to learn rules
+that separate the two kinds of data.</p>
+</div>
+<div class="paragraph">
+<p>Once our classifier is trained, we can call the <code>predict()</code> method and
+pass in previously unseen data. Here we pass in <code>testing_vectors</code>
+which is the list of vectorized test data that the computer didn’t look
+at during training. It has to try and apply the rules it learned from
+the training data to this new &#8220;unseen&#8221; data. Machine learning is
+pretty cool, but it’s not magic, so there’s no guarantee that the rules
+we learned will be any good yet.</p>
+</div>
+<div class="paragraph">
+<p>The code above produces the following output:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>['positive' 'positive' 'negative' 'positive' 'negative']</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s take a look at our test texts again to see if these predictions
+match up to reality.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>"they love mary"
+"they are good"
+"why do you hate mary"
+"they are almost always good"
+"we are very bad"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output maps to the input by index, so the first output label
+(&#8220;positive&#8221;) matches up to the first input text (&#8220;they love mary&#8221;),
+and the last output label (&#8220;negative&#8221;) matches up to the last input
+text (&#8220;we are very bad&#8221;).</p>
+</div>
+<div class="paragraph">
+<p>It looks like the computer got every example right! It’s not a difficult
+problem to solve. The words &#8220;bad&#8221; and &#8220;hate&#8221; appear only in the
+negative texts and the words &#8220;good&#8221; and &#8220;love&#8221;, only in the positive
+ones. Other words like &#8220;they&#8221;, &#8220;mary&#8221;, &#8220;you&#8221; and &#8220;we&#8221; appear in
+both good and bad texts. If our model did well, it will have learned to
+ignore the words that appear in both kinds of texts, and focus on
+&#8220;good&#8221;, &#8220;bad&#8221;, &#8220;love&#8221; and &#8220;hate&#8221;.</p>
+</div>
+<div class="paragraph">
+<p>Decision Trees are not the most powerful machine learning model, but
+they have one advantage over most other algorithms: after we have
+trained them, we can look inside and see exactly how they work. More
+advanced models like deep neural networks are nearly impossible to make
+sense of after training.</p>
+</div>
+<div class="paragraph">
+<p>Scikit-learn contains a useful &#8220;graphviz&#8221; helper to inspect tree-based
+models. Add the following code to the end of your repl.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">tree.export_graphviz(
+    classifier,
+    out_file='tree.dot',
+    feature_names=vectorizer.get_feature_names(),
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create an export of the trained model which we can visualise.
+Look for the new <code>tree.dot</code> file in the left-most pane that should
+have been created after running the above code.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://cdn.filestackcontent.com/xWlG01RhTeWzHIObvXnl" alt="repl-file-viewer.png"></span></p>
+</div>
+<div class="paragraph">
+<p>Copy the contents of this file (shown in the middle pane above) to your
+clipboard and navigate to <a href="http://www.webgraphviz.com/" class="bare">http://www.webgraphviz.com/</a>. Paste the Tree
+representation into the big input box on the page you see and press
+&#8220;Generate Graph&#8221;</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://cdn.filestackcontent.com/SN6CImYtTSOflOntRSeO" alt="graph-viz-online.png"></span></p>
+</div>
+<div class="paragraph">
+<p>You should see a tree graph that looks as follows.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://cdn.filestackcontent.com/m9c1SDznSoqGOvDxMdVM" alt="decision-tree-vis.png"></span></p>
+</div>
+<div class="paragraph">
+<p>The above shows a decision tree that only learned two rules. The first
+rule (top square) is about the word &#8220;hate&#8221;. The rule is &#8220;is the
+number of times &#8216;hate&#8217; occurs in this sentence less than or equal to
+0.5&#8221;. None of our sentences contain duplicate words, so each rule will
+really be only about whether the word appears or not (you can think of
+the <code>&lt;= 0.5</code> rules as <code>&lt; 1</code> in this case).</p>
+</div>
+<div class="paragraph">
+<p>For each question in our training dataset, we can ask if the first rule
+is True or False. If the rule is True for a given sentence, we’ll move
+that sentence down the tree left (following the &#8220;True&#8221; arrow). If not,
+we’ll go right (following the &#8220;False&#8221; arrow).</p>
+</div>
+<div class="paragraph">
+<p>Once we’ve asked this first question for each sentence in our dataset,
+we’ll have three sentences for which the answer is &#8220;False&#8221;, because
+three of our training sentences contain the word &#8220;hate&#8221;. These three
+sentences go right in the decision tree and end up at first leaf node
+(an end node with no arrows coming out the bottom). This leaf node has
+<code>value = [3, 0]</code> in it, which means that three samples reach this
+node, and three belong to the negative class and zero to the positive
+class.</p>
+</div>
+<div class="paragraph">
+<p>For each sentence where the first rule is &#8220;True&#8221; (the word &#8220;hate&#8221;
+appears less than 0.5 times, or in our case 0 times), we go down the
+left of the tree, to the node where <code>value = [2,5]</code>. This isn’t a leaf
+node (it has more arrows coming out the bottom), so we’re not done yet.
+At this point we have two negative sentences and all five positive
+sentences still.</p>
+</div>
+<div class="paragraph">
+<p>The next rule is &#8220;bad &#8656; 0.5&#8221;. In the same way as before, we’ll go
+down the right path if we have more than 0.5 occurrences of &#8220;bad&#8221; and
+left if we have fewer than 0.5 occurrences of &#8220;bad&#8221;. For the last two
+negative sentences that we are still evaluating (the two containing
+&#8220;bad&#8221;), we’ll go <em>right</em> and end up at the node with <code>value=[2,0]</code>.
+This is another leaf node and when we get here we have two negative
+sentences and zero positive ones.</p>
+</div>
+<div class="paragraph">
+<p>All other data will go left, and we’ll end up at <code>[0,5]</code>, or zero
+negative sentences and five positive ones.</p>
+</div>
+<div class="paragraph">
+<p>As an exercise, take each of the test sentences (not represented in the
+annotated tree above) and try to follow the set of rules for each one.
+If it ends up in a bucket with more negative sentences than positive
+ones (either of the right branches), it’ll be predicted as a negative
+sentence. If it ends up in the left-most leaf node, it’ll be predicted
+as a positive sentence.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quicksort_tutorial_python_implementation_with_line_by_line_explanation"><a href="quicksort-tutorial-python-implementation-with-line-by-line-explanation">Quicksort tutorial: Python implementation with line by line explanation</a></h3>
+<h3 id="_building_a_manual_classifier">Building a manual classifier</h3>
 <div class="paragraph">
-<p>This is the most abstract and theoretical of the collection and shows
-the reader how to implement quicksort from scratch. This is more useful
-for interview practice or understanding university homework.</p>
+<p>When the task at hand is this simple, it’s often easier to write a
+couple of rules manually rather than using Machine Learning. For this
+dataset, we could have achieved the same result by writing the following
+code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">def manual_classify(text):
+    if "hate" in text:
+        return "negative"
+    if "bad" in text:
+        return "negative"
+    return "positive"
+
+predictions = []
+for text in test_texts:
+    prediction = manual_classify(text)
+    predictions.append(prediction)
+print(predictions)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we have replicated the decision tree above. For each sentence, we
+check if it contains &#8220;hate&#8221; and if it does we classify it as negative.
+If it doesn’t, we check if it contains &#8220;bad&#8221;, and if it does, we
+classify it as negative. All other sentences are classified as positive.</p>
+</div>
+<div class="paragraph">
+<p>So what’s the difference between machine learning and traditional
+rule-based models like this one? The main advantage of learning the
+rules directly is that it doesn’t really get more difficult as the
+dataset grows. Our dataset was trivially simple, but a real-world
+dataset might need thousands or millions of rules, and while we could
+write a more complicated set of if-statements &#8220;by hand&#8221;, it’s much
+easier if we can teach machines to learn these by themselves.</p>
+</div>
+<div class="paragraph">
+<p>Also, once we’ve perfected a set of manual rules, they’ll still only
+work for a single dataset. But once we’ve perfected a machine learning
+model, we can use it for many tasks, simply by changing the input data!</p>
+</div>
+<div class="paragraph">
+<p>In the example we walked through, our model was a perfect student and
+learned to correctly classify all five unseen sentences, this is not
+usually the case for real-world settings. Because machine learning
+models are based on probability, the goal is to make them as accurate as
+possible, but in general you will not get 100% accuracy. Depending on
+the problem, you might be able to get higher accuracy by hand-crafting
+rules yourself, so machine learning definitely isn’t the correct tool to
+solve all classification problems.</p>
+</div>
+<div class="paragraph">
+<p>Try the code on bigger datasets to see how it performs. There is no
+shortage of interesting data sets to experiment with. I wrote another
+machine learning walkthrough
+<a href="https://www.codementor.io/garethdwyer/introduction-to-machine-learning-with-python-s-scikit-learn-czha398p1">here</a>
+that shows how to use a larger clickbait dataset to teach a machine how
+to classify between clickbait articles and real ones, using similar
+methods to those described above. That tutorial uses an SVM classifier
+and a more advanced vectorisation method, but see if you can load the
+dataset from there into the classifier we built in this tutorial and
+compare the results.</p>
+</div>
+<div class="paragraph">
+<p>You can fork this repl here:
+[<a href="https://repl.it/@GarethDwyer1/machine-learning-intro" class="bare">https://repl.it/@GarethDwyer1/machine-learning-intro</a>](<a href="https://repl.it/@GarethDwyer1/machine-learning-intro" class="bare">https://repl.it/@GarethDwyer1/machine-learning-intro</a>)
+to keep hacking on it (it’s the same code as we walked through above but
+with some comments added.) If you prefer, the entire program is shown
+below so you can copy paste it and work from there.</p>
+</div>
+<div class="paragraph">
+<p>If you want to try your hand at machine learning, join the
+<a href="https://repl.it/talk/challenge/AI/10058">repl.it AI competition</a> that is
+running until 11 February. You can get general help by joining the Repl
+<a href="https://discord.gg/QWFfGhy">discord channel</a>, or if you have questions
+specifically about this tutorial feel free to leave a comment below or
+to <a href="https://twitter.com/sixhobbits">tweet at me</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">from sklearn import tree
+from sklearn.feature_extraction.text import CountVectorizer
+
+positive_texts = [
+    "we love you",
+    "they love us",
+    "you are good",
+    "he is good",
+    "they love mary"
+]
+
+negative_texts =  [
+    "we hate you",
+    "they hate us",
+    "you are bad",
+    "he is bad",
+    "we hate mary"
+]
+
+test_texts = [
+    "they love mary",
+    "they are good",
+    "why do you hate mary",
+    "they are almost always good",
+    "we are very bad"
+]
+
+training_texts = negative_texts + positive_texts
+training_labels = ["negative"] * len(negative_texts) + ["positive"] * len(positive_texts)
+
+vectorizer = CountVectorizer()
+vectorizer.fit(training_texts)
+print(vectorizer.vocabulary_)
+
+training_vectors = vectorizer.transform(training_texts)
+testing_vectors = vectorizer.transform(test_texts)
+
+classifier = tree.DecisionTreeClassifier()
+classifier.fit(training_vectors, training_labels)
+
+print(classifier.predict(testing_vectors))
+
+tree.export_graphviz(
+    classifier,
+    out_file='tree.dot',
+    feature_names=vectorizer.get_feature_names(),
+)
+
+def manual_classify(text):
+    if "hate" in text:
+        return "negative"
+    if "bad" in text:
+        return "negative"
+    return "positive"
+
+predictions = []
+for text in test_texts:
+    prediction = manual_classify(text)
+    predictions.append(prediction)
+print(predictions)</code></pre>
+</div>
 </div>
 </div>
 </div>

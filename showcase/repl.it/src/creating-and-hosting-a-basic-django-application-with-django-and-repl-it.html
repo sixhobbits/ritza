@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel='canonical' href=''>
+<link rel='canonical' href='https://www.codementor.io/@garethdwyer/creating-and-hosting-a-basic-web-application-with-django-with-repl-it-lohsyub20'>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Our work with Repl.it</title>
+<title>Creating and hosting a basic web application with Django and Repl.it</title>
 <style>
 @import url(//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.css);
 /* normalize.css v2.1.1 | MIT License | git.io/normalize */
@@ -639,82 +639,759 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_our_work_with_repl_it">Our work with Repl.it</h2>
+<h2 id="_creating_and_hosting_a_basic_web_application_with_django_and_repl_it">Creating and hosting a basic web application with Django and Repl.it</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Ritza has produced several tutorials for Repl.it, an online coding
-platform. These are beginner to intermediate coding projects that walk
-the reader through building a practical mini-solution to a real-world
-problem.</p>
+<p>In this tutorial, we’ll be using Django to create an online service that
+shows visitors their current weather and location. We’ll develop the
+service and host it using <a href="https://repl.it">repl.it</a>.</p>
 </div>
 <div class="paragraph">
-<p>They are each independent from each other, but they can also be used
-together as a collection as a way for programmers to gain practical
-knowledge in several related areas.</p>
+<p>To work through this tutorial, you should ideally have basic knowledge
+of Python and some knowledge of web application development. However,
+we’ll explain all of our reasoning and each line of code thoroughly , so
+if you have any programming experience you should be able to follow
+along as a complete Python or web app beginner too. We’ll also be making
+use of some HTML, JavaScript, and jQuery, so if you have been exposed to
+these before you’ll be able to work through more quickly. If you
+haven’t, this will be a great place to start.</p>
+</div>
+<div class="paragraph">
+<p>To display the weather at the user’s current location, we’ll have to tie
+together a few pieces. The main components of our system are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <a href="https://www.djangoproject.com/">Django</a> application, to show the user
+a webpage with dynamic data</p>
+</li>
+<li>
+<p><a href="https://www.ipify.org/">Ipify</a> to get our visitors’ IP address so that
+we can guess their location</p>
+</li>
+<li>
+<p><a href="http://ip-api.com/">ip-api</a> to look up our visitors’ city and country
+using their IP address</p>
+</li>
+<li>
+<p><a href="https://openweathermap.org">Open Weather Map</a> to get the current
+weather at our visitors’ location.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The main goals of this tutorial are to: * Show how to set up and host a
+Django application using repl.it. * Show how to join existing APIs
+together to create a new service.</p>
+</div>
+<div class="paragraph">
+<p>By using this tutorial as a starting point, you can easily create your
+own bespoke web applications. Instead of showing weather data to your
+visitors, you could, for example, pull and combine data from any of the
+hundreds of APIs found at <a href="https://github.com/toddmotto/public-apis">this
+list of public APIs</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="_beginner_web_scraping_with_python_and_repl_it"><a href="beginner-web-scraping-with-python-and-repl-it">Beginner web scraping with Python and Repl.it</a></h3>
+<h3 id="_setting_up">Setting up</h3>
 <div class="paragraph">
-<p>This is a beginner’s introduction to web scraping where the reader will
-be shown how the web works and how HTML is structured and will build a
-Python scraper to download specific content from a specific site.</p>
+<p>You won’t need to install any software or programming languages on your
+local machine, as we’ll be developing our application directly through
+repl.it. Head over there and create an account by hitting &#8220;Sign up&#8221; in
+the top right-hand corner.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/ll2hg87.png" alt="Repl sign up page"></span></p>
+</div>
+<div class="paragraph">
+<p>Press the &#8220;Start coding now&#8221; button on the next page, and search for
+&#8220;Django&#8221; from the list of available languages and frameworks. Repl.it
+will go ahead and set up a full Django project for you with some
+sensible defaults. The project will include a single page saying &#8220;Hello
+Repl.it&#8221;. It should look very similar to the page below.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/htQRomt.png" alt="The repl.it IDE on a new Django project"></span></p>
+</div>
+<div class="paragraph">
+<p>In the left-most panel, you can see all the files that make up your
+Django project, organized into directories.</p>
+</div>
+<div class="paragraph">
+<p>We won’t explain what all these different components are for and how
+they tie together in this tutorial. If you want to understand Django
+better, you should definitely go through their
+<a href="https://docs.djangoproject.com/en/2.0/intro/tutorial01/">official
+tutorial</a>. Normally
+<a href="https://www.codementor.io/garethdwyer/flask-vs-django-why-flask-might-be-better-4xs7mdf8v">I
+recommend Flask over Django</a> for beginners and for projects this simple,
+but Repl.it makes the Django setup easy by providing this initial set
+up. We’ll be modifying only a few of these files to get the results that
+we want.</p>
+</div>
+<div class="paragraph">
+<p>In the middle Repl.it pane, you can see your code. In the top-right
+pane, you can see your web application, as a visitor would see it. In
+the bottom-right pane, you can see any errors or other console output
+from your Repl.it webserver.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_news_word_clouds_using_python_and_repl_it"><a href="building-news-word-clouds-using-python-and-repl-it">Building news word clouds using Python and Repl.it</a></h3>
+<h3 id="_changing_our_static_content">Changing our static content</h3>
 <div class="paragraph">
-<p>This can be followed independently of the previous tutorial but assumes
-some of the knowledge shared there. The reader will build a web scraper
-using the Python Newspaper library to remove extra &#8220;boilerplate&#8221;
-content.</p>
+<p>Viewing the default website isn’t that interesting. Let’s make a small
+change to make the website our own. The first thing we’ll change is the
+static &#8220;front end&#8221; of the website – the text that is displayed to all
+visitors.</p>
+</div>
+<div class="paragraph">
+<p>The file that we’ll need to make changes to is the main template at
+<code>templates/main/index.html</code>. You can access it by selecting it from
+the left file bar. It should look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">{% extends "base.html" %}
+
+{% block content %}
+  &lt;h1&gt;Hello Repl.it&lt;/h1&gt;
+{% endblock content %}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is a file written in
+<a href="https://docs.djangoproject.com/en/2.0/topics/templates/">Django’s
+template language</a>, which often looks very much like HTML (and is
+usually found in files with a <code>.html</code> extension), but which contains
+some extra functionality to help us load dynamic data from the back end
+of our web application into the front end for our users to see.</p>
+</div>
+<div class="paragraph">
+<p>Change the code where it says &#8220;Hello Repl.it&#8221; to read &#8220;Weather&#8221;, and
+press the restart button as indicated below to see the result change
+from &#8220;Hello Repl.it&#8221; to &#8220;Weather&#8221;.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/QgSIMIu.png" alt="Repl.it Restart and pop-out buttons"></span></p>
+</div>
+<div class="paragraph">
+<p>You can also press the pop-out button to the right of the the URL bar to
+open only the resulting web page that we’re building, as a visitor would
+see it. You can share the URL with anyone and they’ll be able to see
+your Weather website already!</p>
+</div>
+<div class="paragraph">
+<p>Changing the static text that our visitors see is a good start, but our
+web application still doesn’t <em>do</em> anything. We’ll change that in the
+next step by using JavaScript to get our user’s IP Address.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_a_discord_bot_with_python_and_repl_it"><a href="building-a-discord-bot-with-python-and-repl-it">Building a Discord Bot with Python and Repl.it</a></h3>
+<h3 id="_calling_ipify_from_javascript">Calling IPIFY from JavaScript</h3>
 <div class="paragraph">
-<p>Here the reader learns how to build a basic echo bot using the Discord
-API. It leaves the reader with a basic bot set up that can be customized
-further.</p>
+<p>An IP address is like a phone number. When you visit &#8220;google.com&#8221;,
+your computer actually looks up the the name google.com to get a
+resulting IP address that is linked to one of Google’s servers. While
+people find it easier to remember names like &#8220;google.com&#8221;, computers
+work better with numbers. Instead of typing &#8220;google.com&#8221; into your
+browser toolbar, you could type the IP address 216.58.223.46, with the
+same results. Every device connecting to the internet, whether to serve
+content (like google.com) or to consume it (like you, reading this
+tutorial) has an IP address.</p>
+</div>
+<div class="paragraph">
+<p>IP addresses are interesting to us because it is possible to guess a
+user’s location based on their IP address. (In reality, this is an
+<a href="https://dyn.com/blog/finding-yourself-the-challenges-of-accurate-ip-geolocation/">imprecise
+and highly complicated</a> process, but for our purposes it will be more
+than adequate). We will use the web service
+<a href="https://www.ipify.org/">ipify.org</a> to retrieve our visitors’ IP
+addresses.</p>
+</div>
+<div class="paragraph">
+<p>In the Repl.it files tab, navigate to <code>templates/base.html</code>, which
+should look as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">{% load staticfiles %}
+&lt;!DOCTYPE html&gt;
+
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Hello Django&lt;/title&gt;
+    &lt;meta charset="UTF-8"/&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"/&gt;
+    &lt;link rel="stylesheet" href="{% static "css/style.css" %}"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    {% block content %}{% endblock content %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The &#8220;head&#8221; section of this template is between lines 5 and 11 – the
+opening and closing <code>&lt;head&gt;</code> tags. We’ll add our scripts directly
+below the <code>&lt;link ...&gt;</code> on line 10 and above the closing <code>&lt;/head&gt;</code>
+tag on line 11. Modify this part of code to add the following lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;script&gt;
+  function use_ip(json) {
+    alert("Your IP address is: " + json.ip);
+  }
+  &lt;/script&gt;
+
+&lt;script src="https://api.ipify.org?format=jsonp&amp;callback=use_ip"&gt;&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These are two snippets of JavaScript. The first (lines 1-5) is a
+function that when called will display a pop-up box (an &#8220;alert&#8221;) in
+our visitor’s browser showing their IP address from the json object that
+we pass in. The second (line 7) loads an external script from ipify’s
+API and asks it to pass data (including our visitor’s IP address) along
+to the <code>use_ip</code> function that we provide.</p>
+</div>
+<div class="paragraph">
+<p>If you open your web app again and refresh the page, you should see this
+script in action (if you’re running an adblocker, it might block the
+ipify scripts, so try disabling that temporarily if you have any
+issues).</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/DROK5bs.png" alt="image"></span></p>
+</div>
+<div class="paragraph">
+<p>This code doesn’t do anything with the IP address except display it to
+the user, but it is enough to see that the first component of our system
+(getting our user’s IP Address) is working. This also introduces the
+first <em>dynamic</em> functionality to our app – before, any visitor would see
+exactly the same thing, but now we can show each visitor something
+related specifically to them (no two people have the same IP address).</p>
+</div>
+<div class="paragraph">
+<p>Now instead of simply showing this IP address to our visitor, we’ll
+modify the code to rather pass it along to our Repl webserver (the
+&#8220;backend&#8221; of our application), so that we can use it to fetch location
+information through a different service.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_a_discord_bot_with_node_js_and_repl_it"><a href="building-a-discord-bot-with-node-and-repl-it">Building a Discord bot with Node.js and Repl.it</a></h3>
+<h3 id="_adding_a_new_route_and_view_and_passing_data">Adding a new route and view, and passing data</h3>
 <div class="paragraph">
-<p>This is simply a translation of the Python version, but it’s still
-recommended for developers to go through both so that they can see the
-differences (and similarities) between the languages in a real project.</p>
+<p>Currently our Django application only has one route, the default (<code>/</code>)
+route which is loaded as our home page. We’ll add another route at
+<code>/get_weather_from_ip</code> where we can pass an IP address to our
+application to detect the location and get a current weather report.</p>
+</div>
+<div class="paragraph">
+<p>To do this, we’ll need to modify the files at <code>main/views.py</code> and
+<code>main/urls.py</code>.</p>
+</div>
+<div class="paragraph">
+<p>Edit <code>urls.py</code> to look as follows (add line 8, but you shouldn’t need
+to change anything else).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">from django.conf.urls import url
+from django.contrib import admin
+from main import views
+
+urlpatterns = [
+  url(r'^admin/', admin.site.urls),
+  url(r'^$', views.home, name='home'),
+  url(r'^get_weather_from_ip/', views.get_weather_from_ip, name="get_weather_from_ip"),
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We’ve added a definition for the <code>get_weather_from_ip</code> route, telling
+our app that if anyone visits
+<a href="http://weather-demo&#8212;&#8203;garethdwyer1.repl.co/get_weather_from_ip">http://weather-demo–garethdwyer1.repl.co/get_weather_from_ip</a>
+then we should trigger a function in our <code>views.py</code> file that is also
+called <code>get_weather_from_ip</code>. Let’s write that function now.</p>
+</div>
+<div class="paragraph">
+<p>In your <code>views.py</code> file, add a <code>get_weather_from_ip()</code> function
+beneath the existing <code>home()</code> one, and add an import for JsonResponse
+on line 2. Your whole <code>views.py</code> file should now look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">from django.shortcuts import render
+from django.http import JsonResponse
+
+
+# Create your views here.
+def home(request):
+    return render(request, 'main/index.html')
+
+def get_weather_from_ip(request):
+  print(request.GET.get("ip_address"))
+  data = {"weather_data": 20}
+  return JsonResponse(data)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, Django passes a <code>request</code> argument to all views. This is
+an object that contains information about our user and the connection,
+and any additional arguments passed in the URL. As our application isn’t
+connected to any weather services yet, we’ll just make up a temperature
+(20) and pass that back to our user as JSON.</p>
+</div>
+<div class="paragraph">
+<p>In line 10, we print out the IP address that we will pass along to this
+route from the <code>GET</code> arguments (we’ll look at how to use this later).
+We then create the fake data (which we’ll later replace with real data)
+and return a JSON response (the data in a format that a computer can
+read more easily, with no formatting). We return JSON instead of HTML
+because our system is going to use this route internally to pass data
+between the front and back ends of our application, but we don’t expect
+our users to use this directly.</p>
+</div>
+<div class="paragraph">
+<p>To test this part of our system, open your web application in a new tab
+and add <code>/get_weather_from_ip?ip_address=123</code> to the URL. Here, we’re
+asking our system to fetch weather data for the IP address <code>123</code> (not
+a real IP address). In your browser, you’ll see the fake weather data
+displayed in a format that can easily be programmatically parsed.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/scdld1E.png" alt="Viewing the fake JSON data"></span></p>
+</div>
+<div class="paragraph">
+<p>In our Repl’s output, we can see that the backend of our application has
+found the &#8220;IP address&#8221; and printed it out, between some other outputs
+telling us which routes are being visited and which port our server is
+running on:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/KJDlDL8.png" alt="Django print output of fake IP"></span></p>
+</div>
+<div class="paragraph">
+<p>The steps that remain now are to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>pass the user’s real IP address to our new route in the background
+when the user visits our main page</p>
+</li>
+<li>
+<p>add more backend logic to fetch the user’s location from the IP
+address</p>
+</li>
+<li>
+<p>add logic to fetch the user’s weather from their location</p>
+</li>
+<li>
+<p>display this data to the user.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let’s start by using
+<a href="https://en.wikipedia.org/wiki/Ajax_(programming)">Ajax</a> to pass the
+user’s IP address that we collected before to our new route, without our
+user having to explicitly visit the <code>get_weather_from_ip</code> endpoint or
+refresh their page.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_creating_and_hosting_a_basic_web_application_with_django_and_repl_it"><a href="creating-and-hosting-a-basic-django-application-with-django-and-repl-it">Creating and hosting a basic web application with Django and Repl.it</a></h3>
+<h3 id="_calling_a_django_route_using_ajax_and_jquery">Calling a Django route using Ajax and jQuery</h3>
 <div class="paragraph">
-<p>Here the reader learns how to set up a Django project from scratch and
-host it with Repl.it.</p>
+<p>We’ll use <a href="http://api.jquery.com/jquery.ajax/">Ajax through jQuery</a> to do
+a &#8220;partial page refresh&#8221; – that is, to update part of the page the
+user is seeing by sending new data from our backend code without the
+user needing to reload the page.</p>
+</div>
+<div class="paragraph">
+<p>To do this, we need to include jQuery as a library.`</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: usually you wouldn’t add JavaScript directly to your base.html
+template, but to keep things simpler and to avoid creating too many
+files, we’ll be diverging from some good practices. See
+<a href="https://docs.djangoproject.com/en/2.0/howto/static-files/">the Django
+documentation</a> for some guidance on how to structure JavaScript properly
+in larger projects.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>In your <code>templates/base.html</code> file, add the following script above the
+line where we previously defined the <code>use_ip()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"&gt;&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This loads the entire jQuery library from a
+<a href="https://www.cloudflare.com/learning/cdn/what-is-a-cdn/">CDN</a>, allowing us
+to complete certain tasks using fewer lines of JavaScript.</p>
+</div>
+<div class="paragraph">
+<p>Now, modify the <code>use_ip()</code> script that we wrote before to call our
+backend route using Ajax. The new <code>use_ip()</code> function should be as
+follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>  function use_ip(json) {
+    $.ajax({
+      url: {% url 'get_weather_from_ip' %},
+      data: {"ip": json.ip},
+      dataType: 'json',
+      success: function (data) {
+        document.getElementById("weatherdata").innerHTML = data.weather_data
+      }
+    });
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Our new <code>use_ip()+`function makes an
+http://api.jquery.com/jquery.ajax/[asynchronous] call to our
+`+get_weather_from_ip</code> route, sending along the IP address that we
+previously displayed in a pop-up box. If the call is successful, we call
+a new function (in the <code>success:</code> section) with the returned data.
+This new function (line 7) looks for an HTML element with the ID of
+<code>weatherdata</code> and replaces the contents with the <code>weather_data</code>
+attribute of the response that we received from <code>get_weather_from_ip</code>
+(which at the moment is still hardcoded to be &#8220;20&#8221;).</p>
+</div>
+<div class="paragraph">
+<p>To see the results, we’ll need to add an HTML element as a placeholder
+with the id <code>weatherdata</code>. Do this in the
+<code>templates/main/index.html</code> file as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">{% extends "base.html" %}
+
+{% block content %}
+  &lt;h1&gt;Weather&lt;/h1&gt;
+  &lt;p id=weatherdata&gt;&lt;/p&gt;
+{% endblock %}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This adds an empty HTML <em>paragraph</em> element which our JavaScript can
+populate once it has the required data.</p>
+</div>
+<div class="paragraph">
+<p>Now reload the app and you should see our fake <code>20</code> being displayed to
+the user. If you don’t see what you expect, open up your browser’s
+developer tools for
+<a href="https://developers.google.com/web/tools/chrome-devtools/">Chrome</a> and
+<a href="https://developer.mozilla.org/son/docs/Tools">Firefox</a>) and have a look
+at the Console section for any JavaScript errors. A clean console (with
+no errors) is shown below.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/6ZKlc4N.png" alt="image"></span></p>
+</div>
+<div class="paragraph">
+<p>Now it’s time to change out our mock data for real data by calling two
+services backend – the first to get the user’s location from their IP
+address and the second to fetch the weather for that location.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_a_crm_app_with_nodejs_repl_it_and_mongodb"><a href="building-a-crm-app-with-nodejs-repl-it-and-mongo-db">Building a CRM app with NodeJS, Repl.it, and MongoDB</a></h3>
+<h3 id="_using_ip_api_com_for_geolocation">Using ip-api.com for geolocation</h3>
 <div class="paragraph">
-<p>In this tutorial the reader builds a CRM (Customer Relationship Manager)
-with NodeJS, showing basic crud applications. This is not a translation
-of the Django tutorial but many of the same concepts are covered.</p>
+<p>The service at <a href="http://ip-api.com">ip-api.com</a> is very simple to use. To
+get the country and city from an IP address we only need to make one web
+call. We’ll use the python <code>requests</code> library for this, so first we’ll
+have to add an import for this to our <code>views.py</code> file, and then write
+a function that can translate IP addresses to location information. Add
+the following import to your`views.py` file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">import requests</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and above the <code>get_weather_from_ip()</code> function, add
+the`get_location_from_ip()` function as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">def get_location_from_ip(ip_address):
+    response = requests.get("http://ip-api.com/json/{}".format(ip_address))
+    return response.json()</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: again we are diverging from best practice in the name of
+simplicity. Usually whenever you write any code that relies on
+networking (as above), you should add
+<a href="https://docs.python.org/3/tutorial/errors.html">exception handling</a> so
+that your code can fail more gracefully if there are problems.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>You can see the response that we’ll be getting from this service by
+trying it out in your browser. Visit
+<a href="http://ip-api.com/json/41.71.107.123" class="bare">http://ip-api.com/json/41.71.107.123</a> to see the JSON response for that
+specific IP address.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/2LAhUwr.png" alt="image"></span></p>
+</div>
+<div class="paragraph">
+<p>Take a look specifically at the highlighted location information that
+we’ll need to extract to pass on to a weather service.</p>
+</div>
+<div class="paragraph">
+<p>Before we set up the weather component, let’s display the user’s current
+location data instead of the hardcoded temperature that we had before.
+Change the <code>get_weather_from_ip()</code> function to call our new function
+and pass along some useful data as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">def get_weather_from_ip(request):
+  ip_address = request.GET.get("ip")
+  location = get_location_from_ip(ip_address)
+  city = location.get("city")
+  country_code = location.get("countryCode")
+  s = "You're in {}, {}".format(city, country_code)
+  data = {"weather_data": s}
+  return JsonResponse(data)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, instead of just printing the IP address that we get sent and making
+up some weather data, we use the IP address to guess the user’s
+location, and pass the city and country code back to the template to be
+displayed. If you reload your app again, you should see something
+similar to the following (though hopefully with your location instead of
+mine).</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/462TVyW.png" alt="weather app" width="location showing"></span></p>
+</div>
+<div class="paragraph">
+<p>That’s the location component of our app done and dusted – let’s move on
+to getting weather data for that location now.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_introduction_to_machine_learning_with_python_and_repl_it"><a href="introduction-to-machine-learning-with-python-and-repl-it">Introduction to Machine Learning with Python and repl.it</a></h3>
+<h3 id="_getting_weather_data_from_openweathermap">Getting weather data from OpenWeatherMap</h3>
 <div class="paragraph">
-<p>Here the reader learns about some basic Machine Learning (text
-classification) using Repl.it. This is a high level tutorial showing how
-to train a classifier and generate predictions and does not get into the
-maths involved.</p>
+<p>To get weather data automatically from
+<a href="https://openweathermap.org/">OpenWeatherMap</a>, you’ll need an API Key.
+This is a unique string that OpenWeatherMap gives to each user of their
+service and it’s used mainly to restrict how many calls each person can
+make in a specified period. Luckily, OpenWeatherMap provides a generous
+&#8220;free&#8221; allowance of calls, so we won’t need to spend any money to
+build our app. Unfortunately, this allowance is not quite generous
+enough to allow me to share my key with every reader of this tutorial,
+so you’ll need to sign up for your own account and generate your own
+key.</p>
+</div>
+<div class="paragraph">
+<p>Visit <a href="https://openweathermap.org/">openweathermap.org</a>, hit the &#8220;sign
+up&#8221; button, and register for the service by giving them an email
+address and choosing a password. Then navigate to the
+<a href="https://home.openweathermap.org/api_keys">API Keys</a> section and note down
+your unique API key (or copy it to your clipboard).</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/qzQGAV1.png" alt="OpenWeatherMap API Key page"></span></p>
+</div>
+<div class="paragraph">
+<p>This key is a bit like a password – when we use OpenWeatherMap’s
+service, we’ll always send along this key to indicate that it’s us
+making the call. Because Repl.it’s projects are public by default, we’ll
+need to be careful to keep this key private and prevent other people
+making too many calls using our OpenWeatherMap quota (potentially making
+our app fail when OpenWeatherMap starts blocking our calls). Luckily
+Repl.it provides a neat way of solving this problem
+<a href="https://repl.it/site/docs/secret-keys">using `.env`files</a>.</p>
+</div>
+<div class="paragraph">
+<p>In your project, create a new file using the &#8220;New file&#8221; button as
+shown below. Make sure that the file is in the root of your project and
+that you name the file <code>.env</code> (in Linux, starting a filename with a
+<code>.</code> usually indicates that it’s a system or configuration file).
+Inside this file, define the <code>OPEN_WEATHER_TOKEN</code> variable as follows,
+but using your own token instead of the fake one below. Make sure not to
+have a space on either side of the <code>=</code> sign.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">OPEN_WEATHER_TOKEN=1be9250b94bf6803234b56a87e55f</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/wPDhRuC.png" alt="Creating a new file"></span></p>
+</div>
+<div class="paragraph">
+<p>Repl.it will load the contents of this file into our server’s
+<a href="https://wiki.archlinux.org/index.php/environment_variables">environment
+variables</a>. We’ll be able to access this using the <code>os</code> library in
+Python, but when other people view or fork our Repl, they won’t see the
+<code>.env</code> file, keeping our API key safe and private.</p>
+</div>
+<div class="paragraph">
+<p>To fetch weather data, we need to call the OpenWeatherMap api, passing
+along a search term. To make sure we’re getting the city that we want,
+it’s good to pass along the country code as well as the city name. For
+example, to get the weather in London right now, we can visit (again,
+you’ll need to add your own API key in place of the string after
+<code>appid=</code>)
+<a href="https://api.openweathermap.org/data/2.5/weather?q=London,UK&amp;units=metric&amp;appid=cb932829eacb6a0e9ee4f382a2a56734b39" class="bare">https://api.openweathermap.org/data/2.5/weather?q=London,UK&amp;units=metric&amp;appid=cb932829eacb6a0e9ee4f382a2a56734b39</a></p>
+</div>
+<div class="paragraph">
+<p>To test this, you can visit the URL in your browser first. If you prefer
+Fahrenheit to Celsius, simply change the <code>unit=metric</code> part of the url
+to <code>units=imperial</code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/Mt7RVFp.png" alt="Json response from OpenWeatherMap"></span></p>
+</div>
+<div class="paragraph">
+<p>Let’s write one last function in our <code>views.py</code> file to replicate this
+call for our visitor’s city which we previously displayed.</p>
+</div>
+<div class="paragraph">
+<p>First we need to add an import for the Python <code>os</code> (operating system)
+module so that we can access our environment variables. At the top of
+<code>views.py</code> add:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">import os</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can write the function. Add the following to <code>views.py</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">def get_weather_from_location(city, country_code):
+    token = os.environ.get("OPEN_WEATHER_TOKEN")
+    url = "https://api.openweathermap.org/data/2.5/weather?q={},{}&amp;units=metric&amp;appid={}".format(
+        city, country_code, token)
+    response = requests.get(url)
+    return response.json()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In line 2, we get our API key from the environment variables (note, you
+sometimes need to refresh the repl.it page with your repl in to properly
+load in the environment variables), and we then use this to format our
+URL properly in line 3. We get the response from OpenWeatherMap and
+return it as json.</p>
+</div>
+<div class="paragraph">
+<p>We can now use this function in our <code>get_weather_from_ip()</code> function
+by modifying it to look as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">def get_weather_from_ip(request):
+  ip_address = request.GET.get("ip")
+  location = get_location_from_ip(ip_address)
+  city = location.get("city")
+  country_code = location.get("countryCode")
+  weather_data = get_weather_from_location(city, country_code)
+  description = weather_data['weather'][0]['description']
+  temperature = weather_data['main']['temp']
+  s = "You're in {}, {}. You can expect {} with a temperature of {} degrees".format(city, country_code, description, temperature)
+  data = {"weather_data": s}
+  return JsonResponse(data)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We now get the weather data in line 6, parse this into a description and
+temperature in lines 7 and 8, and add this to the string we pass back to
+our template in line 9. If you reload the page, you should see your
+location and your weather.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/D1XIZwZ.png" alt="Weather app showing location and weather"></span></p>
+</div>
+<div class="paragraph">
+<p>Because we’re doing several API calls now, the page might be blank for a
+few seconds after loading before populating the weather and location
+data. Again, if you don’t see what you expect, check the Repl.it server
+output and have a look at your browser’s developer tools console.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quicksort_tutorial_python_implementation_with_line_by_line_explanation"><a href="quicksort-tutorial-python-implementation-with-line-by-line-explanation">Quicksort tutorial: Python implementation with line by line explanation</a></h3>
+<h3 id="_forking_the_repl_to_extend_it">Forking the Repl to extend it</h3>
 <div class="paragraph">
-<p>This is the most abstract and theoretical of the collection and shows
-the reader how to implement quicksort from scratch. This is more useful
-for interview practice or understanding university homework.</p>
+<p>You now have a basic Django application that can be visited by anyone
+and which shows dynamic data.</p>
+</div>
+<div class="paragraph">
+<p>If you want to extend the application, Repl.it makes it easy to
+&#8220;fork&#8221;, which means you’ll be able to clone the Repl exactly where we
+left off and modify it any way you want. Simply head over to my Repl at
+[<a href="https://repl.it/@GarethDwyer1/weather-location-tutorial" class="bare">https://repl.it/@GarethDwyer1/weather-location-tutorial</a>](<a href="https://repl.it/@GarethDwyer1/weather-location-tutorial" class="bare">https://repl.it/@GarethDwyer1/weather-location-tutorial</a>)
+and hit the &#8220;Fork&#8221; button. If you didn’t create an account at the
+beginning of this tutorial, you’ll be prompted to create one again. (You
+can even use a lot of Repl functionality without creating an account.)</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://i.imgur.com/GlOnmAw.png" alt="Forking a Repl"></span></p>
+</div>
+<div class="paragraph">
+<p>If you’re stuck for ideas, some possible extensions are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Make the page look nicer by using <a href="https://getbootstrap.com/">Bootstrap</a>
+or another CSS framework in your template files.</p>
+</li>
+<li>
+<p>Make the app more customizable by allowing the user to choose their
+own location if the IP location that we guess is wrong</p>
+</li>
+<li>
+<p>Make the app more useful by showing the weather forecast along with
+the current weather. (This data is
+<a href="https://openweathermap.org/forecast5">also available</a> from Open Weather
+Map).</p>
+</li>
+<li>
+<p>Add other location-related data to the web app such as news, currency
+conversion, translation, postal codes. See
+<a href="https://github.com/toddmotto/public-apis#geocoding" class="bare">https://github.com/toddmotto/public-apis#geocoding</a> for a nice list of
+possibilities.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you liked this tutorial, you might be interested in
+<a href="https://www.codementor.io/garethdwyer/building-a-telegram-bot-using-python-part-1-goi5fncay">Building
+a Chatbot using Telegram and Python</a> where I show how to build chatbots,
+or my book <a href="https://www.packtpub.com/web-development/flask-example">Flask
+by Example</a> where I give a more thorough introduction to web application
+development using Python. Feel free to
+<a href="https://twitter.com/sixhobbits">ping me on Twitter</a> for any questions
+about this tutorial, to point out mistakes, or to ask about web
+development in general.</p>
 </div>
 </div>
 </div>
