@@ -704,7 +704,7 @@ automatically and add the following two imports to the top.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">from sklearn import tree
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">from sklearn import tree
 from sklearn.feature_extraction.text import CountVectorizer</code></pre>
 </div>
 </div>
@@ -734,7 +734,7 @@ data out for something bigger and more complicated.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">positive_texts = [
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">positive_texts = [
     "we love you",
     "they love us",
     "you are good",
@@ -804,7 +804,7 @@ word to a unique number. We could do this as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">{
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">{
     "nice": 0,
     "pizza": 1,
     "is": 2,
@@ -820,7 +820,7 @@ of words vectors as follows</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">[
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">[
     [2, 1, 1, 0], # two "nice", one "pizza", one "is", zero "what"
     [0, 1, 1, 1]  # zero "nice", one "pizza", one "is", one "what"
 ]</code></pre>
@@ -868,7 +868,7 @@ you created.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">training_texts = negative_texts + positive_texts
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">training_texts = negative_texts + positive_texts
 training_labels = ["negative"] * len(negative_texts) + ["positive"] * len(positive_texts)</code></pre>
 </div>
 </div>
@@ -892,7 +892,7 @@ create one in scikit-learn with</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">vectorizer = CountVectorizer()</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">vectorizer = CountVectorizer()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -902,7 +902,7 @@ referred to as &#8220;fitting&#8221; the vectoriser, and we can do it like this:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">vectorizer.fit(training_texts)</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">vectorizer.fit(training_texts)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -913,7 +913,7 @@ adding the line</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">print(vectorizer.vocabulary_)</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">print(vectorizer.vocabulary_)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -940,7 +940,7 @@ lines of code to your Repl:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">training_vectors = vectorizer.transform(training_texts)
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">training_vectors = vectorizer.transform(training_texts)
 testing_vectors = vectorizer.transform(test_texts)</code></pre>
 </div>
 </div>
@@ -991,7 +991,7 @@ results using Python.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">classifier = tree.DecisionTreeClassifier()
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">classifier = tree.DecisionTreeClassifier()
 classifier.fit(training_vectors, training_labels)
 predictions = classifier.predict(testing_vectors)
 print(predictions)</code></pre>
@@ -1062,7 +1062,7 @@ models. Add the following code to the end of your repl.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">tree.export_graphviz(
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">tree.export_graphviz(
     classifier,
     out_file='tree.dot',
     feature_names=vectorizer.get_feature_names(),
@@ -1156,7 +1156,7 @@ code.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def manual_classify(text):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def manual_classify(text):
     if "hate" in text:
         return "negative"
     if "bad" in text:
@@ -1229,7 +1229,7 @@ to <a href="https://twitter.com/sixhobbits">tweet at me</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">from sklearn import tree
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">from sklearn import tree
 from sklearn.feature_extraction.text import CountVectorizer
 
 positive_texts = [
@@ -1295,5 +1295,8 @@ print(predictions)</code></pre>
 </div>
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>

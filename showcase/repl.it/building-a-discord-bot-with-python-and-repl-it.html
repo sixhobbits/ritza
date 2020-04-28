@@ -859,7 +859,7 @@ following line to this new file <code>(3)</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">discord.py</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">discord.py</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -903,7 +903,7 @@ used to add our bot to our server). It should looks something like:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -918,7 +918,7 @@ environment variables are successfully loaded.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -932,7 +932,7 @@ file, add the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">import discord
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import discord
 import os
 
 client = discord.Client()
@@ -1039,7 +1039,7 @@ so the first thing we’ll need to do is add that in our
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">discord.py
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">discord.py
 flask</code></pre>
 </div>
 </div>
@@ -1049,7 +1049,7 @@ the following code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">from flask import Flask
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">from flask import Flask
 from threading import Thread
 
 app = Flask('')
@@ -1078,7 +1078,7 @@ top. Add the following line near the top of <code>main.py</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">from keep_alive import keep_alive</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">from keep_alive import keep_alive</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1087,7 +1087,7 @@ start up the bot. The last three lines of <code>main.py</code> should be:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">keep_alive()
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">keep_alive()
 token = os.environ.get("DISCORD_BOT_SECRET")
 client.run(token)</code></pre>
 </div>
@@ -1162,5 +1162,8 @@ If you have any questions or comments about this tutorial, feel free to
 </div>
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>

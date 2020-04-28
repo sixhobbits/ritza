@@ -791,7 +791,7 @@ IDE and add the following code.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">import feedparser
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import feedparser
 
 BBC_FEED = "http://feeds.bbci.co.uk/news/world/rss.xml"
 feed = feedparser.parse(BBC_FEED)
@@ -837,7 +837,7 @@ follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">import feedparser
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import feedparser
 from flask import Flask
 
 app = Flask(__name__)
@@ -919,7 +919,7 @@ up to the user. Modify the code in <code>main.py</code> to look as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">import feedparser
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import feedparser
 import requests
 
 from flask import Flask
@@ -1028,7 +1028,7 @@ content into the HTML.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;html&gt;
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">&lt;html&gt;
     &lt;body&gt;
         &lt;h1&gt;News Word Clouds&lt;/h1&gt;
         &lt;p&gt;Too busy to click on each news article to see what it's about? Below you can see all the articles from the BBC front page, displayed as word clouds. If you want to read more about any particular article, just click on the wordcloud to go to the original article&lt;/p&gt;
@@ -1060,7 +1060,7 @@ import</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">from flask import render_template</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">from flask import render_template</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1073,7 +1073,7 @@ import</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">@app.route("/")
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">@app.route("/")
 def home():
     feed = feedparser.parse(BBC_FEED)
     article_texts = []
@@ -1132,7 +1132,7 @@ built into Python so there’s no need to add them to requirements.txt.)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">import base64
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import base64
 import feedparser
 import io
 import requests
@@ -1155,7 +1155,7 @@ which can then be displayed directly in our visitors’ web browsers.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def get_wordcloud(text):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def get_wordcloud(text):
     pil_img = WordCloud().generate(text=text).to_image()
     img = io.BytesIO()
     pil_img.save(img, "PNG")
@@ -1184,7 +1184,7 @@ as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">{% for article in articles %}
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">{% for article in articles %}
     &lt;img src="data:image/png;base64,{{article}}"&gt;
 {% endfor %}</code></pre>
 </div>
@@ -1202,7 +1202,7 @@ look as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">@app.route("/")
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">@app.route("/")
 def home():
     feed = feedparser.parse(BBC_FEED)
     clouds = []
@@ -1252,7 +1252,7 @@ adding a few lines of CSS and importing the Bootstrap framework.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;html&gt;
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">&lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;News in WordClouds | Home&lt;/title&gt;
     &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"&gt;
@@ -1307,7 +1307,7 @@ following code before the function definitions.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">class Article:
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">class Article:
     def __init__(self, url, image):
         self.url = url
         self.image = image</code></pre>
@@ -1323,7 +1323,7 @@ wordcloud in <code>image</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">@app.route("/")
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">@app.route("/")
 def home():
     feed = feedparser.parse(BBC_FEED)
     articles = []
@@ -1400,5 +1400,8 @@ happy to help out and discuss ideas. Finally, you might enjoy
 </div>
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>

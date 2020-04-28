@@ -680,7 +680,7 @@ see if it makes sense. If not, read on below!</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def partition(xs, start, end):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def partition(xs, start, end):
     follower = leader = start
     while leader &lt; end:
         if xs[leader] &lt;= xs[end]:
@@ -715,7 +715,7 @@ numbers are to the <em>left</em>. For example, given the random list:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">xs = [8, 4, 2, 2, 1, 7, 10, 5]</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">xs = [8, 4, 2, 2, 1, 7, 10, 5]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -724,7 +724,7 @@ the list (after partitioning) to look as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">xs = [4, 2, 2, 1, 5, 7, 10, 8]</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">xs = [4, 2, 2, 1, 5, 7, 10, 8]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -761,7 +761,7 @@ implementations or thinking about it too much. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def bad_partition(xs):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def bad_partition(xs):
     smaller = []
     larger = []
     pivot = xs.pop()
@@ -818,7 +818,7 @@ explanation. Here it is again for reference.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def partition(xs, start, end):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def partition(xs, start, end):
     follower = leader = start
     while leader &lt; end:
         if xs[leader] &lt;= xs[end]:
@@ -934,7 +934,7 @@ confusing, look at our example again:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">xs = [8, 4, 2, 2, 1, 7, 10, 5]</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">xs = [8, 4, 2, 2, 1, 7, 10, 5]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -954,7 +954,7 @@ and the <code>xs[5:]</code> (the last 3 items, which form an unsorted list).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">xs = [4, 2, 2, 1, 5, 7, 10, 8]</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">xs = [4, 2, 2, 1, 5, 7, 10, 8]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -977,7 +977,7 @@ implement a prettier public function after.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def _quicksort(xs, start, end):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def _quicksort(xs, start, end):
     if start &gt;= end:
         return
     p = partition(xs, start, end)
@@ -1005,7 +1005,7 @@ process started.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def quicksort(xs):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def quicksort(xs):
     return _quicksort(xs, 0, len(xs)-1)</code></pre>
 </div>
 </div>
@@ -1026,7 +1026,7 @@ Quicksort out for a spin. The code below generates a random list of 100
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">from datetime import datetime
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">from datetime import datetime
 import random
 
 # create 100000 random numbers between 1 and 1000
@@ -1068,5 +1068,8 @@ ask me questions there.</p>
 </div>
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>

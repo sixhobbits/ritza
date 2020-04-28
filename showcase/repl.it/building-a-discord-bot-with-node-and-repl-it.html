@@ -856,7 +856,7 @@ add the following line of code.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">const Discord = require('discord.js');</code></pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const Discord = require('discord.js');</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -896,7 +896,7 @@ our bot to our server). It should looks something like:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -911,7 +911,7 @@ environment variables are successfully loaded.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">DISCORD_BOT_SECRET=NDcUN5T32zcTjMYOM0Y1MTUy.Dk7JBw.ihrTSAO1GKHZSonqvuhtwta16WU</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -929,7 +929,7 @@ reverse. We can do this in only a few lines of code. In your
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">const Discord = require('discord.js');
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = process.env.DISCORD_BOT_SECRET;
 
@@ -1039,7 +1039,7 @@ following code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">var http = require('http');
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">var http = require('http');
 
 http.createServer(function (req, res) {
   res.write("I'm alive");
@@ -1058,7 +1058,7 @@ server at the top. Add the following line near the top of <code>index.js</code>.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">const keep_alive = require('./keep_alive.js')</code></pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const keep_alive = require('./keep_alive.js')</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1131,5 +1131,8 @@ If you have any questions or comments about this tutorial, feel free to
 </div>
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>

@@ -751,7 +751,7 @@ the left file bar. It should look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">{% extends "base.html" %}
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">{% extends "base.html" %}
 
 {% block content %}
   &lt;h1&gt;Hello Repl.it&lt;/h1&gt;
@@ -814,7 +814,7 @@ should look as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">{% load staticfiles %}
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">{% load staticfiles %}
 &lt;!DOCTYPE html&gt;
 
 &lt;html lang="en"&gt;
@@ -839,7 +839,7 @@ tag on line 11. Modify this part of code to add the following lines:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;script&gt;
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">&lt;script&gt;
   function use_ip(json) {
     alert("Your IP address is: " + json.ip);
   }
@@ -898,7 +898,7 @@ to change anything else).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">from django.conf.urls import url
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">from django.conf.urls import url
 from django.contrib import admin
 from main import views
 
@@ -923,7 +923,7 @@ on line 2. Your whole <code>views.py</code> file should now look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">from django.shortcuts import render
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">from django.shortcuts import render
 from django.http import JsonResponse
 
 
@@ -1031,7 +1031,7 @@ line where we previously defined the <code>use_ip()</code> function.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;script
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">&lt;script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"&gt;&lt;/script&gt;</code></pre>
@@ -1049,7 +1049,7 @@ follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>  function use_ip(json) {
+<pre class="highlightjs highlight"><code class="language-none hljs">  function use_ip(json) {
     $.ajax({
       url: {% url 'get_weather_from_ip' %},
       data: {"ip": json.ip},
@@ -1079,7 +1079,7 @@ with the id <code>weatherdata</code>. Do this in the
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">{% extends "base.html" %}
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">{% extends "base.html" %}
 
 {% block content %}
   &lt;h1&gt;Weather&lt;/h1&gt;
@@ -1121,7 +1121,7 @@ the following import to your`views.py` file:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">import requests</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import requests</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1130,7 +1130,7 @@ the`get_location_from_ip()` function as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def get_location_from_ip(ip_address):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def get_location_from_ip(ip_address):
     response = requests.get("http://ip-api.com/json/{}".format(ip_address))
     return response.json()</code></pre>
 </div>
@@ -1167,7 +1167,7 @@ and pass along some useful data as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def get_weather_from_ip(request):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def get_weather_from_ip(request):
   ip_address = request.GET.get("ip")
   location = get_location_from_ip(ip_address)
   city = location.get("city")
@@ -1238,7 +1238,7 @@ have a space on either side of the <code>=</code> sign.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">OPEN_WEATHER_TOKEN=1be9250b94bf6803234b56a87e55f</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">OPEN_WEATHER_TOKEN=1be9250b94bf6803234b56a87e55f</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1279,7 +1279,7 @@ module so that we can access our environment variables. At the top of
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">import os</code></pre>
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">import os</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1287,7 +1287,7 @@ module so that we can access our environment variables. At the top of
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def get_weather_from_location(city, country_code):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def get_weather_from_location(city, country_code):
     token = os.environ.get("OPEN_WEATHER_TOKEN")
     url = "https://api.openweathermap.org/data/2.5/weather?q={},{}&amp;units=metric&amp;appid={}".format(
         city, country_code, token)
@@ -1308,7 +1308,7 @@ by modifying it to look as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">def get_weather_from_ip(request):
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def get_weather_from_ip(request):
   ip_address = request.GET.get("ip")
   location = get_location_from_ip(ip_address)
   city = location.get("city")
@@ -1397,5 +1397,8 @@ development in general.</p>
 </div>
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>
