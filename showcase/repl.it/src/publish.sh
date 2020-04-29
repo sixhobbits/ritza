@@ -12,5 +12,3 @@ do
     ca=$(python3 guess_links.py $file)
     gsed -i "4i<link rel='canonical' href='${ca}'>" $file
 done
-
-
