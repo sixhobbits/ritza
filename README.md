@@ -8,7 +8,7 @@ Ritza produces the internet's best articles that teach developers how to build t
 
 Companies use these articles to reach potential customers, either directly (by commissioning articles that teach people how to use their product) or indirectly (by hosting great technical content on their domain and ranking well on Google as a result).
 
-Ritza offers not only the highest quality articles, but also the simplest possible process for creating these. You purchase a subscription to Ritza and get articles published or delivered to you every month.
+Ritza offers you not only the highest quality articles, but also the simplest possible integration. You purchase a subscription to Ritza and we publish content for you every month. That's it. Behind the scenes, our writers gain a deep understanding of your product or service and write tutorials or articles on how it can be used to solve your customers' problems. Your customers find these articles through search engines or technical communities. 
 
 ## How much does it cost?
 
@@ -18,7 +18,7 @@ Ritza's standard package is 4000 words/month split into 1-4 articles over the mo
 
 We're still in closed beta. Email garethdwyer@gmail.com.
 
-## What makes Ritza's content different
+## What makes Ritza's content different?
 
 Instead of using our services, you might choose to find a freelancer, employ a full time content writer, create an in-house content team, or contract an agency. All of these are valid options and we'll gladly refer you if they seem a better fit for your needs. 
 
