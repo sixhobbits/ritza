@@ -16,7 +16,9 @@ Ritza's standard package is 4000 words/month split into 1-4 articles over the mo
 
 ## How do I purchase a subscription?
 
-We're still in closed beta. Email garethdwyer@gmail.com.
+We're still in closed beta. Email garethdwyer@gmail.com if you would like to be first in line when we start taking on clients, or sign up below if you simply want to follow Ritza's progress (example content [here](https://sixhobbits.github.io/hugoblog/posts/2020-q1-retrospective/)).
+https://sixhobbits.github.io/hugoblog/posts/2020-q1-retrospective/
+<script async data-uid="fb96b15842" src="https://ritza.ck.page/fb96b15842/index.js"></script>
 
 ## What makes Ritza's content different?
 

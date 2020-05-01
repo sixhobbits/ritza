@@ -30,7 +30,11 @@ over the month and costs $3000/month on a quarterly contract.
 
 === How do I purchase a subscription?
 
-We’re still in closed beta. Email garethdwyer@gmail.com.
+We’re still in closed beta. Email garethdwyer@gmail.com if you would
+like to be first in line when we start taking on clients, or sign up
+below if you simply want to follow Ritza’s progress (example content
+https://sixhobbits.github.io/hugoblog/posts/2020-q1-retrospective/[here]).
+https://sixhobbits.github.io/hugoblog/posts/2020-q1-retrospective/
 
 === What makes Ritza’s content different?
 
