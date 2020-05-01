@@ -4,7 +4,7 @@
 
 We produce articles for your company's technical blog or community.
 
-Ritza produces the internet's best articles that teach developers how to build technical solutions. See [https://repl.co/showcase/repl.it](our showcase) for examples.
+Ritza produces the internet's best articles that teach developers how to build technical solutions. See [https://ritza.co/showcase/repl.it](our showcase) for examples.
 
 Companies use these articles to reach potential customers, either directly (by commissioning articles that teach people how to use their product) or indirectly (by hosting great technical content on their domain and ranking well on Google as a result).
 
