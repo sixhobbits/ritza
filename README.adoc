@@ -42,7 +42,7 @@ refer you if they seem a better fit for your needs.
 However, we distinguish ourselves from all of these options in several
 ways
 
-=== Our content is created by a team of professionals
+==== Our content is created by a team of professionals
 
 Ritza’s content is created by a team of people who all have expertise in
 technology and writing. By contrast, most other content on the web is
@@ -69,7 +69,7 @@ content, with the rest of the fee being absorbed by account managers and
 other business focussed people. The "`expert`" is often someone without
 much expertise on the topic.
 
-=== Our content is beautiful and distraction free
+==== Our content is beautiful and distraction free
 
 image:images/clean-content.png[Clean content] A vast majority of content
 is cluttered and ugly. It contains many "`CTAs`" or "`calls to action`"
@@ -85,7 +85,7 @@ to navigate away from the page on which he or she presumably landed on
 with the intention of reading the article. By contrast, a Ritza article
 is on the right.
 
-=== Our content focuses solely on educating your readers
+==== Our content focuses solely on educating your readers
 
 It sounds paradoxical, but our content works well as marketing precisely
 because it strives not to be marketing. We do not push readers to buy

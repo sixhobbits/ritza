@@ -24,7 +24,7 @@ Instead of using our services, you might choose to find a freelancer, employ a f
 
 However, we distinguish ourselves from all of these options in several ways
 
-## Our content is created by a team of professionals
+### Our content is created by a team of professionals
 
 Ritza's content is created by a team of people who all have expertise in technology and writing. By contrast, most other content on the web is produced either by
 
@@ -36,11 +36,11 @@ Ritza's team consists solely of craftspeople: doers, not overseers. These are pe
 While many content agencies claim that their writing is produced by "experts", they often pay 1c-10c/word for this "expert created" content, with the rest of the fee being absorbed by account managers and other business focussed people. The "expert" is often someone without much expertise on the topic.
 
 
-## Our content is beautiful and distraction free
+### Our content is beautiful and distraction free
 ![Clean content](images/clean-content.png)
 A vast majority of content is cluttered and ugly. It contains many "CTAs" or "calls to action" to try to get the reader to do something (often to spend money or sign up for a mailing list). By contrast, Ritza's gives readers the content that they need and then gets out of the way. This approach does not result in an increase of "vanity metrics", but it ultimately wins the readers' respect and loyalty.
 
 As an example, see above an article from dev.to on the left which contains no fewer than _twelve_ elements that try to convince the reader to navigate away from the page on which he or she presumably landed on with the intention of reading the article. By contrast, a Ritza article is on the right.
 
-## Our content focuses solely on educating your readers
+### Our content focuses solely on educating your readers
 It sounds paradoxical, but our content works well as marketing precisely because it strives not to be marketing. We do not push readers to buy products or services (though we often demonstrate how products and services can be used to solve specific problems). Our writers' only goal is to help the reader solve problems, and that's why readers love our content.
