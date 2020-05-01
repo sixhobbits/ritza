@@ -1,42 +1,46 @@
 # Ritza
 
-Every day, around 2 million new pieces of content are pushed out onto the internet.
+> Marketing as Education
 
-Most of it is bad.
+We produce articles for your company's technical blog or community.
 
-Companies spend billions of dollars trying to create content that will draw potential customers to their sites. Readers ignore them. Or block them.
+Ritza produces the internet's best articles that teach developers how to build technical solutions. See [https://repl.co/showcase/repl.it](our showcase) for examples.
 
-Readers spend billions of hours trawling through increasingly bad search results, looking for the content that will help them gain new knowledge and discover new things. But more and more often, they come away disappointed. Even after going to page 2 of Google, they could only find fake news, advertising, and bad quality writing on slow loading sites full of adverts and other distractions. 
+Companies use these articles to reach potential customers, either directly (by commissioning articles that teach people how to use their product) or indirectly (by hosting great technical content on their domain and ranking well on Google as a result).
 
-Ritza creates text-based content that people want to read. We give it to them, and then get out of their way to let them read it. Our content teaches people what they want to know. It is written by professional writers, edited by professional editors, and designed by professional designers.
+Ritza offers not only the highest quality articles, but also the simplest possible process for creating these. You purchase a subscription to Ritza and get articles published or delivered to you every month.
 
-It is free for everyone, shared under open licenses. It loads fast, and looks beautiful. Most importantly, it is informative and it educates people.
+## How much does it cost?
 
-"Marketing" has become a dirty word, and marketing departments use dirty tactics to trick people into doing things that they do not want to do (such as drinking unhealthy, unpleasant, black liquid). 
+Ritza's standard package is 4000 words/month split into 1-4 articles over the month and costs $3000/month on a quarterly contract.
 
-But marketing wasn't always like this. And it doesn't have to be. Instead of using dark patterns to trick people into buying stuff that they don't want or need, marketing teams can use Ritza to give their customers what they really do want. Knoweldge.
+## How do I purchase a subscription?
+
+We're still in closed beta. Email garethdwyer@gmail.com.
 
 ## What makes Ritza's content different
 
+Instead of using our services, you might choose to find a freelancer, employ a full time content writer, create an in-house content team, or contract an agency. All of these are valid options and we'll gladly refer you if they seem a better fit for your needs. 
 
-## Created by a team of professionals
-Ritza's content isn't hacked out by underpaid copywriters on tight deadlines and small budgets. Each article is the result of days or weeks of work, and a detailed creation process. From topic selection, through outlining, drafting, editing, technical checking, design, and publishing, Ritza's articles get seen by many people, and each of these people improves it. Each one of Ritza's articles aims to be in the top 0.1% of content on the web. 
+However, we distinguish ourselves from all of these options in several ways
 
-## Beautiful and distraction free
-![distraction free](images/distraction-free.png)
-Medium.com is well-known for being extremely user hostile, but even other sites which claim to have their readers' best interests at heart are not shy of ruining their content. Hackernoon has rows up rows of menus, reminiscent of browser toolbars from the 90s. Dev.to has many calls to action, trying to trick the reader into failing at their goal -- to read an article. 
+## Our content is created by a team of professionals
 
-Compare this to the beautiful site by Adrian Zumbrunnen. All you can see is text, because that is why you, as a reader, are there in the first place.
+Ritza's content is created by a team of people who all have expertise in technology and writing. By contrast, most other content on the web is produced either by
 
-## Instructive
+a) An individual writer, often "unpolished" in terms of editing, design, and readability
+b) A 'content team', usually heavy on 'content strategists', 'growth hackers', 'SEO experts', and marketing managers. Ritza takes a strong stance that most of these people do not add value to the content. Often the writer is required to work closely under the direction of these people, resulting in generic content and "fluff" pieces.
 
-> However, people are easy-going, and they have formed the habit of reading page upon page of all sorts of such verbiage, without having any particular idea of what the author really means. They fancy it is all as it should be, and fail to discover that he is writing simply for writing’s sake. 
-(Schopenhauer, [On Style](https://ebooks.adelaide.edu.au/s/schopenhauer/arthur/lit/chapter2.html))
+Ritza's team consists solely of craftspeople: doers, not overseers. These are people who understand the audience very well, as they are part of it. They are creating the content that they wish existed. The writer is always the main contributor to any piece of content, and is supported by editors and designers as necessary.
 
-Ritza's articles never have keyword stuffing, boring reflections, or catchy slogans. All of our content has a single purpose: to teach. And each article teaches a single concept. 
+While many content agencies claim that their writing is produced by "experts", they often pay 1c-10c/word for this "expert created" content, with the rest of the fee being absorbed by account managers and other business focussed people. The "expert" is often someone without much expertise on the topic.
 
 
+## Our content is beautiful and distraction free
+![Clean content](images/clean-content.png)
+A vast majority of content is cluttered and ugly. It contains many "CTAs" or "calls to action" to try to get the reader to do something (often to spend money or sign up for a mailing list). By contrast, Ritza's gives readers the content that they need and then gets out of the way. This approach does not result in an increase of "vanity metrics", but it ultimately wins the readers' respect and loyalty.
 
+As an example, see above an article from dev.to on the left which contains no fewer than _twelve_ elements that try to convince the reader to navigate away from the page on which he or she presumably landed on with the intention of reading the article. By contrast, a Ritza article is on the right.
 
-
-
+## Our content focuses solely on educating your readers
+It sounds paradoxical, but our content works well as marketing precisely because it strives not to be marketing. We do not push readers to buy products or services (though we often demonstrate how products and services can be used to solve specific problems). Our writers' only goal is to help the reader solve problems, and that's why readers love our content.

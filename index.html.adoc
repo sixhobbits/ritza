@@ -1,14 +1,18 @@
-== Ritza
+<!DOCTYPE html>
 
-____
+Ritza
+
+[[header]]
+[[content]]
+Ritza
+
 Marketing as Education
-____
 
 We produce articles for your company’s technical blog or community.
 
 Ritza produces the internet’s best articles that teach developers how to
-build technical solutions. See
-link:our%20showcase[https://repl.co/showcase/repl.it] for examples.
+build technical solutions. See https://repl.co/showcase/repl.it for
+examples.
 
 Companies use these articles to reach potential customers, either
 directly (by commissioning articles that teach people how to use their
@@ -20,16 +24,16 @@ simplest possible process for creating these. You purchase a
 subscription to Ritza and get articles published or delivered to you
 every month.
 
-=== How much does it cost?
+How much does it cost?
 
 Ritza’s standard package is 4000 words/month split into 1-4 articles
 over the month and costs $3000/month on a quarterly contract.
 
-=== How do I purchase a subscription?
+How do I purchase a subscription?
 
 We’re still in closed beta. Email garethdwyer@gmail.com.
 
-=== What makes Ritza’s content different
+What makes Ritza’s content different
 
 Instead of using our services, you might choose to find a freelancer,
 employ a full time content writer, create an in-house content team, or
@@ -39,16 +43,16 @@ refer you if they seem a better fit for your needs.
 However, we distinguish ourselves from all of these options in several
 ways
 
-=== Our content is created by a team of professionals
+Our content is created by a team of professionals
 
 Ritza’s content is created by a team of people who all have expertise in
 technology and writing. By contrast, most other content on the web is
 produced either by
 
-[loweralpha]
-. An individual writer, often "`unpolished`" in terms of editing,
-design, and readability
-. A '`content team`', usually heavy on '`content strategists`', '`growth
+An individual writer, often "`unpolished`" in terms of editing, design,
+and readibility
+
+A '`content team`', usually heavy on '`content strategists`', '`growth
 hackers`', '`SEO experts`', and marketing managers. Ritza takes a strong
 stance that most of these people do not add value to the content. Often
 the writer is required to work closely under the direction of these
@@ -66,27 +70,29 @@ content, with the rest of the fee being absorbed by account managers and
 other business focussed people. The "`expert`" is often someone without
 much expertise on the topic.
 
-=== Our content is beautiful and distraction free
+Our content is beautiful and distraction free
 
-image:images/clean-content.png[Clean content] A vast majority of content
-is cluttered and ugly. It contains many "`CTAs`" or "`calls to action`"
-to try to get the reader to do something (often to spend money or sign
-up for a mailing list). By contrast, Ritza’s gives readers the content
-that they need and then gets out of the way. This approach does not
-result in an increase of "`vanity metrics`", but it ultimately wins the
-readers’ respect and loyalty.
+[.image]## Medium.com is well-known for being extremely user hostile,
+but even other sites which claim to have their readers’ best interests
+at heart are not shy of ruining their content. Hackernoon has rows up
+rows of menus, reminiscent of browser toolbars from the 90s. Dev.to has
+many calls to action, trying to trick the reader into failing at their
+goal – to read an article.
 
-As an example, see above an article from dev.to on the left which
-contains no fewer than _twelve_ elements that try to convince the reader
-to navigate away from the page on which he or she presumably landed on
-with the intention of reading the article. By contrast, a Ritza article
-is on the right.
+Compare this to the beautiful site by Adrian Zumbrunnen. All you can see
+is text, because that is why you, as a reader, are there in the first
+place.
 
-=== Our content focuses solely on educating your readers
+Our content focuses solely on educating your readers
 
-It sounds paradoxical, but our content works well as marketing precisely
-because it strives not to be marketing. We do not push readers to buy
-products or services (though we often demonstrate how products and
-services can be used to solve specific problems). Our writers’ only goal
-is to help the reader solve problems, and that’s why readers love our
-content.
+However, people are easy-going, and they have formed the habit of
+reading page upon page of all sorts of such verbiage, without having any
+particular idea of what the author really means. They fancy it is all as
+it should be, and fail to discover that he is writing simply for
+writing’s sake. (Schopenhauer, On Style)
+
+Ritza’s articles never have keyword stuffing, boring reflections, or
+catchy slogans. All of our content has a single purpose: to teach. And
+each article teaches a single concept.
+
+
