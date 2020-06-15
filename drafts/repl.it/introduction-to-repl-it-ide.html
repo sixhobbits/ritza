@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding the Repl IDE: a practical guide to building your first project with Repl</title>
+    <title>Understanding the Repl.it IDE: a practical guide to building your first project with Repl.it</title>
     <meta name="description" content="Software developers can get pretty attached to their Integrated Development Environments (IDEs) and if you look for advice on which one to use, you'll">
 </head>
 
@@ -15,12 +15,11 @@
             <a href="https://ritza.co/showcase/repl.it">Tutorials</a>
         </nav>
 
-
     </header>
-<h1>Understanding the Repl IDE: a practical guide to building your first project with Repl</h1>
+<h1>Understanding the Repl.it IDE: a practical guide to building your first project with Repl.it</h1>
 <p>Software developers can get pretty attached to their Integrated Development Environments (IDEs) and if you look for advice on which one to use, you’ll find no end of people advocating strongly for one over another. VS Code, Sublime Text, IntelliJ, Atom, Vim, Emacs, and no shortage of others.</p>
 <p>In the end, an IDE is just a glorified text editor. It lets you type text into files and save those files, functionality that has been present in nearly all computers since those controlled by punch cards.</p>
-<p>In this guide, we’ll show you how to use the Repl IDE. It has some features you won’t find in many others, namely:</p>
+<p>In this guide, we’ll show you how to use the Repl.it IDE. It has some features you won’t find in many others, namely:</p>
 <ul>
 <li>It’s fully online. You can use it from any computer that can connect to the internet and run a web browser, including a phone or tablet.</li>
 <li>It’ll fully manage your environment for building and running code too: you won’t need to mess around with making sure you have the right version of Python or the correct NodeJS libraries.</li>
@@ -28,17 +27,17 @@
 </ul>
 <p>In the first part of this guide, we’ll cover the basics and also show you how multiplayer works so that you can code alone or with friends.</p>
 <h2>Introduction: creating an account and starting a project</h2>
-<p>Although you don’t need an account to use Repl (you can just navigate to <a href="repl.it">repl.it</a> and press the “start coding” button), we’ll set one up in order to have access to all of the features.</p>
+<p>Although you don’t need an account to use Repl.it (you can just navigate to <a href="repl.it">repl.it</a> and press the “start coding” button), we’ll set one up in order to have access to all of the features.</p>
 <p>Visit <a href="https://repl.it/signup">https://repl.it/signup</a> and follow the prompts to create a user account, either by entering a username and password or logging in with Google, GitHub, or Facebook.</p>
-<p>Once you’re done, hit the “+ new repl” button in the top right. In the example below, I’m choosing to create a new Python project. Repl will automatically choose a random name for your project, or you can pick one yourself. Note that by default your Repl will be public to anyone on the internet: this is great for sharing and collaboration, but we’ll have to be careful to not include passwords or other sensitive information in any of our projects.</p>
+<p>Once you’re done, hit the “+ new repl” button in the top right. In the example below, I’m choosing to create a new Python project. Repl.it will automatically choose a random name for your project, or you can pick one yourself. Note that by default your repl will be public to anyone on the internet: this is great for sharing and collaboration, but we’ll have to be careful to not include passwords or other sensitive information in any of our projects.</p>
 <figure>
 <img src="img/newrepl.png" alt="" /><figcaption><strong>Image 1:</strong> <em>Creating a new Python project</em></figcaption>
 </figure>
-<p>You’ll also notice an “Import from GitHub” option. Repl allows you to import existing software projects directly from GitHub, but we’ll create our own for now. Once your project is created, you’ll be taken to a new view with several panes. Let’s take a look at what these are.</p>
-<h3>Understanding the Repl panes</h3>
-<p>You’ll soon see how configurable Repl is and how most things can be moved around to your fancy. However, by default you’ll get the following layout.</p>
+<p>You’ll also notice an “Import from GitHub” option. Repl.it allows you to import existing software projects directly from GitHub, but we’ll create our own for now. Once your project is created, you’ll be taken to a new view with several panes. Let’s take a look at what these are.</p>
+<h3>Understanding the Repl.it panes</h3>
+<p>You’ll soon see how configurable Repl.it is and how most things can be moved around to your fancy. However, by default you’ll get the following layout.</p>
 <figure>
-<img src="img/replpanes.png" alt="" /><figcaption><strong>Image 2:</strong> <em>The Repl panes</em></figcaption>
+<img src="img/replpanes.png" alt="" /><figcaption><strong>Image 2:</strong> <em>The Repl.it panes</em></figcaption>
 </figure>
 <ol type="1">
 <li><strong>Left pane: files and configuration.</strong> This, by default, shows up all the files that make up your project. Because we chose a Python project, Repl.it has gone ahead and create a <code>main.py</code> file there already</li>
@@ -57,12 +56,12 @@ print(1+2)</code></pre>
 </figure>
 <p>Your script will run and the output it generates will appear on the right pane (pane 3). Our code output the phrase “Hello World” (it’s a long-standing tradition that when you learn something new the first thing you do is built a ‘hello world’ project), and then output the answer to the sum <code>1 + 2</code>.</p>
 <p>You probably won’t be able to turn this script into the next startup unicorn quite yet, but let’s keep going.</p>
-<h3>Running code from Repl’s Repl</h3>
-<p>In computer programming, a REPL is a <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">read-eval-print loop</a>, and a repl interface is often the simplest way to run short computer programs (and where repl.it got its name).</p>
+<h3>Running code from Repl.it’s REPL</h3>
+<p>In computer programming, a REPL is a <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">read-eval-print loop</a>, and a REPL interface is often the simplest way to run short computer programs (and where Repl.it got its name).</p>
 <p>While in the previous example we saved our code to a file and then executed the file, it’s sometimes quicker to execute code directly.</p>
 <p>You can type code in the right-hand pane (pane 3) and press the “enter” key to have it run. Take a look at the example below where we print “Hello World” again and do a different sum, without changing our code file.</p>
 <figure>
-<img src="img/codeoutput.png" alt="" /><figcaption><strong>Image 4</strong>: <em>Running code from the Repl</em></figcaption>
+<img src="img/codeoutput.png" alt="" /><figcaption><strong>Image 4</strong>: <em>Running code from the REPL</em></figcaption>
 </figure>
 <p>This is useful for prototyping or checking how things work, but for any serious program you write you’ll want to be able to save it, and that means writing the code in a file like in our earlier example.</p>
 <h2>Adding more files to your software project</h2>
@@ -99,37 +98,37 @@ print(answer)</code></pre>
 </figure>
 <p>Congratulations! You’ve written your first useful program.</p>
 <h2>Sharing your application with others</h2>
-<p>Coding is more fun with friends or as part of a team. If you want to share your code with others, it’s as easy as copying the URL and sending it. In my case, the URL is <code>https://repl.it/@GarethDwyer1/demoproject</code>, but yours will be different based on your Repl username and the project name you chose.</p>
-<p>You can copy the link and open it in an incognito tab (or a different web browser) to see how others would experience your project if you were to share it. By default, they’ll be able to see all of your files and code and run it, but not make any changes. If someone else tries to make changes to your Repl, it’ll automatically get copied (“Forked”) to their account, or an anonymous account if they haven’t signed up for Repl. Any changes your friends make will only happen in their copies, and won’t affect your code at all.</p>
-<p>To understand this, compare the three versions of the same Repl below.</p>
+<p>Coding is more fun with friends or as part of a team. If you want to share your code with others, it’s as easy as copying the URL and sending it. In my case, the URL is <code>https://repl.it/@GarethDwyer1/demoproject</code>, but yours will be different based on your Repl.it username and the project name you chose.</p>
+<p>You can copy the link and open it in an incognito tab (or a different web browser) to see how others would experience your project if you were to share it. By default, they’ll be able to see all of your files and code and run it, but not make any changes. If someone else tries to make changes to your repl, it’ll automatically get copied (“Forked”) to their account, or an anonymous account if they haven’t signed up for Repl.it. Any changes your friends make will only happen in their copies, and won’t affect your code at all.</p>
+<p>To understand this, compare the three versions of the same repl below.</p>
 <ul>
 <li>As you see it, with all of the controls</li>
 <li>As your friend would see it, a read-only version</li>
 <li>As your friend would see it after forking it, on an anonymous account</li>
 </ul>
 <figure>
-<img src="img/ownrepl.png" alt="" /><figcaption><strong>Image 8</strong>: <em>The owner’s view of a Repl</em></figcaption>
+<img src="img/ownrepl.png" alt="" /><figcaption><strong>Image 8</strong>: <em>The owner’s view of a repl</em></figcaption>
 </figure>
 <figure>
-<img src="img/readonly.png" alt="" /><figcaption><strong>Image 9</strong>: <em>A guest’s ‘read-only’ view of a Repl</em></figcaption>
+<img src="img/readonly.png" alt="" /><figcaption><strong>Image 9</strong>: <em>A guest’s ‘read-only’ view of a repl</em></figcaption>
 </figure>
 <figure>
-<img src="img/anonymousclone.png" alt="" /><figcaption><strong>Image 10</strong>: <em>An anonymous owner’s view of a copy of a Repl</em></figcaption>
+<img src="img/anonymousclone.png" alt="" /><figcaption><strong>Image 10</strong>: <em>An anonymous owner’s view of a copy of a repl</em></figcaption>
 </figure>
-<p>What does this mean? Because no one else can edit your Repl, you can share it far and wide. But because anyone can <em>read</em> your Repl, you should be careful that you don’t share anything private or secret in it.</p>
+<p>What does this mean? Because no one else can edit your repl, you can share it far and wide. But because anyone can <em>read</em> your repl, you should be careful that you don’t share anything private or secret in it.</p>
 <h2>Sharing write-access: Multiplayer</h2>
-<p>Of course, sometimes you might <em>want</em> others to have write-access to your Repl so that they can contribute, or help you out with a problem. In this case, Repl’s multiplayer functionality is your friend.</p>
-<p>If you invite someone to your Repl, it’s different from sharing the URL with them. You can invite someone by clicking “Share” in the top right and sending them the secret link that starts with “https://repl.it/join”.</p>
+<p>Of course, sometimes you might <em>want</em> others to have write-access to your repl so that they can contribute, or help you out with a problem. In this case, Repl.it’s multiplayer functionality is your friend.</p>
+<p>If you invite someone to your repl, it’s different from sharing the URL with them. You can invite someone by clicking “Share” in the top right and sending them the secret link that starts with “https://repl.it/join”.</p>
 <figure>
-<img src="img/multi.png" alt="" /><figcaption><strong>Image 11</strong>: <em>Inviting someone to your Repl</em></figcaption>
+<img src="img/multi.png" alt="" /><figcaption><strong>Image 11</strong>: <em>Inviting someone to your repl</em></figcaption>
 </figure>
-<p>If you have a friend handy, send it to them to try it out. If not, you can try out multiplayer anyway using a separate incognito window again. Below I have my main Repl account on the left and a second account which opened the multiplayer invite link on the right. As you can see, all keystrokes can be seen by all parties in real time.</p>
+<p>If you have a friend handy, send it to them to try it out. If not, you can try out multiplayer anyway using a separate incognito window again. Below I have my main Repl.it account on the left and a second account which opened the multiplayer invite link on the right. As you can see, all keystrokes can be seen by all parties in real time.</p>
 <figure>
 <img src="img/multidemo.gif" alt="" /><figcaption><strong>Image 12</strong>: <em>Using multiplayer</em></figcaption>
 </figure>
 <h2>Where next?</h2>
-<p>We covered the basics of Repl in this guide, showing you how to create basic coding projects on your own or with friends.</p>
-<p>Repl has more advanced functionality too. In future guides we’ll cover things like building and hosting web applications, installing third-party libraries, and importing code from GitHub.</p>
+<p>We covered the basics of Repl.it in this guide, showing you how to create basic coding projects on your own or with friends.</p>
+<p>Repl.it has more advanced functionality too. In future guides we’ll cover things like building and hosting web applications, installing third-party libraries, and importing code from GitHub.</p>
 </body>
 </html>
     <style type="text/css">

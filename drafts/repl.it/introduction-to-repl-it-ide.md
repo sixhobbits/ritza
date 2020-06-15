@@ -1,10 +1,10 @@
-# Understanding the Repl IDE: a practical guide to building your first project with Repl
+# Understanding the Repl.it IDE: a practical guide to building your first project with Repl.it
 
 Software developers can get pretty attached to their Integrated Development Environments (IDEs) and if you look for advice on which one to use, you'll find no end of people advocating strongly for one over another. VS Code, Sublime Text, IntelliJ, Atom, Vim, Emacs, and no shortage of others.
 
 In the end, an IDE is just a glorified text editor. It lets you type text into files and save those files, functionality that has been present in nearly all computers since those controlled by punch cards.
 
-In this guide, we'll show you how to use the Repl IDE. It has some features you won't find in many others, namely:
+In this guide, we'll show you how to use the Repl.it IDE. It has some features you won't find in many others, namely:
 
 * It's fully online. You can use it from any computer that can connect to the internet and run a web browser, including a phone or tablet.
 * It'll fully manage your environment for building and running code too: you won't need to mess around with making sure you have the right version of Python or the correct NodeJS libraries.
@@ -14,23 +14,23 @@ In the first part of this guide, we'll cover the basics and also show you how mu
 
 ## Introduction: creating an account and starting a project
 
-Although you don't need an account to use Repl (you can just navigate to [repl.it](repl.it) and press the "start coding" button), we'll set one up in order to have access to all of the features.
+Although you don't need an account to use Repl.it (you can just navigate to [repl.it](repl.it) and press the "start coding" button), we'll set one up in order to have access to all of the features.
 
 Visit [https://repl.it/signup](https://repl.it/signup) and follow the prompts to create a user account, either by entering a username and password or logging in with Google, GitHub, or Facebook.
 
-Once you're done, hit the "+ new repl" button in the top right. In the example below, I'm choosing to create a new Python project. Repl will automatically choose a random name for your project, or you can pick one yourself. Note that by default your Repl will be public to anyone on the internet: this is great for sharing and collaboration, but we'll have to be careful to not include passwords or other sensitive information in any of our projects.
+Once you're done, hit the "+ new repl" button in the top right. In the example below, I'm choosing to create a new Python project. Repl.it will automatically choose a random name for your project, or you can pick one yourself. Note that by default your repl will be public to anyone on the internet: this is great for sharing and collaboration, but we'll have to be careful to not include passwords or other sensitive information in any of our projects.
 
 ![**Image 1:** *Creating a new Python project*](img/newrepl.png)
 
-You'll also notice an "Import from GitHub" option. Repl allows you to import existing software projects directly from GitHub, but we'll create our own for now. Once your project is created, you'll be taken to a new view with several panes. Let's take a look at what these are.
+You'll also notice an "Import from GitHub" option. Repl.it allows you to import existing software projects directly from GitHub, but we'll create our own for now. Once your project is created, you'll be taken to a new view with several panes. Let's take a look at what these are.
 
-### Understanding the Repl panes
+### Understanding the Repl.it panes
 
-You'll soon see how configurable Repl is and how most things can be moved around to your fancy. However, by default you'll get the following layout.
+You'll soon see how configurable Repl.it is and how most things can be moved around to your fancy. However, by default, you'll get the following layout.
 
-![**Image 2:** *The Repl panes*](img/replpanes.png)
+![**Image 2:** *The Repl.it panes*](img/replpanes.png)
 
-1. **Left pane: files and configuration.** This, by default, shows up all the files that make up your project. Because we chose a Python project, Repl.it has gone ahead and create a `main.py` file there already
+1. **Left pane: files and configuration.** This, by default, shows up all the files that make up your project. Because we chose a Python project, Repl.it has gone ahead and created a `main.py` file there already
 2. **Middle pane: code editor.** You'll probably spend most of your time using this pane. It's a text editor where you can write code. In the screenshot, I've added two lines of Python code, which we'll run in a bit.
 3. **Right pane: output sandbox.** This is where you'll see your code in action. All output that your program produces will appear in this pane, and it also acts as a quick sandbox to run small pieces of code, which we'll look at more later.
 4. **Run button.** If you click the big green run button, your code will be executed and the output will appear on the right.
@@ -53,15 +53,15 @@ Your script will run and the output it generates will appear on the right pane (
 
 You probably won't be able to turn this script into the next startup unicorn quite yet, but let's keep going.
 
-### Running code from Repl's Repl
+### Running code from Repl.it's REPL
 
-In computer programming, a REPL is a [read-eval-print loop](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop), and a repl interface is often the simplest way to run short computer programs (and where repl.it got its name).
+In computer programming, a REPL is a [read-eval-print loop](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop), and a REPL interface is often the simplest way to run short computer programs (and where Repl.it got its name).
 
 While in the previous example we saved our code to a file and then executed the file, it's sometimes quicker to execute code directly.
 
 You can type code in the right-hand pane (pane 3) and press the "enter" key to have it run. Take a look at the example below where we print "Hello World" again and do a different sum, without changing our code file.
 
-![**Image 4**: *Running code from the Repl*](img/codeoutput.png)
+![**Image 4**: *Running code from the REPL*](img/codeoutput.png)
 
 This is useful for prototyping or checking how things work, but for any serious program you write you'll want to be able to save it, and that means writing the code in a file like in our earlier example.
 
@@ -94,7 +94,7 @@ def solve_quadratic(a, b, c):
     return s1, s
 ```
 
-Note that this won't solve all quadratic equations as it doesn't handle cases where `d`, the discriminant, is `0` or negative. However it'll do for now.
+Note that this won't solve all quadratic equations as it doesn't handle cases where `d`, the discriminant, is `0` or negative. However, it'll do for now.
 
 Navigate back to the `main.py` file. Delete all the code we had before and add the following code instead.
 
@@ -115,41 +115,41 @@ Congratulations! You've written your first useful program.
 
 ## Sharing your application with others
 
-Coding is more fun with friends or as part of a team. If you want to share your code with others, it's as easy as copying the URL and sending it. In my case, the URL is `https://repl.it/@GarethDwyer1/demoproject`, but yours will be different based on your Repl username and the project name you chose.
+Coding is more fun with friends or as part of a team. If you want to share your code with others, it's as easy as copying the URL and sending it. In my case, the URL is `https://repl.it/@GarethDwyer1/demoproject`, but yours will be different based on your Repl.it username and the project name you chose.
 
-You can copy the link and open it in an incognito tab (or a different web browser) to see how others would experience your project if you were to share it. By default, they'll be able to see all of your files and code and run it, but not make any changes. If someone else tries to make changes to your Repl, it'll automatically get copied ("Forked") to their account, or an anonymous account if they haven't signed up for Repl. Any changes your friends make will only happen in their copies, and won't affect your code at all.
+You can copy the link and open it in an incognito tab (or a different web browser) to see how others would experience your project if you were to share it. By default, they'll be able to see all of your files and code and run it, but not make any changes. If someone else tries to make changes to your repl, it'll automatically get copied ("Forked") to their account, or an anonymous account if they haven't signed up for Repl.it. Any changes your friends make will only happen in their copies, and won't affect your code at all.
 
-To understand this, compare the three versions of the same Repl below.
+To understand this, compare the three versions of the same repl below.
 
 * As you see it, with all of the controls
 * As your friend would see it, a read-only version
 * As your friend would see it after forking it, on an anonymous account
 
-![**Image 8**: *The owner's view of a Repl*](img/ownrepl.png)
+![**Image 8**: *The owner's view of a repl*](img/ownrepl.png)
 
-![**Image 9**: *A guest's 'read-only' view of a Repl*](img/readonly.png)
+![**Image 9**: *A guest's 'read-only' view of a repl*](img/readonly.png)
 
-![**Image 10**: *An anonymous owner's view of a copy of a Repl*](img/anonymousclone.png)
+![**Image 10**: *An anonymous owner's view of a copy of a repl*](img/anonymousclone.png)
 
-What does this mean? Because no one else can edit your Repl, you can share it far and wide. But because anyone can _read_ your Repl, you should be careful that you don't share anything private or secret in it.
+What does this mean? Because no one else can edit your repl, you can share it far and wide. But because anyone can _read_ your repl, you should be careful that you don't share anything private or secret in it.
 
 ## Sharing write-access: Multiplayer
 
-Of course, sometimes you might _want_ others to have write-access to your Repl so that they can contribute, or help you out with a problem. In this case, Repl's multiplayer functionality is your friend.
+Of course, sometimes you might _want_ others to have write-access to your repl so that they can contribute, or help you out with a problem. In this case, Repl.it's multiplayer functionality is your friend.
 
-If you invite someone to your Repl, it's different from sharing the URL with them. You can invite someone by clicking "Share" in the top right and sending them the secret link that starts with "https://repl.it/join".
+If you invite someone to your repl, it's different from sharing the URL with them. You can invite someone by clicking "Share" in the top right and sending them the secret link that starts with "https://repl.it/join".
 
-![**Image 11**: *Inviting someone to your Repl*](img/multi.png)
+![**Image 11**: *Inviting someone to your repl*](img/multi.png)
 
-If you have a friend handy, send it to them to try it out. If not, you can try out multiplayer anyway using a separate incognito window again. Below I have my main Repl account on the left and a second account which opened the multiplayer invite link on the right. As you can see, all keystrokes can be seen by all parties in real time.
+If you have a friend handy, send it to them to try it out. If not, you can try out multiplayer anyway using a separate incognito window again. Below I have my main Repl.it account on the left and a second account which opened the multiplayer invite link on the right. As you can see, all keystrokes can be seen by all parties in real-time.
 
 ![**Image 12**: *Using multiplayer*](img/multidemo.gif)
 
 ## Where next?
 
-We covered the basics of Repl in this guide, showing you how to create basic coding projects on your own or with friends.
+We covered the basics of Repl.it in this guide, showing you how to create basic coding projects on your own or with friends.
 
-Repl has more advanced functionality too. In future guides we'll cover things like building and hosting web applications, installing third-party libraries, and importing code from GitHub.
+Repl.it has more advanced functionality too. In future guides, we'll cover things like building and hosting web applications, installing third-party libraries, and importing code from GitHub.
 
 
 
