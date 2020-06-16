@@ -14,7 +14,7 @@ In the first part of this guide, we'll cover the basics and also show you how mu
 
 ## Introduction: creating an account and starting a project
 
-Although you don't need an account to use Repl.it (you can just navigate to [repl.it](repl.it) and press the "start coding" button), we'll set one up in order to have access to all of the features.
+Although you don't need an account to use Repl.it (you can just navigate to [repl.it](https://repl.it/) and press the "start coding" button), we'll set one up in order to have access to all of the features.
 
 Visit [https://repl.it/signup](https://repl.it/signup) and follow the prompts to create a user account, either by entering a username and password or logging in with Google, GitHub, or Facebook.
 
@@ -61,7 +61,7 @@ While in the previous example we saved our code to a file and then executed the 
 
 You can type code in the right-hand pane (pane 3) and press the "enter" key to have it run. Take a look at the example below where we print "Hello World" again and do a different sum, without changing our code file.
 
-![**Image 4**: *Running code from the REPL*](img/codeoutput.png)
+![**Image 4**: *Running code from the REPL*](img/reploutput.png)
 
 This is useful for prototyping or checking how things work, but for any serious program you write you'll want to be able to save it, and that means writing the code in a file like in our earlier example.
 
@@ -75,9 +75,9 @@ As an example, we'll write code to solve [quadratic equations](https://www.maths
 
 ![**Image 5**: *A quadratic equation example*](img/quadratic.png)
 
-Let's make Python do the repetitive steps for us by creating a program called "solver". This could eventually have a lot of different solvers, but for now we'll just write one: `quadratic_solver`.
+Let's make Python do the repetitive steps for us by creating a program called "solver". This could eventually have a lot of different solvers, but for now we'll just write one: `solve_quadratic`.
 
-Add a new file to your project by clicking on the new file button, as shown below. Call the file `solver.py`. You now have two files in your project: `main.py` and `solver.py`. You can switch between them by clicking on them.
+Add a new file to your project by clicking on the new file button, as shown below. Call the file `solver.py`. You now have two files in your project: `main.py` and `solver.py`. You can switch between your files by clicking on them.
 
 ![**Image 6**: *Adding a new file*](img/solver.png)
 
@@ -91,7 +91,7 @@ def solve_quadratic(a, b, c):
     d = (b ** 2) -4 * a * c
     s1 = (-b+math.sqrt((b**2)-(4*(a*c))))/(2*a)
     s2 = (-b-math.sqrt((b**2)-(4*(a*c))))/(2*a)
-    return s1, s
+    return s1, s2
 ```
 
 Note that this won't solve all quadratic equations as it doesn't handle cases where `d`, the discriminant, is `0` or negative. However, it'll do for now.
