@@ -87,11 +87,11 @@ Open the `solver.py` file and add the following code to it.
 import math
 
 def solve_quadratic(a, b, c):
-    """Does not solve all quadratic equations"""
-    d = (b ** 2) -4 * a * c
-    s1 = (-b+math.sqrt((b**2)-(4*(a*c))))/(2*a)
-    s2 = (-b-math.sqrt((b**2)-(4*(a*c))))/(2*a)
+    d = (b ** 2) - 4 * a * c
+    s1 = (-b + math.sqrt(d)) / (2 * a)
+    s2 = (-b - math.sqrt(d)) / (2 * a)
     return s1, s2
+import math
 ```
 
 Note that this won't solve all quadratic equations as it doesn't handle cases where `d`, the discriminant, is `0` or negative. However, it'll do for now.
