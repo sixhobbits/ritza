@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>![](imgs/header.jpg)</title>
-    <meta name="description" content="# Adding social sign in to your Django web application using Fusion Auth
- In this tutorial, we'll build a basic Django web application which does user">
+    <title></title>
+    <meta name="description" content="">
 </head>
 
 <body>
@@ -15,114 +14,282 @@
         </nav>
 
     </header>
-<p><img src="imgs/header.jpg" /></p>
-<h1>Adding social sign in to your Django web application using Fusion Auth</h1>
-<p>In this tutorial, we’ll build a basic Django web application which does user registration and authentication via <a href="https://fusionauth.io/">FusionAuth</a></p>
-<h2>Why FusionAuth</h2>
+<h1>Adding social sign in to your Django web application using FusionAuth</h1>
+<figure>
+<img src="images/headerimage.png" alt="" /><figcaption>Header image</figcaption>
+</figure>
+<p>In this tutorial, we’ll build a basic Django web application which does user registration and authentication via <a href="https://fusionauth.io/">FusionAuth</a>, an authentication platform with some unique features.</p>
+<p>The application itself will be very simple: it will let users put in their birthdays and keep this “secret” information safe for them, but with these basics in place, you’ll see how FusionAuth works and can extend the application to do whatever you need.</p>
+<h2>What do you need to follow this tutorial?</h2>
+<p>We’ll explain nearly everything that we use, but we expect you to have: - Basic Python knowledge and a Python environment set up - Preferably basic Django knowledge (or knowledge of a similar web framework such as Flask) - Docker and Docker-Compose set up as we’ll set up FusionAuth using these.</p>
+<p>It’ll also help if you know the basics of OAuth or authentication in general.</p>
+<h2>Why FusionAuth?</h2>
+<p>Django has a mature authentication system by default, but it isn’t perfect. For example, “social login” (the “log in with Google/Facebook/GitHub/Twitter” functionality) isn’t handled by Django by default. You can use the <a href="https://django-allauth.readthedocs.io/en/latest/">django-all-auth</a> package to add this, but now you’re already adding complexity to your project. Soon you’ll want to add more functionality, such as resetting passwords, forgotten passwords, and more.</p>
+<p>Nearly every web app needs authentication and authentication is more complicated than it seems at first. Therefore, it’s a great time to follow the <a href="https://en.wikipedia.org/wiki/Single-responsibility_principle">Single Responsibility Principle</a> - instead of trying to build out your own authentication and authorization functionality, delegate this to a project whose only job is handling authentication.</p>
+<figure>
+<img src="images/privateinfo-fusionauth.png" alt="" /><figcaption><strong>Image 1:</strong> <em>Important private data goes in FusionAuth. Everything else in Django.</em></figcaption>
+</figure>
+<p>The image above shows how this works. Your application logic and all public information can be handled by Django. Anything sensitive, such as personally identifiable information (PII) is handled by FusionAuth.</p>
+<p>This means that you can focus a majority of your security efforts on FusionAuth. It also means that if you create more applications, they can piggy-back on your centralised authentication instead of having to re-implement authentication for each and every application that you build.</p>
+<p>Any integrations that you set up with other providers (e.g. Google for “Sign in with Google”) can be done once, instead of per application too.</p>
+<h2>Installing and configuring FusionAuth</h2>
+<p>There are <a href="https://fusionauth.io/docs/v1/tech/installation-guide/fusionauth-app">various ways</a> to install FusionAuth depending on your system, but the easiest way is to use Docker and Docker Compose. The updated containers and instructions are at <a href="https://github.com/FusionAuth/fusionauth-containers/">https://github.com/FusionAuth/fusionauth-containers/</a>. Currently, to install and run FusionAuth you would run (assuming you have Docker installed).</p>
+<pre><code class="language-bash">curl -o docker-compose.yml https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/docker-compose.yml
+https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/docker-compose.override.yml
+curl -o .env https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/.env
+docker-compose up
+</code></pre>
+<p>Note that this uses a public <code>.env</code> file containing hard-coded database passwords and is not suitable for production use.</p>
+<h3>Configuring FusionAuth</h3>
+<p>FusionAuth should now be running and reachable on <code>[http://localhost:9011](http://localhost:9011)</code>. The first time you visit, you’ll be prompted to set up an admin user and password. Once you’ve done this, you’ll be prompted to complete three more set up steps, as shown below.</p>
+<figure>
+<img src="images/fusionauth-setup1.png" alt="" /><figcaption><strong>Image :</strong> <em>FusionAuth prompts us with the setup steps that we need to complete</em></figcaption>
+</figure>
+<p>We’ll skip step <strong>#3</strong> in this tutorial, but sending emails (e.g. to verify email addresses and do password resets) is a vital part of FusionAuth running in production.</p>
+<h3>Creating an Application</h3>
+<p>Click “Setup” under “Missing Application” and call your new app “Secret Birthdays”. It’ll get a Client Id and Client secret automatically. Later, we’ll set up a Django application which will run on <a href="http://localhost:8000">http://localhost:8000</a>, so configure the Authorized URLs accordingly. You should add:</p>
 <ul>
-<li><p>Django has a mature authentication system by default, but it doesn’t do everything. Django-allauth adds functionality for e.g. logging in with Google.</p></li>
-<li><p>But nearly every web app needs authentication. Authentication is more complicated than it seems. It’s a great thing for Single Responsibility Principle - use something whose only job it is to do auth well, instead of auth being something that people who are focussing on building hte app also have to work on.</p></li>
+<li><a href="http://localhost:8000/dashboard">http://localhost:8000/dashboard</a> to the Authorized redirect URLs</li>
+<li><a href="http://localhost:8000/">http://localhost:8000/</a> to the Authorized request origin URL</li>
+<li><a href="http://localhost:8000/">http://localhost:8000/</a> to the Logout URL</li>
 </ul>
 <figure>
-<img src="imgs/fusionauthdjango.jpg" alt="" /><figcaption><strong>Image 1:</strong> <em>Important private data goes in FusionAuth. Everything else in Django.</em></figcaption>
+<img src="images/fusionauth-urlconf.png" alt="" /><figcaption><strong>Image :</strong> <em>Configuring the application URLs in FusionAuth</em></figcaption>
 </figure>
-<ul>
-<li>Add more services - can easily use the same database of users - they don’t need to sign up again, and if they are logged into one, they can be logged in everywhere</li>
-<li>Can put effort into focussing on security and compliance for the FusionAuth app and don’t need to worry as much about the data in Django app.</li>
-<li>If we set up integrations with third party services, such as Google, we only need to do this once, instead of for each app we build.</li>
-</ul>
-<h2>Setting up Fusion Auth</h2>
-<ul>
-<li>Mainly link to 5 minute set up guide, but re-outline the steps more breifly here.</li>
-<li>Docker compose</li>
-<li>Create application</li>
-</ul>
-<h2>Setting up a Google sign in</h2>
-<ul>
-<li>Also mainly link to existing tutorial on how to do this, with brief steps</li>
-<li>Sandbox account can have 100 users</li>
-</ul>
+<p>While you’re here, turn on “Self service registrations” which will allow our users to sign themselves up for our application.</p>
+<p>Under the registration tab, toggle Self service registration to “Enabled”.</p>
+<p><img src="images/selfregistration.png" alt="Image : Turning on self-service registration in FusionAuth" /> Click the Save button in the top right for your changes to take effect.</p>
+<h3>Creating an application in the Google Developers Console</h3>
+<p>In order to allow our users to sign in to our app using their Google account, you’ll need to set up a Google Cloud project and get an OAuth ID and secret. The full instructions for doing this are available <a href="https://fusionauth.io/docs/v1/tech/identity-providers/google">here</a>.</p>
+<p>Use <a href="http://localhost:9011">http://localhost:9011</a> for the authorized JavaScript origin and Authorized redirect URI. This will allow our FusionAuth app to talk to Google’s servers and have them authenticate users on our behalf, as shown below.</p>
+<figure>
+<img src="images/google-authurls.png" alt="" /><figcaption><strong>Image :</strong> <em>Adding authorized URLs to Google</em></figcaption>
+</figure>
+<p>Note that with a sandbox application, which is created by default, you can only sign up a maximum of 100 users. For production use, you need to make sure that you have pages describing your privacy policy and get approval from Google, which you’ll be prompted to do during the setup process.</p>
+<p>Once you’ve set up everything in the Google Console, you’ll need to complete the set up by adding Google as an identity provider to FusionAuth and copying in the ClientID and Client Secret that you got from Google. The detailed steps for this are also described <a href="https://fusionauth.io/docs/v1/tech/identity-providers/google">here</a>.</p>
+<p>In the next step, make sure that you have enabled the Google integration and turn on “Create registration” for your Secret Birthday’s app. Also don’t forget to hit the save button.</p>
+<figure>
+<img src="images/googlefusionauth.png" alt="" /><figcaption><strong>Image :</strong> <em>Enabling Google registration in our application</em></figcaption>
+</figure>
+<p>Finally, turn on “self service registration” to allow users to sign up for the application (otherwise you would have to register each one manually) and save the page.</p>
+<p>Now we’ve done most of the admin. Let’s build a Django app!</p>
 <h2>Setting up Django</h2>
-<ul>
-<li>Virtualenv</li>
-<li>Install</li>
-<li>Urls</li>
-<li>FusionAuth client</li>
-</ul>
-<h2>Building our application</h2>
-<h3>Outline of our applicatin</h3>
-<ul>
-<li>We’ll build a very simple application with only three pages</li>
-</ul>
+<p>To get started, you should: - Create a virtual environment for your project - Activate it - Install Django, dateparser, and the FusionAuth Python client - Create the secretbirthdays Django project - Create the secretbirthdaysapp Django app inside this project - Run the initial migrations - Start the Django development server</p>
+<p>The commands to complete all of the above are shown below.</p>
+<pre><code class="language-bash">virtualenv sb-env
+Source sb-env/bin/activate
+pip3 install django dateparser fusionauth-client
+django-admin startproject secretbirthdays
+cd secretbirthdays
+python3 manage.py startapp secretbirthdaysapp
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver</code></pre>
+<p>If all went well, the server should start successfully, as shown below.</p>
+<figure>
+<img src="images/djangoserver.png" alt="" /><figcaption><strong>Image :</strong> <em>The Django development server starting successfully</em></figcaption>
+</figure>
+<p>And if you visit <a href="http://localhost:8000"><code>http://localhost:8000</code></a> in your web browser, you should see the default Django page</p>
+<figure>
+<img src="images/defaultdjango.png" alt="" /><figcaption><strong>Image :</strong> <em>The Django default home page</em></figcaption>
+</figure>
+<h2>Building the Secret Birthdays Application</h2>
+<p>Our application will only have three pages, including the FusionAuth login page.</p>
 <ol type="1">
-<li><p>A home page - a public page showing how many users our app has an inviting users to log in <img src="imgs/homepage.png" alt="Image 2: The home page" /></p></li>
-<li><p>The log in / sign up page (on FusionAuth) with options to use a username/password or to sign in with Google <img src="imgs/login.png" alt="Image 3: The FusionAuth login page" /></p></li>
-<li><p>A logged in private “dashboard” page, unique per user. This will display the user’s birthday if we have it on record, or allow them to add or change their birthday. It will also let users log out. <img src="imgs/dashboard.png" alt="Image 4: The private dashboard" /></p></li>
+<li>A home page - a public page showing how many users our app has an inviting users to log in</li>
+<li>The log in / sign up page (on FusionAuth) with options to use a username/password or to sign in with Google</li>
+<li>A logged in private “dashboard” page, unique per user. This will display the user’s birthday if we have it on record, or allow them to add or change their birthday. It will also let users log out.</li>
 </ol>
-<h3>Adding the FusionAuth login URL</h3>
-<ul>
-<li>Show how to build up the URL from client id, redirect URL etc</li>
-</ul>
-<h3>Validating user logins with FusionAuth</h3>
-<ul>
-<li>Show how to get the code, exchange it for an access token and explain why this is important</li>
-<li>User brings us the code, but it’s in a public place - not secure. Our Django backend then talks directly to FusionAuth’s backend to swop the code for an access token securely. If the access token checks out, we let our user access the page</li>
-</ul>
-<h3>Adding the POST form</h3>
-<ul>
-<li>Get the users birthday and display it if we already have it</li>
-</ul>
-<h3>Adding a logout button</h3>
-<ul>
-<li>Add a logout button with a redirect</li>
-<li>configure the redirect in FusionAuth</li>
-</ul>
-<h3>Retreiving the user’s private data on log in</h3>
-<ul>
-<li>Get the birthdate on log in from the user and display it</li>
-</ul>
-<h3>Conclusion</h3>
-<ul>
-<li>We set up a Django app with FusionAuth as our Auth server</li>
-<li>It’s nice to not have to worry about storing private information in our main application.</li>
-</ul>
-<pre><code class="language-python">#views.py
-import dateparser
+<p>First, let’s tell Django that our secretbirthdaysapp is going to be the main app of our secretbirthdays project. In the secretbirthdays/urls.py file, add <code>path('', include('secretbirthdaysapp.urls')),</code> to the urlpatterns array and import Django’s <code>include()</code> function.</p>
+<p>The full file should look as follows.</p>
+<pre><code class="language-python">from django.contrib import admin
+from django.urls import path, include
 
+urlpatterns = [
+    path(&#39;&#39;, include(&#39;secretbirthdaysapp.urls&#39;)),
+    path(&#39;admin/&#39;, admin.site.urls),
+]</code></pre>
+<p>Now we can create the home page. It will look like this.</p>
+<figure>
+<img src="images/homepage4.png" alt="" /><figcaption><strong>Image :</strong> <em>How our home page will look</em></figcaption>
+</figure>
+<p>In the secretbirthdaysapp directory create a folder called templates, and a folder called secretbirthdaysapp inside that (this is a Django convention to stop templates with the same name in different apps conflicting.</p>
+<p>Now create the file <code>secretbirthdaysapp/tempaltes/secretbirthdaysapp/home.html</code> and add the following code.</p>
+<pre><code class="language-html">&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;My Django Application&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;h1&gt;Hi, this is a public page&lt;/h1&gt;
+      &lt;p&gt; There are &lt;b&gt;{{num_users}}&lt;/b&gt; users signed up &lt;/p&gt;
+      &lt;p&gt;You can &lt;a href=&quot;{{login_url}}&quot;&gt;login&lt;/a&gt; to view your private page&lt;/p&gt;
+   &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>We will still need to pass the variables <code>num_users</code> and <code>login_url</code> to this template from the backend.</p>
+<p>In <code>secretbirthdaysapp/views.py</code> import <code>View</code>, <code>User</code>, and add a <code>HomeView</code> to render our home page.</p>
+<pre><code class="language-python">from django.contrib.auth.models import User
+from django.shortcuts import render
 from django.views.generic import View
-from django.urls import reverse
-from django.shortcuts import render, redirect
+
+class HomeView(View):
+
+    def get(self, request):
+        num_users = User.objects.count()
+        login_url = &quot;&quot;
+        return render(
+            request,
+            &quot;secretbirthdaysapp/home.html&quot;,
+            {&quot;login_url&quot;: login_url, &quot;num_users&quot;: num_users},
+        )</code></pre>
+<p>Finally, register our app in the project-level settings.py file secretbirthdays/settings.py. Add <code>secretbirthdaysapp</code> to <code>INSTALLED_APPS</code>. The full definition should look as follows.</p>
+<pre><code class="language-python">INSTALLED_APPS = [
+    &#39;django.contrib.admin&#39;,
+    &#39;django.contrib.auth&#39;,
+    &#39;django.contrib.contenttypes&#39;,
+    &#39;django.contrib.sessions&#39;,
+    &#39;django.contrib.messages&#39;,
+    &#39;django.contrib.staticfiles&#39;,
+    &#39;secretbirthdaysapp&#39;,
+]</code></pre>
+<p>If you fire up <a href="http://localhost:8000">http://localhost:8000</a> in your web browser now, you should see our home page.</p>
+<figure>
+<img src="images/homepage1.png" alt="" /><figcaption><strong>Image :</strong> <em>How our home page will look</em></figcaption>
+</figure>
+<p>To build the login URL (which will direct users to our FusionAuth server), we need to have some of our FusionAuth config copied across to our Django project. Specifically, we’ll need an API key and our app’s client ID.</p>
+<p>Go back to the FusionAuth dashboard (<a href="http://localhost9011">http://localhost:9011</a>) and complete the next piece of set up.</p>
+<figure>
+<img src="images/fusionauth-setup2.png" alt="" /><figcaption><strong>Image :</strong> <em>We still need an API key</em></figcaption>
+</figure>
+<p>Add a name for the key, take note of the generated Key, leave it with all permissions, and press the save button.</p>
+<figure>
+<img src="images/gettingapikey.png" alt="" /><figcaption><strong>Image :</strong> <em>Getting the API key from FusionAuth</em></figcaption>
+</figure>
+<p>Under Applications, edit the Secret Birthday’s application and take note of the Application ID and Client Secret. (Note that the Client Secret and API Key are used in similar contexts, but the former is more limited.)</p>
+<figure>
+<img src="images/fusionauth-clientidsecret.png" alt="" /><figcaption><strong>Image :</strong> <em>Getting the Application ID from FusionAuth</em></figcaption>
+</figure>
+<p>Now, in secretbirthdays/settings.py add these values as variables, at the bottom of the file (you’ll need to change the random-looking strings for your own Application’s ID and API key).</p>
+<pre><code class="language-python">FUSION_AUTH_APP_ID = &quot;b89aeba4-d406-4482-acda-ee4ec00a1881&quot;
+FUSION_AUTH_CLIENT_SECRET = &quot;0E_nAcnm5MmBhXH7S55n5qJ_UPWV7esxi5bjmHMTaxo&quot;
+FUSION_AUTH_API_KEY = &quot;n6z-UA9UR_8RfXF0p5kWI5doOqYZiXUaG2MwenCBFDY&quot;
+FUSION_AUTH_BASE_URL = &quot;http://localhost:9011&quot;</code></pre>
+<h2>Allowing users to sign up and log in</h2>
+<p>Now for the fun part: let’s allow users to sign up for our application to view their own personal dashboards.</p>
+<p>Create a new template in <code>secretbirthdaysapp/templates/secretbirthdaysapp/dashboard.html</code> and add the following code.</p>
+<pre><code class="language-html">&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;SUPER PRIVATE INFO!!&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;h1&gt;This is private information (&lt;a href=&quot;{% url ‘logout’ %}&quot;&gt;Logout&lt;/a&gt;)&lt;/h1&gt;
+      &lt;p&gt;You are logged in as {{request.user.username}}&lt;/p&gt;
+      {% if message %}
+      &lt;font color=&quot;red&quot;&gt;
+         &lt;h3&gt;{{message}}&lt;/h3&gt;
+      &lt;/font&gt;
+      {% endif %}
+      &lt;p&gt;Your birthday is {{birthday}}&lt;/p&gt;
+      &lt;p&gt;Please enter your birthday&lt;/p&gt;
+      &lt;form action=&quot;/dashboard&quot; method=&quot;POST&quot;&gt;
+         {% csrf_token %}
+         &lt;input type=&quot;text&quot; name=&quot;birthday&quot; placeholder=&quot;When were you born&quot;&gt;
+         &lt;input type=&quot;Submit&quot; value=&quot;SEND&quot;&gt;
+      &lt;/form&gt;
+   &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>This template still needs some variables, namely the user’s birthday (if we have it) and any messages based on their input. We also need to connect it to a URL and make the /logout URL meaningful)</p>
+<p>Add URLs for the dashboard and to logout in the secretbirthdaysapp/urls.py file. The whole file should look like this.</p>
+<pre><code class="language-python">from django.urls import path
+from . import views
+
+urlpatterns = [
+    path(&#39;&#39;, views.HomeView.as_view(), name=&#39;home&#39;),
+    path(&#39;dashboard&#39;, views.DashboardView.as_view(), name=&#39;dashboard&#39;),
+    path(&#39;logout&#39;, views.LogoutView.as_view(), name=&#39;logout&#39;),
+]</code></pre>
+<p>Update the <code>secretbirthdaysapp/views.py</code> to account for these new routes.</p>
+<ol type="1">
+<li>Add imports for our settings, the <code>FusionAuthClient</code>, and Django’s shortcuts. Your imports section should look as follows.</li>
+</ol>
+<pre><code class="language-python">from django.conf import settings
 from django.contrib.auth.models import User
-from django.conf import settings
+from django.shortcuts import render, redirect, reverse
+from django.views.generic import View
 
-from fusionauth.fusionauth_client import FusionAuthClient
+from fusionauth.fusionauth_client import FusionAuthClient</code></pre>
+<ol start="2" type="1">
+<li>Add the Dashboard view</li>
+</ol>
+<pre><code class="language-python">class DashboardView(View):
 
+    def get(self, request):
+        if not user_login_ok(request):
+            login_url = get_login_url(request)
+            return redirect(login_url)
 
-def get_or_create_user(user_id, request):
+        birthday = None
+        user = None
+
+        try:
+            client = FusionAuthClient(
+                settings.FUSION_AUTH_API_KEY, settings.FUSION_AUTH_BASE_URL
+            )
+            r = client.retrieve_user(request.user.username)
+
+            if r.was_successful():
+                user = r.success_response
+                birthday = user[&quot;user&quot;][&quot;birthDate&quot;]
+            else:
+                print(r.error_response)
+        except Exception as e:
+            print(&quot;couldn&#39;t get user&quot;)
+            print(e)
+
+        return render(request, &quot;fusiondemoapp/dashboard.html&quot;, {&quot;birthday&quot;: birthday})</code></pre>
+<p>Here we check if the user can log in (functionality we still have to write). If everything looks OK, we retrieve the user’s birthday from FusionAuth (which it doesn’t have by default as we don’t get this information from Google or when the user registers).</p>
+<ol start="3" type="1">
+<li>Add the Logout view</li>
+</ol>
+<pre><code class="language-python">class LogoutView(View):
+
+    def get(self, request, *args, **kwargs):
+        redirect_url = request.build_absolute_uri(&quot;home&quot;)
+        url = f&quot;{settings.FUSION_AUTH_BASE_URL}/oauth2/logout?client_id={settings.FUSION_AUTH_APP_ID}&quot;
+        return redirect(url)</code></pre>
+<ol start="4" type="1">
+<li>Add the get_or_create user function near the top of views.py</li>
+</ol>
+<pre><code class="language-python">def get_or_create_user(user_id, request):
     user = User.objects.filter(username=user_id).first()
+
     if not user:
         user = User(username=user_id)
         user.save()
-    return user
 
-
-def get_login_url(request):
+    return user</code></pre>
+<p>This looks for a Django user using FusionAuth’s user_id as the username. If it doesn’t exist, we create it and save it to the database. Note that now in our Django application we will only keep really basic User objects, with nothing but a randomly generated ID to identify them - all sensitive PII and passwords are handled only by FusionAuth.</p>
+<p>We also need to build a fairly long URL to log in with FusionAuth. Add another helper function for this, as follows.</p>
+<pre><code class="language-python">def get_login_url(request):
     redirect_url = request.build_absolute_uri(reverse(&quot;dashboard&quot;))
-    login_url = f&quot;{settings.FUSION_AUTH_BASE_URL}/oauth2/authorize?client_id={settings.FUSION_AUTH_CLIENT_ID}&amp;redirect_uri={redirect_url}&amp;response_type=code&quot;
+    login_url = f&quot;{settings.FUSION_AUTH_BASE_URL}/oauth2/authorize?client_id={settings.FUSION_AUTH_APP_ID}&amp;redirect_uri={redirect_url}&amp;response_type=code&quot;
+
     login_url = login_url.format(
-        settings.FUSION_AUTH_BASE_URL, settings.FUSION_AUTH_CLIENT_ID,
+        settings.FUSION_AUTH_BASE_URL, settings.FUSION_AUTH_APP_ID,
     )
-    return login_url
-
-
-def user_login_ok(request):
+    return login_url</code></pre>
+<p>We’ll build this using variables as the components would differ between local, staging, and production setups. We tell Django where to find our FusionAuth app, which App ID to authenticate with, and where FusionAuth should redirect the user once log in is completed.</p>
+<p>Now add a helper function to check if everything went OK with the users log in. This is the fairly complex OAuth dance that proves identity in several steps.</p>
+<pre><code class="language-python">def user_login_ok(request):
     client = FusionAuthClient(
         settings.FUSION_AUTH_API_KEY, settings.FUSION_AUTH_BASE_URL
     )
+
     code = request.GET.get(&quot;code&quot;)
+
     if not code:
         print(&quot;no code&quot;)
         return False
+
     try:
         redirect_url = request.build_absolute_uri(reverse(&quot;dashboard&quot;))
         r = client.exchange_o_auth_code_for_access_token(
@@ -140,138 +307,89 @@ def user_login_ok(request):
         else:
             print(r.error_response)
             return False
+
+    except Exception as e:
+        print(e)</code></pre>
+<p>After the user is directed back to the /dashboard route from FusionAuth (after logging in), they’ll bring a “Code” with them. This is what FusionAuth gave them in return for completing a successful log in. As this code is semi public (available in the URL), we don’t trust it completely. Instead we use this code to check with FusionAuth directly by exchanging it for an oauth token, which tells us which user the code was given to.</p>
+<p>If everything goes well, the user is allowed to see the “secret” dashboard. Of course, we still don’t actually know the user’s birthday, so we have to ask them. At the moment, we aren’t collecting the information in the form, so let’s add the <code>post()</code> function in our dashboard view to do that.</p>
+<figure>
+<img src="images/dashboardbirthday.png" alt="" /><figcaption><strong>Image :</strong> <em>The private dashboard</em></figcaption>
+</figure>
+<h2>Allowing the user to enter their birthday</h2>
+<p>As our Django app has a database by default, we could simply store the users birthday in there. But remember, we want to keep any sensitive data within FusionAuth rather, so our Django app wants to touch this information as little as possible and not store it.</p>
+<p>Therefore, the moment we get info from the user, Django will send it across to FusionAuth for safe-keeping and not keep its own record.</p>
+<p>Add <code>import dateparser</code> at the top of secretbirthdayapp/views.py.</p>
+<p>Now add the following function to the DashboardAppView class in secretbirthdaysapp/views.py</p>
+<pre><code class="language-python">def post(self, request):
+
+    birthday = request.POST.get(&quot;birthday&quot;)
+    normalised_birthday = None
+    print(birthday)
+
+    try:
+        dt = dateparser.parse(birthday)
+        normalised_birthday = dt.strftime(&quot;%Y-%m-%d&quot;)
     except Exception as e:
         print(e)
+        print(&quot;Couldn&#39;t parse birthday&quot;)
 
-
-class HomeView(View):
-    def get(self, request):
-        num_users = User.objects.count()
-        login_url = get_login_url(request)
+    if not normalised_birthday:
         return render(
             request,
-            &quot;fusiondemoapp/home.html&quot;,
-            {&quot;login_url&quot;: login_url, &quot;num_users&quot;: num_users},
+            &quot;fusiondemoapp/dashboard.html&quot;,
+            {&quot;message&quot;: &quot;Couldn&#39;t parse birthday. Please use YYYY-MM-DD&quot;},
         )
 
-
-class DashboardView(View):
-    def get(self, request):
-
-        if not user_login_ok(request):
-            login_url = get_login_url(request)
-            return redirect(login_url)
-
-        user = None
-        try:
-            client = FusionAuthClient(
-                settings.FUSION_AUTH_API_KEY, settings.FUSION_AUTH_BASE_URL
-            )
-            r = client.retrieve_user(request.user.username)
-            if r.was_successful():
-                user = r.success_response
-                birthday = user[&quot;user&quot;][&quot;birthDate&quot;]
-            else:
-                print(r.error_response)
-        except Exception as e:
-            print(&quot;couldn&#39;t get user&quot;)
-            print(e)
-
-        return render(request, &quot;fusiondemoapp/dashboard.html&quot;, {&quot;birthday&quot;: birthday})
-
-    def post(self, request):
-
-        birthday = request.POST.get(&quot;birthday&quot;)
-        normalised_birthday = None
-        print(birthday)
-
-        try:
-            dt = dateparser.parse(birthday)
-            normalised_birthday = dt.strftime(&quot;%Y-%m-%d&quot;)
-        except Exception as e:
-            print(e)
-            print(&quot;Couldn&#39;t parse birthday&quot;)
-
-        if not normalised_birthday:
+    try:
+        client = FusionAuthClient(
+            settings.FUSION_AUTH_API_KEY, settings.FUSION_AUTH_BASE_URL
+        )
+        r = client.patch_user(
+            request.user.username, {&quot;user&quot;: {&quot;birthDate&quot;: normalised_birthday}}
+        )
+        if r.was_successful():
+            print(r.success_response)
             return render(
                 request,
-                &quot;fusiondemoapp/dashboard.html&quot;,
-                {&quot;message&quot;: &quot;Couldn&#39;t parse birthday. Please use YYYY-MM-DD&quot;},
+                &quot;secretbirthdaysapp/dashboard.html&quot;,
+                {&quot;message&quot;: &quot;Updated your birthday&quot;, &quot;birthday&quot;: normalised_birthday,},
             )
 
-        try:
-            client = FusionAuthClient(
-                settings.FUSION_AUTH_API_KEY, settings.FUSION_AUTH_BASE_URL
-            )
-            r = client.patch_user(
-                request.user.username, {&quot;user&quot;: {&quot;birthDate&quot;: normalised_birthday}}
-            )
-            if r.was_successful():
-                print(r.success_response)
-                return render(
-                    request,
-                    &quot;fusiondemoapp/dashboard.html&quot;,
-                    {
-                        &quot;message&quot;: &quot;Updated your birthday&quot;,
-                        &quot;birthday&quot;: normalised_birthday,
-                    },
-                )
-            else:
-                print(r.error_response)
-                return render(
-                    request,
-                    &quot;fusiondemoapp/dashboard.html&quot;,
-                    {&quot;message&quot;: &quot;Something went wrong&quot;},
-                )
-        except Exception as e:
-            print(e)
+        else:
+            print(r.error_response)
             return render(
                 request,
                 &quot;fusiondemoapp/dashboard.html&quot;,
                 {&quot;message&quot;: &quot;Something went wrong&quot;},
             )
 
-
-class LogoutView(View):
-    def get(self, request, *args, **kwargs):
-        redirect_url = request.build_absolute_uri(&quot;home&quot;)
-        url = f&quot;http://localhost:9011/oauth2/logout?client_id=54a89ede-2c09-4f76-8050-7249ce350a5c&quot;
-        return redirect(url)</code></pre>
-<pre><code class="language-html">&lt;!-- home.html --&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;My Django Application&lt;/title&gt;
-    &lt;/head&gt;
-
-    &lt;body&gt;
-        &lt;h1&gt;Hi, this is a public page&lt;/h1&gt;
-        &lt;p&gt; There are &lt;b&gt;{{num_users}}&lt;/b&gt; users signed up &lt;/p&gt;
-        &lt;p&gt;You can &lt;a href=&quot;{{login_url}}&quot;&gt;login&lt;/a&gt; to view your private page&lt;/p&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<pre><code class="language-html">&lt;!-- dashboard.html --&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;SUPER PRIVATE INFO!!&lt;/title&gt;
-    &lt;/head&gt;
-
-    &lt;body&gt;
-        &lt;h1&gt;This is private information (&lt;a href=&quot;/logout&quot;&gt;Logout&lt;/a&gt;)&lt;/h1&gt;
-        &lt;p&gt;You are logged in as {{request.user.username}}&lt;/p&gt;
-        {% if message %}
-            &lt;font color=&quot;red&quot;&gt;
-                &lt;h3&gt;{{message}}&lt;/h3&gt;
-            &lt;/font&gt;
-        {% endif %}
-        &lt;p&gt;Your birthday is {{birthday}}&lt;/p&gt;
-        &lt;p&gt;Please enter your birthday&lt;/p&gt;
-        &lt;form action=&quot;/dashboard&quot; method=&quot;POST&quot;&gt;
-            {% csrf_token %}
-            &lt;input type=&quot;text&quot; name=&quot;birthday&quot; placeholder=&quot;When were you born&quot;&gt;
-            &lt;input type=&quot;Submit&quot; value=&quot;SEND&quot;&gt;
-        &lt;/form&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+    except Exception as e:
+        print(e)
+        return render(
+            request,
+            &quot;secretbirthdaysapp/dashboard.html&quot;,
+            {&quot;message&quot;: &quot;Something went wrong&quot;},
+        )
+</code></pre>
+<p>Here, if the user submits a birthday, we try to parse it into a date. The dateparser module is pretty good at understanding different date formats (e.g “1 Jan 90”, “Jan 1 1990”, “1/1/1990”, etc), while FusionAuth needs the date in a specific format (“1990-01-01”). Therefore, we attempt to parse whatever the user gave us into a date, reformat it, and then send it across to FusionAuth using the <code>patch_user</code> function.</p>
+<p>Now you can visit the Django app at <a href="http://localhost:8000">http://localhost:8000</a>, press the link to log in, sign up as a new user using GMail (if you used your main Google account as the “admin” FusionAuth user and want to test this using a new user, then do this through an incognito or private window and sign up with a second Google account.)</p>
+<p>Once you’ve added your birthday, you’ll be able to see it in the dashboard.</p>
+<figure>
+<img src="images/dashboard.png" alt="" /><figcaption><strong>Image :</strong> <em>The private dashboard</em></figcaption>
+</figure>
+<p>If you log into the FusionAuth app as the main admin user, navigate to users, and select the user that added a birthday, you’ll also be able to see it there (with the user’s age calculated so you don’t have to do the maths yourself).</p>
+<figure>
+<img src="images/birthdayinfusionauth.png" alt="" /><figcaption><strong>Image :</strong> <em>Viewing the user’s birthday in FusionAuth</em></figcaption>
+</figure>
+<p>Hitting the big Logout link in the Django app takes you back through FusionAuth, logs you out, and redirects you back to the home page</p>
+<figure>
+<img src="images/homepage-count.png" alt="" /><figcaption><strong>Image :</strong> <em>Logging out back to the home page</em></figcaption>
+</figure>
+<h2>Where next?</h2>
+<p>That’s the basics of our Django app done. The app stores sensitive information such as users’ names (from Gmail) and birthdates (that they enter in our app), but delegates all responsibility for safeguarding and validating this information to FusionAuth.</p>
+<p>Of course, you would need to add more interesting features to this app for it to be useful.</p>
+<p>For a production set up, you would also need to do a bit more work in making sure FusionAuth was really safe. In our example, we used the default password provided with Docker for our database, left debug mode on, and ran FusionAuth locally, co “hosted” with our Django application.</p>
+<p>For a safer set up, you would run FusionAuth on its own infrastructure, physically separate from the Django app, and take more care around production configuration and deployment.</p>
 </body>
 </html>
     <style type="text/css">

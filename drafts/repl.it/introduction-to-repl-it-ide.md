@@ -91,7 +91,6 @@ def solve_quadratic(a, b, c):
     s1 = (-b + math.sqrt(d)) / (2 * a)
     s2 = (-b - math.sqrt(d)) / (2 * a)
     return s1, s2
-import math
 ```
 
 Note that this won't solve all quadratic equations as it doesn't handle cases where `d`, the discriminant, is `0` or negative. However, it'll do for now.
