@@ -201,7 +201,7 @@ INSTALLED_APPS = [
 
 If you fire up [http://localhost:8000](http://localhost:8000) in your web browser now, you should see our home page.
 
-![**Image :** *How our home page will look*](images/homepage1.png)
+![**Image :** *Our public home page*](images/homepage1.png)
 
 To build the login URL (which will direct users to our FusionAuth server), we need to have some of our FusionAuth config copied across to our Django project. Specifically, we’ll need an API key and our app’s client ID.
 
@@ -209,11 +209,11 @@ Go back to the FusionAuth dashboard ([http://localhost:9011](http://localhost901
 
 ![**Image :** *We still need an API key*](images/fusionauth-setup2.png)
 
-Add a name for the key, take note of the generated Key, leave it with all permissions, and press the save button.
+Add a name for the key, take note of the generated Key. For extra security, you can restrict the permissions for the key. For our app, we only need to enable the actions for `/api/user/`, which will let the key carry about basic actions on users. If you leave the key with no explicitly assigned permissions, it will be an all-powerful key that can control all aspects of your FusionAuth app.
 
 ![**Image :** *Getting the API key from FusionAuth*](images/gettingapikey.png)
 
-Under Applications, edit the Secret Birthday's application and take note of the Application ID and Client Secret. (Note that the Client Secret and API Key are used in similar contexts, but the former is more limited.)
+Under Applications, click on the green magnifying glass by "Secret Birthdays" and take note of the Application ID and Client Secret. You need to scroll down a bit in the modal to get to the correct section
 
 ![**Image :** *Getting the Application ID from FusionAuth*](images/fusionauth-clientidsecret.png)
 
@@ -390,7 +390,14 @@ def user_login_ok(request):
         print(e)
 ```
 
+Now after the user presses log in, they'll be taken over to the FusionAuth page where they can log in or create an account (if they choose the log in with Google option, the log in and sign up flows are the same).
+
+![**Image :** *The FusionAuth login and sign up page*](images/fusionauth-login.png)
+
+If it's important to you that your log in page shares a look and feel with the rest of your application, FusionAuth allows you to fully customise this page using [FusionAuth themes](https://fusionauth.io/docs/v1/tech/themes/), but doing so is left as an exercise for the reader.
+
 After the user is directed back to the /dashboard route from FusionAuth (after logging in), they’ll bring a “Code” with them. This is what FusionAuth gave them in return for completing a successful log in. As this code is semi public (available in the URL), we don’t trust it completely. Instead we use this code to check with FusionAuth directly by exchanging it for an oauth token, which tells us which user the code was given to.
+
 
 If everything goes well, the user is allowed to see the “secret” dashboard. Of course, we still don’t actually know the user’s birthday, so we have to ask them. At the moment, we aren’t collecting the information in the form, so let’s add the `post()` function in our dashboard view to do that.
 
@@ -480,9 +487,9 @@ Hitting the big Logout link in the Django app takes you back through FusionAuth,
 
 That’s the basics of our Django app done. The app stores sensitive information such as users’ names (from Gmail) and birthdates (that they enter in our app), but delegates all responsibility for safeguarding and validating this information to FusionAuth.
 
-Of course, you would need to add more interesting features to this app for it to be useful.
+Of course, you would need to add more interesting features to this app for it to be useful. But any information that stores private information can follow a similar pattern. You could make the app useful by allowing people to store more information, such as journal entries. Or you could allow them to store people's names along with birthdays, and remind them to send good wishes the day before someone's birthday. The possibilities are endless.
 
 For a production set up, you would also need to do a bit more work in making sure FusionAuth was really safe. In our example, we used the default password provided with Docker for our database, left debug mode on, and ran FusionAuth locally, co “hosted” with our Django application.
 
-For a safer set up, you would run FusionAuth on its own infrastructure, physically separate from the Django app, and take more care around production configuration and deployment.
+For a safer set up, you would run FusionAuth on its own infrastructure, physically separate from the Django app, and take more care around production configuration and deployment, but FusionAuth gives you all of the tools to do this easily.
 
