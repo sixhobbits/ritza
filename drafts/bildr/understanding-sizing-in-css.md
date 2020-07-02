@@ -6,6 +6,11 @@ There are several different options to use for sizing elements, each with their 
 
 For example, when building something like a blog post, you may want to set the heading to be larger than the body of the text, a square image of a specific size, and equal spacing between your paragraphs. If you have used something like Microsoft Word before, you may have set your headings to 18pt, the font size to 11pt, your paragraph spacing to 10pt and your images to 5x5 inches. When building a website you may have far more options presented than this. Let’s take a look at what some of these mean and how you can choose **which sizing framework to use for your project.**
 
+## TL;DR
+
+* If you're working on a proof of concept or building a project only for your own use, you might find `px` (pixels) the most intuitive option and the easiest to use. However using `px` has big implications for **accessibility** (e.g. supporting your users with vision difficulties) and won't handle responsiveness (e.g. mobile screens and different window sizes) well.
+* For anything more serious, you should learn how to use the slightly more complicated `rem` and `em` sizing options. These define sizes in relative and more fluid ways, making them more powerful.
+
 ## Understanding absolute and relative units
 
 Generally, CSS sizing is split into two categories, namely absolute and relative units. 
@@ -38,4 +43,7 @@ In web development, the **viewport** refers to the visible part of the web page,
 ![Viewport sizing](images/vw-sizing.png)
 
 There are [many more sizing options](https://www.w3schools.com/cssref/css_units.asp) for setting the height and width of your elements. The examples covered above are some of the most commonly used at the moment with good reason and will not let you down. However, sizing units are a regularly debated topic amongst even experienced developers and many people tend to find their own preferred combination after some experimentation. 
+
+
+
 
