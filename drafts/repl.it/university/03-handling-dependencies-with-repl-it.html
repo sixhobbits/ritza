@@ -14,7 +14,144 @@
         </nav>
 
     </header>
-
+<h1><strong>Managing Dependencies using Repl.it</strong></h1>
+<p>In this guide I will show you the ins and out of dependency management using Repl.it. If you are not familiar with Repl.it, check out this <a href="https://ritza.co/drafts/repl.it/introduction-to-repl-it-ide.html">introduction</a> to Repl.it and then come back.</p>
+<p>Whether you like it or not, if you are developing software, you will at some point have to work with dependencies.Dependency simply means that one component relies on another component to work.</p>
+<p>Bringing it home, when you are building a software product, you might need to use other components that other developers (internal or external) would have built to make your product work. Integrating these components and maintaining them is what dependency management is all about.</p>
+<h2>Why are dependencies useful?</h2>
+<p>It is important to make the distinction between dependencies and dependency management in order to understand the importance of each. Dependencies are useful because they prevent us from re-inventing the wheel. By that I mean that if someone has already built that component you can use, why rebuild it?</p>
+<p>Dependency management is important for one main reason: reliability. With dependency management, you can deliver software that can be installed and run more reliably.</p>
+<p>Apart from reliability, dependency management also helps us to achieve the following:</p>
+<ol type="1">
+<li><p>Performance - if the components are stale and outdated, it means that we can be missing out on new enhancements which can improve performance and possibly bring out new features.</p></li>
+<li><p>Security - vulnerabilities are always found in libraries so if you don’t update the libraries your application will be exposed.</p></li>
+<li><p>Quality Assurance - to prevent problems such as circular or conflicting dependencies.</p></li>
+</ol>
+<p>Enough theory, let’s get our hands dirty with dependency management in Repl.it. We will be using Python as our development language for the demonstration. Dependencies can also be called libraries and the two words are interchangeable.</p>
+<h2>Dependency Management in Repl.it</h2>
+<p>In this section we are going to cover the following.</p>
+<ul>
+<li><p>Using libraries that we write ourselves - this is when we reference the code that we have produced ourselves. For instance, we write code that makes a calculation based on parameters that it has been given and in future we just reference that code instead of writing it all again everytime we need it.</p></li>
+<li><p>Using libraries that are in the programming languages’ standard library in this case, the Python Standard Library - most if not all programming languages come with standard libraries that contain functionality that is common across programming languages and tasks. This functionality can then be used when required without us having to write it ourselves. An example of this is the code to print output on the screen, it exists already as part of the standard library and all we have to do is use it.</p></li>
+<li><p>Using libraries that are external and not available in the standard library - these are libraries that add functionality to our code but are not available in the standard library. An example of this can be your proprietary code that you use in your projects.</p></li>
+</ul>
+<h2>Using libraries that we write ourselves</h2>
+<p>For libraries that we write ourselves, we don’t need to use the Universal Package Manager which is the Repl.it package manager. This is because the source code of the library is part of our project therefore we can easily change and modify it.</p>
+<p>Now just login to repl.it and click on + new repl, choose Python as the language and give our repl an name. I am going to call mine LocalLibrary.</p>
+<p>This is how it looks like.</p>
+<figure>
+<img src="./img/03-new-repl.png" alt="" /><figcaption><strong>Image 1:</strong> <em>New Repl Form</em></figcaption>
+</figure>
+<p>And then click on <strong>Create Repl</strong> to create our repl.</p>
+<p>When it opens up, click on Add File on the Files and Configuration pane and give our file a name.</p>
+<figure>
+<img src="./img/03-add-file-icon.png" alt="" /><figcaption><strong>Image 2:</strong> <em>Add File Icon</em></figcaption>
+</figure>
+<p>Let’s create a very simple library. This library will only be able to do one thing - say “Good morning”. To build this module, first create a new file called ‘greeting.py’ and then enter the following code:</p>
+<pre><code class="language-python">def morning():
+return  &#39;Good morning&#39;</code></pre>
+<p>This code creates one function: morning() which returns ‘<em>Good morning</em>’ which is a morning greeting. In our main.py file, enter the following code:</p>
+<pre><code class="language-python">import greeting
+print(greeting.morning())</code></pre>
+<p>The first line of code brings in the functionality of the greeting library into our current file i.e. the main​.py file.</p>
+<p>The second line prints the result of calling the morning() function in the greeting library.</p>
+<p>If you press the run button, we will get the following result: an output saying “Good morning”</p>
+<figure>
+<img src="./img/03-good-morning-output.png" alt="" /><figcaption><strong>Image 3:</strong> <em>Output</em></figcaption>
+</figure>
+<p>Hopefully this serves as a simple demonstration of how to use libraries that we write ourselves in Repl.it.</p>
+<p>Now we move on to libraries that are the languages standard library.</p>
+<h2>Using libraries in the Python Standard Library</h2>
+<p>The Python Standard Library includes modules that provide additional functionality that you have to explicitly import in a python script. They are not built in functions and therefore do not come automatically in a new script. To give an example, in a new python script, you can run:</p>
+<pre><code class="language-python">print(&#39;Hello World&#39;)</code></pre>
+<p>And it will work without any import statement at the top because the print statement is a built in function.</p>
+<p>If you want to use say, the time or math modules, you will have to import them explicitly.</p>
+<p>Using the Standard Libraries via the import statement is another way you can bring in dependencies in your application. Since you would not have written them, you will need to understand what functions are provided by the library that you want to use and you can find out more information about the various packages available in Python <a href="https://docs.python.org/3/library/">here</a>.</p>
+<h2>Using external Libraries</h2>
+<p>Sometimes the functionality that we require exists but in a library that is not part of the Python Standard Library. In this section I will show you how you can use such a library in repl.it.</p>
+<p>Repl.it has a package manager called the Universal Package Manager and it is responsible for bringing in and managing the third party libraries available at the Python Package Index (<a href="https://pypi.org/">Pypi</a>) into your environment.</p>
+<p>But without explicitly using the Universal Package Manager, you can still import the Python packages.This is called the “<strong><em>magic import</em></strong>” as the complexity of importing the package is hidden from you and all you have to do is put the import statement at the beginning of your file.</p>
+<p>For the magic import to work, you first have to make sure that the package that you want to import exists. So just open up the Python Package Index and search for the package you want. I am going to search for the <strong><em>requests</em></strong> library as I want to make an HTTP request.</p>
+<figure>
+<img src="./img/03-requests-search-pypi.png" alt="" /><figcaption><strong>Image 4:</strong> <em>Requests Search Pypi</em></figcaption>
+</figure>
+<p>Press return and you should get a list of the request libraries available. Just make sure the one that says <em>Python HTTP for humans is available</em>.</p>
+<figure>
+<img src="./img/03-requests-search-results.png" alt="" /><figcaption><strong>Image 5:</strong> <em>Requests Search Results</em></figcaption>
+</figure>
+<p>As you can from the above, we have <em>requests version 2.24.0</em> available and this means that we can use it as a magic import. So create a new repl and call it <strong>MagicImport</strong>.</p>
+<p>Type in the following code:</p>
+<pre><code class="language-python">import requests
+print(requests.__version__)</code></pre>
+<p>This code imports the requests library and then prints the version of the library that we got.</p>
+<p>Click on run to execute the code, and we should get the following output:</p>
+<figure>
+<img src="./img/03-requests-version-output-2-23-0.png" alt="" /><figcaption><strong>Image 6:</strong> <em>Requests Version Output 2.23.0</em></figcaption>
+</figure>
+<p>Notice the first problem of magic imports - you cannot guarantee the version that you will get. When we checked the requests library on PyPi, we saw that the latest version was <strong>2.24.0</strong>, but when we run it using the magic import, we are getting version <strong>2.23.0</strong>.</p>
+<p>If you run it again, we now get the current version i.e. <strong>2.24.0</strong>.</p>
+<figure>
+<img src="./img/03-requests-version-output-2-24-0.png" alt="" /><figcaption><strong>Image 7:</strong> <em>Requests Version Output 2.24.0</em></figcaption>
+</figure>
+<p>Not being able to guarantee the version you are using is problematic because you need to trust the specific code and version you are using and not just the general library or framework it belongs to. Also updates can deprecate code that you are using or can be backward incompatible which will then break your product. So usually you are better off with specifying the version or at least the minimum version of a library that works with your product.</p>
+<h2>Specifying Library Versions</h2>
+<p>To pin versions in Repl.it, you need to provide a Spec file. Pinning versions refers to the practice of making explicit the version of the libraries your application is depending on. So for instance, if you are using requests, you can then specify the version number. This is why we need a spec file. There are different spec files for different languages for example if your project is in Javascript, you will need to provide a package.json file. Since this guide is in Python, you will need to create a pyproject.toml file.</p>
+<p>Pyproject.toml is based on <a href="https://www.python.org/dev/peps/pep-0518/">PEP 518</a> which seeks to Specify the Minimum Build System Requirements for Python Projects. So you basically add the build tools read libraries required for your project. You can also specify the build tool you want to use meaning that you are not constrained to using setuptools. Repl.it takes advantage of this and can use <a href="https://python-poetry.org/">poetry</a> project manager as the build backend.</p>
+<p>Here is a bare minimum <em>pyproject.toml</em> file and a line by line explanation.</p>
+<figure>
+<img src="./img/03-pyproject-toml.png" alt="" /><figcaption><strong>Image 8:</strong> <em>pyproject.toml File</em></figcaption>
+</figure>
+<p>Line 1 <strong>[tool.poetry]</strong> specifies informational metadata about our package. It includes things such as the package name, version, description, author details, licences etc. Most of the config values here are optional unless you’re planning on publishing your project as an official PyPi package.</p>
+<p>Line 2-6 is the meta-data that I have just mentioned above.</p>
+<p>Line 8 <strong>[tool.poetry.dependencies]</strong> this is where we define dependencies our application absolutely must download to run. You may specify specific version numbers for required packages by using the format Package_name = “Version” as you see on line 9. If you want to use the latest version, you just need to set the version to an asterisk "*“. You can also specify the minimum version of a package that you are targeting but using the caret symbol followed by the version like so “^Version”. From line 9 you can deduce that the minimum version of Python required is version 3.8 and that a user running say Python 3.7 will not be able to run our project. It also means that an update is allowed if the new version number does not modify the left-most non-zero digit in the major, minor, patch grouping. In this case, Python can be updated to any version greater than 3.8 but less than 4.0 for example it can be updated to version 3.9.</p>
+<p>Line 11 <strong>[tool.poetry.dev-dependencies]</strong> dev dependencies are not required to run the app and won’t be downloaded by default when the app is built. They are essentially packages that contributing developers should download as they iterate on the project. On Line 12 , we put down pytest = "*" which will get the latest version of pytest. Pytest is a package that will help you to write tests for your code.</p>
+<p>Line 14 <strong>[build-system]</strong> this section is mandatory and it specifies the build tool that you are using to manage your python project. Line 15 specifies that we have to have poetry version 0.12 and above and the build-backend points to the poetry api.</p>
+<p>If you are interested in the other config values, you can find the full list of the config values <a href="https://python-poetry.org/docs/pyproject/">here</a>.</p>
+<p>If this is too much, don’t worry. Repl.it will create for us the pyproject.toml file, but it’s good to understand it. Let’s now go on and create our first pyproject.toml file with the requests library. Create a new repl and call it LibraryVersions.</p>
+<p>Once it’s done setting up, click on the Packages icon.</p>
+<figure>
+<img src="./img/03-package-icon.png" alt="" /><figcaption><strong>Image 9:</strong> <em>Package Icon</em></figcaption>
+</figure>
+<p>It will open up a package search box:</p>
+<figure>
+<img src="./img/03-package-search-box.png" alt="" /><figcaption><strong>Image 10:</strong> <em>Package Search Box</em></figcaption>
+</figure>
+<p>Where you can type in and search for the package you want. We want requests so just search for it.</p>
+<figure>
+<img src="./img/03-requests-search-packages.png" alt="" /><figcaption><strong>Image 11:</strong> <em>Requests Search Packages</em></figcaption>
+</figure>
+<p>Select the one that says Python HTTP for Humans. And then click on the + sign.</p>
+<figure>
+<img src="./img/03-add-requests-package.png" alt="" /><figcaption><strong>Image 12:</strong> <em>Add Requests Package</em></figcaption>
+</figure>
+<p>And you can monitor the progress on the Output pane.</p>
+<figure>
+<img src="./img/03-progress-on-output-pane.png" alt="" /><figcaption><strong>Image 13:</strong> <em>Progress on Output Pane</em></figcaption>
+</figure>
+<p>Now if you click on the File icon to go back to Files, you will see that apart from the main.py file, Repl.it has created for us two additional files namely: poetry.lock and pyproject.toml.</p>
+<p>The <em>poetry.lock</em> file file includes all of the installed packages, locked to a specific version including the hashes so as to maintain the project integrity.</p>
+<figure>
+<img src="./img/03-packager-files.png" alt="" /><figcaption><strong>Image 14:</strong> <em>Packager Files</em></figcaption>
+</figure>
+<p>If you open up the pyproject.toml, you will see a structure similar to what we discussed above.</p>
+<figure>
+<img src="./img/03-auto-pyproject-toml.png" alt="" /><figcaption><strong>Image 15:</strong> <em>Automatically generated pyproject.toml File</em></figcaption>
+</figure>
+<p>And as you can see, the python version is pinned at 3.8 and the requests version at 2.24.0.</p>
+<p>If I want a specific version, this is where I would specify it and in essence pin the version. Let’s change the requests version to 2.20.0 and verify this. So update line 9 from <code>requests = "^2.24.0" to requests = "2.20.0".</code> Please note that if you do not remove the caret (^), it will give you back version 2.24.0.</p>
+<p>Go to the main.py file and put in the previous code we used to check the version number of the requests i.e. put in the following code:</p>
+<pre><code class="language-python">import requests
+print(requests.__version__)</code></pre>
+<p>The output is that 2.20.0 will be printed out.</p>
+<figure>
+<img src="./img/03-requests-version-output-2-20-0.png" alt="" /><figcaption><strong>Image 16:</strong> <em>Requests Version Output 2-20-0</em></figcaption>
+</figure>
+<h2>Adding Dependencies not available on a Package Index</h2>
+<p>If the package you want to use is not available on the package index, worry not as there is a way to install it. You just need two things, the first is the name of the git repository and the second thing is the url location of the file to download.</p>
+<p>I will demonstrate this by trying to install the library <strong>Spacy</strong>.</p>
+<h2>Up Next</h2>
+<p>In this guide, we covered how to use and manage dependencies in Repl.it. I showed you how the three ways you can use dependencies in your Repl.it projects.</p>
+<p>In the next guide, we will look at how to access files in Repl.it.</p>
 </body>
 </html>
     <style type="text/css">
