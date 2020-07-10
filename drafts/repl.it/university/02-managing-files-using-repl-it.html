@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <meta name="description" content="">
+    <title>Working with Files in Repl.it</title>
+    <meta name="description" content="## Introduction
+ In this guide we are going to be talking about how you can be comfortable with using and manipulating files in [Repl.it](www.repl.it)">
 </head>
 
 <body>
@@ -14,56 +15,192 @@
         </nav>
 
     </header>
-<h1>Working with files in Repl.it</h1>
+<h1>Working with Files in Repl.it</h1>
 <h2>Introduction</h2>
-<ul>
-<li>introduce the topic</li>
-<li>link to previous materials</li>
-<li>explain why files are important / central to programs</li>
-</ul>
-<h2>Creating File Manually</h2>
-<ul>
-<li>mention it briefly</li>
-</ul>
-<h2>Creating Files Programmatically</h2>
-<ul>
-<li>the alternative ways to create files if any</li>
-<li>introduce the <strong>Write</strong> operation</li>
-<li>explain it with examples</li>
-</ul>
-<h2>Introduce the other modes of file operations</h2>
-<ul>
-<li><strong>Read</strong></li>
-<li><strong>Append</strong></li>
-<li><strong>Delete</strong></li>
-<li>Explain them with examples</li>
-</ul>
-<h2>Reading data from files using examples</h2>
-<ul>
-<li>Clearly state what <em>local</em> means in the context of the guide</li>
-<li>Read files in Repl.it</li>
-<li>How to read the entire file at once</li>
-<li>How to read files line by line</li>
-<li>Benefits of each approach</li>
-</ul>
-<h2>Writing data to a new file</h2>
-<ul>
-<li>Show before and after of the files pane</li>
-</ul>
-<h2>Writing data to an existing file</h2>
-<ul>
-<li>Writing to the end of the file</li>
-<li>Writing at a specific position</li>
-</ul>
-<h2>Importing and Exporting files in bulk</h2>
-<ul>
-<li>Motivate why we might need to import and export</li>
-<li>Motivate why we might need to do it in bulk</li>
-<li>Demonstrate importing and exporting in bulk</li>
-</ul>
+<p>In this guide we are going to be talking about how you can be comfortable with using and manipulating files in <a href="www.repl.it">Repl.it</a>. To see previous topics about Repl.it, take a look <a href="https://ritza.co/showcase/repl.it/">here</a> and if you are not in the mood, don’t worry as this guide can be followed independently.</p>
+<p>This guide uses the Python programming language but you should be able to follow it if you are familiar with another programming. As always, we explain thoroughly each line of code so that you are never left hanging.</p>
+<p>A computer file is a computer resource that is used to store data and there are many different types of files such as video files, picture files and text files. The data contained in files can then be used by the programs on that particular computer it resides on or through remote programs via networking.</p>
+<p>Files are important to programs because they store the data permanently that allows the programs to run on your computer. Without the files, these programs would not be able to run as the data would not be available!</p>
+<h2>File Creation</h2>
+<p>Files can be created manually or programmatically. To create a file manually in Repl.it, refer to this <a href="https://docs.repl.it/repls/files">guide</a>.</p>
+<h3>Programmatically creating files in Repl.it</h3>
+<p>The alternative to creating files manually is to create them programmatically i.e. through the use of a computer program. As mentioned earlier, we are going to be using the Python Programming language in Repl.it to manipulate files.</p>
+<p>File manipulation in Python happens in the following sequence:</p>
+<ol type="1">
+<li>Open the file</li>
+<li>Perform the manipulation</li>
+<li>Close the file</li>
+</ol>
+<p>As you can see, you first have to open the file before you can perform an operation. Luckily for us, python provides us a key function called <code>open()</code>, which as the name implies opens a file for us. The <code>open()</code> function takes two parameters:</p>
+<ol type="1">
+<li>Filename - this is the name of the file.</li>
+<li>Mode - this is the manipulation you want to do on the file. This is an optional parameter.</li>
+</ol>
+<p>To give an example, consider the following line of code:</p>
+<pre><code class="language-python">file = open(&quot;examplefile.txt&quot;, &quot;w&quot;)</code></pre>
+<p>It creates a file object called <code>file</code> which is assigned the results of the <code>open</code> function. The <code>open</code> function opens the file <code>examplefile.text</code> in the <strong>write</strong> mode which is denoted by <em>w</em>.</p>
+<p>Other than the <strong>write</strong> mode shown above, there are other various ways to manipulate files. These ways are determined by the operations that can be done on the files and they are:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Write</td>
+<td><strong>w</strong></td>
+</tr>
+<tr class="even">
+<td>Append</td>
+<td><strong>a</strong></td>
+</tr>
+<tr class="odd">
+<td>Exclusive Creation</td>
+<td><strong>x</strong></td>
+</tr>
+<tr class="even">
+<td>Read</td>
+<td><strong>r</strong></td>
+</tr>
+<tr class="odd">
+<td>Delete</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Write Operation</h2>
+<p>As the name implies, the write operation records information to a file i.e. it adds new information to the specified file. In Repl.it, you can use the <em>write</em> to create a file programmatically. To demonstrate this, just create a new repl, choose python as the programming language and name it <em>CreateFile</em> as shown below.</p>
+<figure>
+<img src="./img/02-new-repl.png" alt="" /><figcaption><strong>Image 1:</strong> <em>New Repl</em></figcaption>
+</figure>
+<p>Click on the green Create Repl button to create the repl.</p>
+<p>It will open up in the <em>main.py</em> file where we will write our code. Notice on the files pane, there is just the <em>main.py</em> file and nothing else.</p>
+<figure>
+<img src="./img/02-empty-files-pane.png" alt="" /><figcaption><strong>Image 2:</strong> <em>Empty Files Pane</em></figcaption>
+</figure>
+<p>On Line 1 of the main.py file, enter the following python code:</p>
+<pre><code class="language-python">file = open(&quot;examplefile.txt&quot;, &quot;w&quot;)</code></pre>
+<p>This line of code means that open the <code>examplefile.txt</code> file in the <em>write</em> mode. If the file does not exist, as in our case, <strong>create</strong> it.</p>
+<p>Press the run button, and Repl.it will create for you the <code>examplefile.txt</code> file as it does not exist. If it existed, it would seem like nothing has happened as there would be no visible change to the file.</p>
+<figure>
+<img src="./img/02-examplefile-created.png" alt="" /><figcaption><strong>Image 3:</strong> <em>examplefile.txt Created</em></figcaption>
+</figure>
+<p>Our file has been created, and if you open it up, you will see that it is empty.</p>
+<figure>
+<img src="./img/02-empty-examplefile.png" alt="" /><figcaption><strong>Image 4:</strong> <em>Empty examplefile.txt</em></figcaption>
+</figure>
+<p>Now let’s actually <strong><em>write</em></strong> something to our <code>examplefile.txt</code> . Click on the <code>main.py</code> file and add the following code.</p>
+<pre><code class="language-python">myfile.write(&quot;Writing to file.&quot;)
+myfile.close()</code></pre>
+<p>Remember our file is open in the write mode so the first line adds the words “<em>Writing to file.</em>” on the file. The second line <code>myfile.close()</code> signifies that we are done using the file. You cannot perform any operation on a closed file and you should always close your files as in <em>some</em> cases due to buffering, modifications made to the file might not show until you close the file.</p>
+<figure>
+<img src="./img/02-writing-to-examplefile.png" alt="" /><figcaption><strong>Image 5:</strong> <em>Writing to examplefile.txt</em></figcaption>
+</figure>
+<p>Click the run button and then open the examplefile.txt file. You will see that it now contains the words “<em>Writing to file.</em>”. Also notice that there is nothing displayed in the output pane. This is because the result of our code affects the file and that’s where the modification happens. We will see the output pane in action when we read from the file.</p>
+<figure>
+<img src="./img/02-written-examplefile.png" alt="" /><figcaption><strong>Image 6:</strong> <em>Written examplefile.txt</em></figcaption>
+</figure>
+<p>It must be noted that if you open a file in the <em>write</em> mode by using <strong><em>w</em></strong> in the <code>open()</code> function, and then provide a <em>write</em> operation like we did with <code>myfile.write("Writing to file")</code>, you will essentially overwrite everything that is in the file.</p>
+<p>To show this, just open the <code>main.py</code> file and change the second line from:</p>
+<pre><code class="language-python">myfile.write(&quot;Writing to file.&quot;)</code></pre>
+<p>to:</p>
+<pre><code class="language-python">myfile.write(&quot;File Overwritten.&quot;)</code></pre>
+<p>Then press the run button to run the repl and open up the <code>examplefile.txt</code>. You will see that it now contains the words <em>File Overwritten.</em>, the words <em>Writing to file.</em> have been overwritten.</p>
+<figure>
+<img src="./img/02-overwritten-examplefile.png" alt="" /><figcaption><strong>Image 7:</strong> <em>Overwritten examplefile.txt</em></figcaption>
+</figure>
+<p>To maintain the current contents of the file, you have to open it in <em>append</em> <strong><em>a</em></strong> mode.</p>
+<h2>Append Operation</h2>
+<p>The append operation is represented by the <strong><em>a</em></strong> mode. It basically means open the file for writing and then add on the new information at the end of the file if it exists. If the file does not exist it, create it and then add the new information.</p>
+<p>Currently, we have our file <code>examplefile.txt</code> which exists and has the contents “<em>File Overwritten.</em>” To append to the end of the file, i.e. add new information after <em>File Overwritten</em> open the <code>main.py</code> file and make the changes described below:</p>
+<p>Change line 1 from:</p>
+<pre><code class="language-python">myfile = open(&quot;examplefiles.txt&quot;, &quot;w&quot;)</code></pre>
+<p>to:</p>
+<pre><code class="language-python">myfile = open(&quot;examplefiles.txt&quot;, &quot;a&quot;)</code></pre>
+<p>i,e. the <strong>w</strong> is changed to an <strong>a</strong>.</p>
+<p>Change Line 2 from:</p>
+<pre><code class="language-python">myfile.write(&quot;File overwritten.&quot;)</code></pre>
+<p>to</p>
+<pre><code class="language-python">myfile.write(&quot;\nLine appended.&quot;)</code></pre>
+<p>Now instead of writing “<em>File overwritten</em>” we are going to write “<em>Line appended.</em>” to our file. And because this is an <em>append</em> operation, we expect our <code>examplefile.txt</code>to now have two lines:</p>
+<pre><code>File overwritten.
+Line appended.</code></pre>
+<figure>
+<img src="./img/02-line-appended.png" alt="" /><figcaption><strong>Image 8:</strong> <em>Line appended</em></figcaption>
+</figure>
+<p><code>\n</code> means new line and it moves the cursor to a new line. If we do not put it the words “<em>Line appended</em>” will be added on the first line after the full stop on <code>File overwritten.</code> So without the line break, the output will be as follow:</p>
+<pre><code>File overwritten.Line appended.</code></pre>
+<h2>Exclusive Creation</h2>
+<p>The <strong><em>w</em></strong> and <strong><em>a</em></strong> modes are safety nets in that if the file exists, they will simply open it and if it doesn’t exist, they will create it. However, the <strong><em>x</em></strong> mode is the <em>exclusive creation</em> operation. If you use the <strong><em>x</em></strong> mode and the file exists, we will get an error. The <strong><em>x</em></strong> mode means create a file only if it doesn’t exist and then open it for writing.</p>
+<p>To demonstrate this operation, open up the <code>main.py</code> file and change the first line from:</p>
+<pre><code class="language-python">myfile = open(&quot;examplefiles.txt&quot;, &quot;a&quot;)</code></pre>
+<p>to:</p>
+<pre><code class="language-python">myfile = open(&quot;examplefiles.txt&quot;, &quot;x&quot;)</code></pre>
+<p>This changes the mode from <em>append</em> to <em>exclusive create</em>.</p>
+<p>Leave line 2 as is, i.e. Line 2 should still read:</p>
+<pre><code class="language-python">myfile.write(&quot;\nLine appended.&quot;)</code></pre>
+<p>And then press the run button. Because our file <code>examplefile.txt</code> exists, we will get the following error:</p>
+<figure>
+<img src="./img/02-exclusive-error.png" alt="" /><figcaption><strong>Image 9:</strong> <em>Exclusive Error</em></figcaption>
+</figure>
+<p>You might need to use the <strong><em>x</em></strong> mode to ensure that you don’t accidentally overwrite or append to a file.</p>
+<h2>Reading Operation</h2>
+<p>Up to now, we have been talking about writing to files. Now let’s switch gears and move to reading files in Repl.it using python.</p>
+<p>To read files you need to open the file in the <em>read</em> mode which is represented by <strong><em>r</em></strong>. After you open the file, you can then use the <code>read()</code> function to read the contents of the file.</p>
+<p>To make this interesting we are going to create a file manually, add some text to it and then write the code that will read that text.</p>
+<p>So just click on new repl, select python as the programming language and name it ReadingFiles.</p>
+<figure>
+<img src="./img/02-reading-files.png" alt="" /><figcaption><strong>Image 10:</strong> <em>Reading Files Repl</em></figcaption>
+</figure>
+<p>When it opens up, click on the <em>Add File</em> icon to create a new file.</p>
+<figure>
+<img src="./img/02-add-files.png" alt="" /><figcaption><strong>Image 11:</strong> <em>Add Files</em></figcaption>
+</figure>
+<p>and then give our file a name. I am going to call it <strong>read_sample.txt</strong>.</p>
+<p>Next up, add the following text to the file.</p>
+<pre><code>This is Line 1.
+This is Line 2.
+This is Line 3.
+This is Line 4.
+This is Line 5.
+This is Line 6.
+This is Line 7.
+This is Line 8.
+This is Line 9.
+This is Line 10.</code></pre>
+<p>Our file in Repl.it should like the following:</p>
+<figure>
+<img src="./img/02-read-sample.png" alt="" /><figcaption><strong>Image 12:</strong> <em>Read Sample</em></figcaption>
+</figure>
+<p>Now click on the <code>main.py</code> file to open it. And then add the following code:</p>
+<pre><code class="language-python">myfile = open(&quot;read_sample.txt&quot;, &quot;r&quot;)
+contents = myfile.read()
+print(contents)
+myfile.close()</code></pre>
+<p>Line 1 opens our file <code>read_sample.txt</code> in read mode as specified by the <strong><em>r</em></strong>.</p>
+<p>Line 2 uses the <code>read()</code> function on the our file object which is in the <code>myfile</code> variable. It then assigns the result of the read operation to the <code>contents</code> variable.</p>
+<p>Line 3 print out the contents. This way, we can see if our code actually read the file.</p>
+<p>Line 4 close our file object.</p>
+<p>Click on <strong>run</strong> to run the file and you should get the text in our file printed on the output pane.</p>
+<figure>
+<img src="./img/02-read-output.png" alt="" /><figcaption><strong>Image 13:</strong> <em>Read Output</em></figcaption>
+</figure>
+<h2>Importing and Exporting files</h2>
+<p>Sometimes you will have the need to import and export files out of Repl.it. In this section, we will go over how you can do that. To keep our workspace clean, just create a new repl, select Python and call it <em>ImportExport</em>.</p>
+<h3>Importing Files</h3>
+<p>There are two ways to import files in Repl.it. The first way is through the menu buttons available on the <em>Files Pane</em>. These are the 3 dots highlighted below:</p>
+<figure>
+<img src="./img/02-three-dots.png" alt="" /><figcaption><strong>Image 14:</strong> <em>File Menu</em></figcaption>
+</figure>
 <h2>Putting it together</h2>
-<p>Create a mini project that uses the concepts we have learnt in this guide Mention CRUD (database) operations. Don’t get deep in this as it is not in the scope</p>
-<p><strong>WebWatcher Mini Project</strong> - WRITE - Get a specific value value from a specific website and put in file - READ - Process the value for an interpretation - UPDATE - Update the value for a different day / event / time - DELETE - Delete the value at the end of the process</p>
+<ul>
+<li>Small project</li>
+<li>Get weather / stock price and save to file</li>
+<li>Repeat after an interval and append to the file</li>
+<li>Read the file and display average based on number / frequency of interval</li>
+</ul>
 </body>
 </html>
     <style type="text/css">
