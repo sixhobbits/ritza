@@ -1,0 +1,183 @@
+// Presets
+// Fonts
+
+// Teko
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap')
+$poppins: 'Poppins', sans-serif
+$poppinsLight: 300
+$poppinsRegular: 400
+$poppinsBold: 700
+
+// Generic font sizes
+// Body
+$fontBodySize: 16px
+$fontBodyLineHeight: 24px
+
+// 12px
+$small: 75%
+
+// icons
+$iconGlobalSize: 16px
+$iconLargeSize: 24px
+
+$fontFormSize: 14px
+$fontFormyLineHeight: 24px
+
+// breadcrum & pagination
+$navBreadcrum: 14px
+$navPagination: 14px
+
+// Mixings
+@mixin h1()
+	font-size: 48px
+	line-height: 50px
+	+min-break($md)
+		font-size: 65px
+		line-height: 70px
+
+@mixin h2()
+	font-size: 42px
+	line-height: 45px
+	+min-break($md)
+		font-size: 55px
+		line-height: 60px
+
+@mixin h3()
+	font-size: 36px
+	line-height: 42px
+	+min-break($md)
+		font-size: 42px
+		line-height: 48px
+
+@mixin h4()
+	font-size: 26px
+	line-height: 30px
+	+min-break($md)
+		font-size: 32px
+		line-height: 40px
+
+@mixin h5()
+	font-size: 22px
+	line-height: 26px
+	+min-break($md)
+		font-size: 26px
+		line-height: 30px
+
+@mixin h6()
+	font-size: 18px
+	line-height: 24px
+
+@mixin copy-lg()
+	font-size: 18px
+	line-height: $lineHeight * 1.1
+
+@mixin copy-sm-upp()
+	font-size: 12px
+	letter-spacing: .5px
+	text-transform: uppercase
+
+@mixin copy-button()
+	font-size: 14px
+	line-height: 14px
+
+@mixin copy-label()
+	margin-bottom: 10px
+	font-size: 14px
+	font-weight: $poppinsBold
+	line-height: 14px
+	text-transform: uppercase
+
+// vertical space
+@mixin vertical-space()
+	margin-bottom: $vertXs
+	+min-break($md)
+		margin-bottom: $vertSm
+	+min-break($lg)
+		margin-bottom: $vertMd
+	// reset margin on last child
+	// &:last-child
+	// 	margin-bottom: 0
+
+
+// Global presets
+html, body
+	font-size: 100%
+
+body
+	font-family: $poppins
+	font-weight: $poppinsRegular
+	color: $fontBody
+	font-size: $fontBodySize
+	line-height: $fontBodyLineHeight
+
+// color presets for main typography elements
+p, ul, ol
+	margin-bottom: 20px
+	font-size: 18px
+	+max-break($lg)
+		font-size: 16px
+	.white &
+		color: $white
+	.black &
+		color: $black
+
+.h
+	display: inline-block
+	width: 100%
+	font-family: $poppins
+	font-weight: $poppinsBold
+	margin: 15px 0 15px 0
+	line-height: 1
+	// increase line height for smaller headings
+	&.line-height-lg
+		line-height: 1.4
+	// large copy on HP landing and Moto & MTB
+	&.xxl
+		font-size: 65px
+		+min-break($md)
+			font-size: 85px
+		+min-break($xlg)
+			font-size: 105px
+	// size variations
+	&.xlg
+		@include h1()
+	&.lg
+		@include h2()
+	&.md
+		@include h3()
+	&.sm
+		@include h4()
+	&.xsm
+		@include h5()
+	&.h-bold
+		font-weight: $poppinsRegular
+	&.xxxl
+		font-size: 65px
+		line-height: 1
+		+min-break($md)
+			font-size: 135px
+		+min-break($xlg)
+			font-size: 175px
+
+strong, b
+	font-weight: $poppinsBold
+
+p, ul, ol
+	&.xlg
+		font-size: 22px
+		line-height: 32px
+	&.lg
+		@include copy-lg()
+	&.md
+		font-size: 14px
+	&.sm
+		font-size: $small
+
+.text-right
+	text-align: right
+
+.text-left
+	text-align: left
+
+.text-uppercase
+	text-transform: uppercase

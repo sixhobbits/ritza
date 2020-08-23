@@ -240,7 +240,7 @@ import feedparser
 import io
 import requests
 
-from /bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 from wordcloud import WordCloud
 from flask import Flask
 from flask import render_template 

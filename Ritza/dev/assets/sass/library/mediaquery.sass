@@ -1,0 +1,65 @@
+// Media queries mixings
+
+// hover for no touch
+=hover($exclude: null)
+	//+breakpoint(1024px, $extreme : min)
+	// outline: none
+	//.no-touch &
+	@media (hover: hover)
+		@if $exclude == null
+			&:hover
+				@content
+		@if $exclude == disabled
+			&:not(.disabled):not([disabled])
+				&:hover
+					@content
+		@if $exclude == selected
+			&:not(.selected):hover
+				@content
+
+// Define breakpoints
+=breakpoint($point, $extreme: max, $dimension: width)
+	@if $mediaQueries
+		@media only screen and (#{$extreme}-#{$dimension}: $point)
+			@content
+
+=min-break($point, $dimension: width)
+	+breakpoint($point, $extreme: min, $dimension: width)
+		@content
+
+=max-break($point, $dimension: width)
+	+breakpoint($point, $extreme: max, $dimension: width)
+		@content
+
+=min-max-break($min, $max, $dimension: width)
+	@if $mediaQueries
+		@media only screen and (min-#{$dimension}: $min) and (max-#{$dimension}: $max)
+			@content
+
+=min-width-and-height($width, $height)
+	@if $mediaQueries
+		@media only screen and (min-width: $width) and (min-height: $height)
+			@content
+
+=smart-break
+	@if $mediaQueries
+		@media only screen and (min-device-width: $smart) and (min-device-height: 480px)
+			@content
+
+=retina-above($resolution: 1.3)
+	@if $mediaQueries
+		@media only screen and (min--moz-device-pixel-ratio: #{$resolution}), only screen and (-o-min-device-pixel-ratio: #{$resolution * 2}/2), only screen and (-webkit-min-device-pixel-ratio: #{$resolution}), only screen and (min-device-pixel-ratio: #{$resolution}), (min-resolution: #{$resolution}dppx)
+			@content
+
+=orientation($orientation: portrait, $media: screen)
+	@if $mediaQueries
+		@media #{$media} and (orientation: $orientation)
+			@content
+
+=portrait
+	+orientation
+		@content
+
+=landscape
+	+orientation(landscape)
+		@content

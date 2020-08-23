@@ -1,0 +1,63 @@
+=justify
+	text-align: justify
+	&:after
+		content: ""
+		display: inline-block
+		width: 100%
+
+// webfont mixin
+=all_fonts($fonts)
+	@each $font in $fonts
+		@font-face
+			font-family: "#{$font}"
+			src: url("../fonts/#{$font}.woff2") format("woff2")
+			src: url("../fonts/#{$font}.woff") format("woff")
+			font-weight: normal
+			font-style: normal
+
+
+$fontSize: 100% !default
+$lineHeight: 1.5 !default
+
+
+$breakpoints: ( small: $xs, msmall: $sm, medium: $md, large: $lg, mlarge: $xlg, xlarge: $xxlg )
+
+=font-size($fsMap, $fsBreakpoints: $breakpoints)
+	@each $fsBreakpoint, $fsFontSize in $fsMap
+		@if $fsBreakpoint == null
+			+make-font-size($fsFontSize)
+		@else
+			// If $fsFontSize is a key that exists in
+			// $fsBreakpoints, use the value
+			@if map-has-key($fsBreakpoints, $fsBreakpoint)
+				$fsBreakpoint: map-get($fsBreakpoints, $fsBreakpoint)
+
+			@media screen and (min-width: $fsBreakpoint)
+				+make-font-size($fsFontSize)
+
+// Utility function for mixin font-size
+=make-font-size($fsFontSize)
+	// If $fsFontSize is a list, include
+	// both font-size and line-height
+	@if type-of($fsFontSize) == "list"
+		font-size: nth($fsFontSize, 1)
+
+		@if length($fsFontSize) > 1
+			line-height: nth($fsFontSize, 2)
+	@else
+		@if $fsFontSize == null
+			font-size: $fsFontSize
+		@else
+			font-size: $fsFontSize
+			line-height: $fsFontSize * 1.5 //floor(nth($fsFontSize, 1) * 1.5) //$fsFontSize + 1 * 1.5
+
+// reset for lists
+%list-reset
+	li:before
+		display: none
+
+// Set font family classes
+// global preset
+$fontName: Arial !default
+=font-family($fontName)
+	font-family: $fontName

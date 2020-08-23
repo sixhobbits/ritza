@@ -1,0 +1,161 @@
+.navbar
+    background: rgba(228,105,87,.15)
+.navbar-brand
+    img
+        max-height: 45px
+
+section
+    padding: 15px 0
+
+.jumbotron
+    background-image: url("../images/header.png")
+    min-height:60vh
+    display: flex
+    padding-top: 1rem
+    align-items: center
+    justify-content: center
+    background-color: rgba(228, 105, 87, 0.15)
+    background-repeat: no-repeat
+    background-position: 80%
+    +max-break($md)
+        background-image: url("../images/mobile-header.png")
+        background-position: 93% 80%
+    .container
+        max-width: 1360px !important
+    p
+        font-size: 18px
+        margin: 15px 0 25px 0
+
+.marketing
+    p:nth-child(2)
+        margin-top: 20px
+
+.split-bg
+     background: linear-gradient(180deg, white 50%, rgba(45, 156, 174, 0.15) 50%)
+
+.center-card
+    margin: 0 auto
+
+.card
+    transition: all 500ms ease-in-out
+    cursor: pointer
+    border-radius: 12px
+    border: none
+    margin-top: 40px
+    box-shadow: 0px 12px 30px 0px rgba(71, 27, 27, 0.09)
+    &:hover
+        box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.15)
+        transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1)
+        transform: translatey(-4px)
+    span
+        font-size: 18px
+        +max-break($lg)
+            font-size: 14px
+    .h
+        font-size: 48px
+        +min-break($lg)
+            font-size: 35px
+
+    .card-text
+        font-size: 16px
+        text-align: center
+        margin-top: 10px
+
+    .card-body
+        padding-bottom: 0
+
+    .card-header:first-child
+        border-radius: 12px 12px 0 0
+        padding: 30px 0
+
+    .card-footer
+        background: none
+        border: none
+        p
+            font-size: 16px
+            color: $brandBrown
+            +max-break($lg)
+                font-size: 14px
+        a
+            width: 100%
+            margin-bottom: 10px
+
+.subscription
+    margin-top: 80px
+    padding-bottom: 60px
+    p
+        margin: 30px
+        br
+            display: none
+            +max-break($lg)
+                display: block
+    form
+        max-width: 350px
+        margin: 0 auto
+        margin-top: 15px
+        input
+            border-radius: 10px
+            margin-bottom: 15px
+            padding: 1.4rem .75rem
+            font-size: 14px
+        button
+            width: 100%
+
+.media
+    margin: 0 25px
+    +max-break($lg)
+        margin: 0 0px
+    h4
+        margin-bottom: 30px
+        +max-break($md)
+            margin-top: 0
+
+.media-body
+    margin: 0 25px
+    +max-break($lg)
+        margin: 0 15px
+    p:last-child
+        margin-bottom: 30px
+
+.different
+    margin-top: 40px
+    h2
+        margin-bottom: 30px
+    p:nth-child(3),
+    p:last-child
+        margin-bottom: 40px
+    .img-responsive
+        width: 45%
+        margin: 0 auto
+        margin-top: 15px
+        margin-bottom: 40px
+        +max-break($md)
+            margin-bottom: 20px
+            width: 100%
+    .media:last-child
+        +max-break($md)
+            margin-top: 30px
+
+footer
+    background: rgba(228, 105, 87, 0.15)
+    div
+        padding: 0 10%
+    img
+        max-height: 45px
+        margin-bottom: 20px
+    .footer-copyright
+        background: rgba(228, 105, 87, 0.2)
+        font-size: 12px
+        +max-break($md)
+            margin-top: 15px
+            text-align: center !important
+    +max-break($md)
+        hr
+            display: none
+    .footer-link
+        margin-top: 15px
+        display: inline-block
+        font-weight: 500
+        &:hover
+            text-decoration: none
+            color: darken($brandBlue, 10%)
